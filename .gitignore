@@ -1,0 +1,16 @@
+backups/
+*.bkp*
+*_BAK_*.py
+*_BKP_*.py
+nohup.out
+*.csv
+*.CSV
+__pycache__/
+*.pyc
+.env
+fotos_produtos/
+static/
+server.log
+streamlit.log
+webhook.log
+patch*.py
