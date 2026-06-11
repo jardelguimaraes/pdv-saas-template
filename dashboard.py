@@ -1,24 +1,24 @@
 # ═══════════════════════════════════════════════════
-# LOJA MANU PDV — JGAutomações.AI
-# Versão: 2.4.0
+# GM HOMEM PDV — JGAutomações.AI
+# Versão: 1.0.0
 # Data: 26/04/2026
 # Changelog:
-#   v2.0.0 — Recebimentos NASA + Manu AI com SQLAlchemy
+#   v2.0.0 — Recebimentos NASA + GM Homem AI com SQLAlchemy
 #            Múltiplos clientes, botões de ação, KPIs
 #   v1.0.0 — Lançamento oficial (5912 linhas)
 # ═══════════════════════════════════════════════════
-__version__ = "2.4.0"
+__version__ = "1.0.0-gmh"
 
 # ═══════════════════════════════════════════════════
-# LOJA MANU PDV — JGAutomações.AI
-# Versão: 2.4.0
+# GM HOMEM PDV — JGAutomações.AI
+# Versão: 1.0.0
 # Data: 26/04/2026
 # Changelog:
-#   v2.0.0 — Recebimentos NASA + Manu AI com SQLAlchemy
+#   v2.0.0 — Recebimentos NASA + GM Homem AI com SQLAlchemy
 #            Múltiplos clientes, botões de ação, KPIs
 #   v1.0.0 — Lançamento oficial (5912 linhas)
 # ═══════════════════════════════════════════════════
-__version__ = "2.4.0"
+__version__ = "1.0.0-gmh"
 
 import re
 import base64
@@ -56,37 +56,37 @@ except ImportError:
 load_dotenv()
 
 st.set_page_config(
-    page_title="Nome da Loja",
+    page_title="GM Homem Itaúna",
     page_icon="🛍️",
     layout="wide",
 )
 # ── Paleta e CSS global ───────────────────────────────────────────────────────
-# Paleta Loja Manu: Rosa Antigo + Dourado
-#   Rosa principal:  #9E5B6F   Rosa claro: #C8909D   Rosa fundo: #FBF0F2
-#   Dourado:         #B8892A   Dourado claro: #D4AA50  Dourado fundo: #FDF8EC
-#   Texto escuro:    #2D1A20
+# Paleta GM Homem: Rosa Antigo + Dourado
+#   Rosa principal:  #1A2035   Rosa claro: #2A3558   Rosa fundo: #F0EAD6
+#   Dourado:         #C9A84C   Dourado claro: #E8C97A  Dourado fundo: #F8F4E8
+#   Texto escuro:    #0D1117
 st.markdown("""
 <style>
-/* ── Variáveis de marca Loja Manu ─────────────────── */
+/* ── Variáveis de marca GM Homem ─────────────────── */
 :root {
-  --lm-rosa:       #9E5B6F;   /* Rosa Antigo — principal */
-  --lm-rosa-lt:    #C8909D;   /* Rosa claro — hover */
-  --lm-rosa-bg:    #FBF0F2;   /* Rosa pálido — fundo */
-  --lm-ouro:       #B8892A;   /* Dourado — destaque */
-  --lm-ouro-lt:    #D4AA50;   /* Dourado claro */
-  --lm-ouro-bg:    #FDF8EC;   /* Dourado pálido — fundo */
-  --lm-text-dark:  #2D1A20;   /* Texto principal */
+  --gm-azul:       #1A2035;   /* Rosa Antigo — principal */
+  --gm-azul-lt:    #2A3558;   /* Rosa claro — hover */
+  --gm-azul-bg:    #F0EAD6;   /* Rosa pálido — fundo */
+  --gm-ouro:       #C9A84C;   /* Dourado — destaque */
+  --gm-ouro-lt:    #E8C97A;   /* Dourado claro */
+  --gm-ouro-bg:    #F8F4E8;   /* Dourado pálido — fundo */
+  --gm-text-dark:  #0D1117;   /* Texto principal */
   /* Aliases legados (não mudar — usados em cards PDV) */
-  --lm-vinho:      #9E5B6F;
-  --lm-vinho-lt:   #C8909D;
-  --lm-vinho-bg:   #FBF0F2;
-  --lm-verde:      #B8892A;
-  --lm-verde-lt:   #D4AA50;
-  --lm-verde-bg:   #FDF8EC;
+  --gm-navy:      #1A2035;
+  --gm-navy-lt:   #2A3558;
+  --gm-navy-bg:   #F0EAD6;
+  --lm-verde:      #C9A84C;
+  --lm-verde-lt:   #E8C97A;
+  --lm-verde-bg:   #F8F4E8;
   /* PDV cards */
-  --pdv-card-bg:   #fffbf8;
-  --pdv-card-h4:   #2D1A20;
-  --pdv-label:     #9E5B6F;
+  --pdv-card-bg:   #F8F6F0;
+  --pdv-card-h4:   #0D1117;
+  --pdv-label:     #1A2035;
   --pdv-summary:   #fdf0f3;
   --pdv-hr:        #f0cfd6;
   --chat-card-bg:  #fafafa;
@@ -100,7 +100,7 @@ st.markdown("""
   :root {
     --pdv-card-bg:   #2a1520;
     --pdv-card-h4:   #f5e6ea;
-    --pdv-label:     #C8909D;
+    --pdv-label:     #2A3558;
     --pdv-summary:   #351a24;
     --pdv-hr:        #5a2e3a;
     --chat-card-bg:  #1e0f14;
@@ -113,14 +113,14 @@ st.markdown("""
 /* ── Cards PDV ────────────────────────────────────── */
 .pdv-card {
   background: var(--pdv-card-bg);
-  border: 1.5px solid var(--lm-rosa);
+  border: 1.5px solid var(--gm-azul);
   border-radius: 14px;
   padding: 22px 24px 16px;
 }
 .pdv-card h4 { color: var(--pdv-card-h4); margin: 0 0 16px; }
 .pdv-label {
   font-size: .8rem; font-weight: 700;
-  color: var(--lm-rosa); letter-spacing: .08em;
+  color: var(--gm-azul); letter-spacing: .08em;
 }
 .chat-card {
   background: var(--chat-card-bg);
@@ -144,20 +144,20 @@ st.markdown("""
   padding: 4px 10px 6px;
   background: var(--cart-row-hdr);
   border-radius: 7px 7px 0 0;
-  font-size: .78rem; font-weight: 700; color: var(--lm-rosa);
+  font-size: .78rem; font-weight: 700; color: var(--gm-azul);
   letter-spacing: .06em;
 }
 
 /* ── Métricas ─────────────────────────────────────── */
 [data-testid="stMetricValue"] {
-  color: var(--lm-rosa) !important;
+  color: var(--gm-azul) !important;
   font-weight: 700 !important;
 }
-[data-testid="stMetricLabel"] { color: var(--lm-ouro) !important; }
+[data-testid="stMetricLabel"] { color: var(--gm-ouro) !important; }
 
 /* ── Barra de progresso — dourado ─────────────────── */
 [data-testid="stProgress"] > div > div {
-  background: var(--lm-ouro) !important;
+  background: var(--gm-ouro) !important;
 }
 
 /* ── Sidebar menu radio ───────────────────────────── */
@@ -178,7 +178,7 @@ button, [data-baseweb="tab"], .stButton>button, div[data-testid="stExpander"] p,
 button[data-baseweb="tab"] p, button[data-baseweb="tab"] span,
 .st-emotion-cache-6qob1r, .st-emotion-cache-16idsys p {
     color: #ffffff !important;
-    background-color: #9d5c6d !important;
+    background-color: #1A2035 !important;
     opacity: 1 !important;
     font-weight: bold !important;
     text-transform: none !important;
@@ -232,7 +232,7 @@ button[data-baseweb="tab"] p, button[data-baseweb="tab"] span,
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "127.0.0.1"),
     "port": int(os.getenv("DB_PORT", 5432)),
-    "dbname": os.getenv("DB_NAME", "pdv_loja"),
+    "dbname": os.getenv("DB_NAME", "gmh_db"),
     "user": os.getenv("DB_USER", "jgadmin"),
     "password": os.getenv("DB_PASS", os.getenv("DB_PASSWORD", "")),
 }
@@ -333,9 +333,9 @@ _init_api_keys_from_db()
 
 # ── Constantes de caminho ─────────────────────────────────────────────────────
 
-_LOGO_PATH     = "/opt/jg-projetos/pdv-loja/logo-manu.png"
-_LOGO_STATIC   = "/opt/jg-projetos/pdv-loja/static/logo.png"
-_FOTO_DIR_PROD = "/opt/jg-projetos/pdv-loja/fotos_produtos"
+_LOGO_PATH     = "/opt/jg-projetos/loja-gmh/logo-gmh.jpg"
+_LOGO_STATIC   = "/opt/jg-projetos/loja-gmh/static/logo-gmh.jpg"
+_FOTO_DIR_PROD = "/opt/jg-projetos/loja-gmh/fotos_produtos"
 
 # ── Dialog de detalhes do produto (módulo) ────────────────────────────────────
 
@@ -485,6 +485,42 @@ def _dlg_cel_mask_callback() -> None:
         st.session_state["dlg_nc_cel"] = formatar_celular(nums)
 
 
+@st.dialog("🪪 Cartão de Visita", width="large")
+def _dialog_ver_cartao(nome, foto_bytes, foto_nome):
+    st.markdown(f"### {nome}")
+    if foto_bytes:
+        import base64
+        img_b64 = base64.b64encode(foto_bytes).decode()
+        ext = (foto_nome or "foto.jpg").split(".")[-1].lower()
+        mime = "image/jpeg" if ext in ("jpg", "jpeg") else f"image/{ext}"
+        st.markdown(
+            f'<img src="data:{mime};base64,{img_b64}" '
+            f'style="width:100%;border-radius:8px;max-height:600px;object-fit:contain">',
+            unsafe_allow_html=True,
+        )
+    else:
+        st.info("Nenhuma foto de cartão cadastrada.")
+
+
+@st.dialog("➕ Cadastro Rápido de Fornecedor")
+def _dialog_novo_fornecedor_rapido():
+    st.caption("Cadastro rápido — complete os dados depois em 🏭 Fornecedores")
+    _rn = st.text_input("Nome *", placeholder="Ex: Inovar Modas")
+    _rw = st.text_input("📱 WhatsApp", placeholder="11 99999-9999")
+    _rc1, _rc2 = st.columns(2)
+    if _rc1.button("✅ Salvar", use_container_width=True):
+        if not _rn.strip():
+            st.error("Nome obrigatório.")
+        else:
+            run_command(
+                "INSERT INTO fornecedores (nome, tipo, whatsapp1) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
+                (_rn.strip(), "Fornecedor", _rw.strip() or None)
+            )
+            st.success(f"✅ {_rn.strip()} salvo!")
+            st.rerun()
+    if _rc2.button("❌ Cancelar", use_container_width=True):
+        st.rerun()
+
 @st.dialog("➕ Cadastro Rápido de Cliente")
 def _dlg_cadastro_rapido() -> None:
     """Cadastra Nome, CPF e Celular no banco sem sair do PDV."""
@@ -610,7 +646,7 @@ def _logo_b64() -> str | None:
 #
 # Regras visuais (fixas):
 #   • Container 300px, overflow-x:hidden, background branco
-#   • Logo 40px à esquerda de "NOME DA LOJA" (substitui marca d'água)
+#   • Logo 40px à esquerda de "LOJA GM HOMEM ITAÚNA" (substitui marca d'água)
 #   • SEM div de watermark (falha na impressão em muitas impressoras)
 #   • -webkit-print-color-adjust:exact para a logo aparecer na bobina
 # ─────────────────────────────────────────────────────────────────────────────
@@ -631,7 +667,7 @@ def _cupom_html_display(text: str) -> str:
             "-webkit-print-color-adjust:exact !important;"
             "print-color-adjust:exact !important;' alt='logo'>"
             "<strong style='font-family:\"Courier New\",monospace;"
-            "font-size:.88rem;color:#2D1A20;'>NOME DA LOJA</strong>"
+            "font-size:.88rem;color:#0D1117;'>LOJA GM HOMEM ITAÚNA</strong>"
             "</div>"
         )
 
@@ -670,7 +706,7 @@ def _cupom_iframe_html(text: str, frame_id: str,
             f"-webkit-print-color-adjust:exact !important;"
             f"print-color-adjust:exact !important;\" alt=\"logo\">"
             f"<b style=\"font-family:'Courier New',monospace;font-size:10pt;\">"
-            f"NOME DA LOJA</b></div>"
+            f"LOJA GM HOMEM ITAUNA</b></div>"
         )
 
     print_doc = (
@@ -695,7 +731,7 @@ def _cupom_iframe_html(text: str, frame_id: str,
         f'<iframe id="{frame_id}" style="position:absolute;top:-9999px;'
         f'left:-9999px;width:1px;height:1px;border:none;"></iframe>\n'
         f'<button onclick="{fn}()" style="width:100%;'
-        f'background:linear-gradient(135deg,#9d5c6d,#c27a9b);'
+        f'background:linear-gradient(135deg,#1A2035,#c27a9b);'
         f'color:#fff;border:none;border-radius:8px;padding:10px 16px;'
         f'font-size:1rem;font-weight:600;cursor:pointer;'
         f'letter-spacing:.4px;box-shadow:0 2px 8px rgba(157,92,109,.4)">'
@@ -819,7 +855,7 @@ def salvar_venda(dados: dict, itens: list | None = None) -> str:
                         """
                         INSERT INTO vendas
                             (cliente_id, valor_total, forma_pagamento, status_pagamento,
-                             vendedor_nome, codigo_vendedor, observacao, cupom_text, parcelas)
+                             vendedor_nome, codigo_vendedor, observacoes, cupom_texto, parcelas)
                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id
                         """,
@@ -841,32 +877,24 @@ def salvar_venda(dados: dict, itens: list | None = None) -> str:
 
                 # ── INSERT itens_venda ────────────────────────────────────────
                 for it in (itens or []):
-                    _desc_item = it.get("nome", it.get("descricao", ""))
+                    _cor_it  = it.get("cor") or None
+                    _tam_it  = it.get("tamanho") or None
+                    _base_nm = it.get("nome", it.get("descricao", ""))
+                    _desc_item = _base_nm.strip()
                     _sub_item  = round(float(it["qtd"]) * float(it["preco_unit"]), 2)
-                    cur.execute("SAVEPOINT sp_itm")
-                    try:
-                        cur.execute(
-                            """
-                            INSERT INTO itens_venda
-                                (venda_id, produto_id, quantidade, preco_unit,
-                                 descricao, preco_unitario, subtotal)
-                            VALUES (%s::uuid, %s::uuid, %s, %s, %s, %s, %s)
-                            """,
-                            (venda_id, it["produto_id"], it["qtd"], it["preco_unit"],
-                             _desc_item, it["preco_unit"], _sub_item),
-                        )
-                    except Exception:
-                        cur.execute("ROLLBACK TO SAVEPOINT sp_itm")
-                        cur.execute(
-                            """
-                            INSERT INTO itens_venda (venda_id, produto_id, quantidade, preco_unit)
-                            VALUES (%s::uuid, %s::uuid, %s, %s)
-                            """,
-                            (venda_id, it["produto_id"], it["qtd"], it["preco_unit"]),
-                        )
+                    cur.execute(
+                        """
+                        INSERT INTO itens_venda
+                            (venda_id, produto_id, nome_produto, cor, tamanho,
+                             quantidade, preco_unit, preco_unitario, subtotal)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        """,
+                        (venda_id, it["produto_id"], _desc_item, _cor_it, _tam_it,
+                         it["qtd"], it["preco_unit"], it["preco_unit"], _sub_item),
+                    )
                     # Decrementa estoque
                     cur.execute(
-                        "UPDATE produtos SET estoque_atual = estoque_atual - %s WHERE id = %s::uuid",
+                        "UPDATE produtos SET estoque_atual = estoque_atual - %s WHERE id = %s",
                         (it["qtd"], it["produto_id"]),
                     )
 
@@ -880,7 +908,7 @@ def salvar_venda(dados: dict, itens: list | None = None) -> str:
                         vencimento = hoje + timedelta(days=30 * i)
                         cur.execute(
                             """
-                            INSERT INTO contas_receber (venda_id, valor_parcela, data_vencimento, status)
+                            INSERT INTO contas_receber (venda_id, valor_parcela, dt_vencimento, status)
                             VALUES (%s, %s, %s, 'aberto')
                             """,
                             (venda_id, valor_parcela, vencimento),
@@ -938,8 +966,8 @@ def gerar_cupom(dados: dict, venda_id: str, num_cupom: int,
     except: _nr_doc = f"PED-{num_cupom:06d}"
     linhas = [
         SEP,
-        ctr('NOME DA LOJA'),
-        ctr('Moda Feminina — Itaúna/MG'),
+        ctr('LOJA GM HOMEM ITAÚNA'),
+        ctr('Moda Masculina — Itaúna/MG'),
         SEP,
         f"Doc: {_nr_doc}".ljust(W // 2) + f"{dt} {hr}".rjust(W - W // 2),
         f"CLIENTE:    {dados['cliente_nome'][:30]}",
@@ -1005,7 +1033,7 @@ def gerar_cupom(dados: dict, venda_id: str, num_cupom: int,
         ctr("✨ Você merece se sentir incrível!"),
         ctr("Até a próxima 🛍️"),
         SEP,
-        ctr("📱 Instagram: @suasloja"),
+        ctr("📱 Instagram: @gm.homem"),
         ctr("🌐 By JGAutomações.AI"),
         ctr("Tecnologia de Impacto"),
         SEP,
@@ -1036,7 +1064,7 @@ def gerar_cupom_pagamento(
 
     linhas = [
         SEP,
-        ctr("NOME DA LOJA"),
+        ctr("LOJA GM HOMEM ITAÚNA"),
         ctr("Recibo de Pagamento"),
         SEP,
         f"Data/Hora:  {dt}  {hr}".ljust(W),
@@ -1065,9 +1093,9 @@ def gerar_cupom_pagamento(
 
 # ── Helpers de Clientes ───────────────────────────────────────────────────────
 
-_WEBHOOK_RECADASTRO  = "https://webhook.jardelguimaraes.com.br/webhook/pdv-loja-recadastro"
-_WEBHOOK_COBRANCA    = "https://webhook.jardelguimaraes.com.br/webhook/pdv-loja-cobranca"
-_WEBHOOK_COMPROVANTE = "https://webhook.jardelguimaraes.com.br/webhook/pdv-loja-comprovante"
+_WEBHOOK_RECADASTRO  = "https://webhook.jardelguimaraes.com.br/webhook/loja-gmh-recadastro"
+_WEBHOOK_COBRANCA    = "https://webhook.jardelguimaraes.com.br/webhook/loja-gmh-cobranca"
+_WEBHOOK_COMPROVANTE = "https://webhook.jardelguimaraes.com.br/webhook/loja-gmh-comprovante"
 
 
 def validar_cpf(cpf: str) -> bool:
@@ -1775,8 +1803,8 @@ def _exibir_cupom_baixa(parcela, valor_pago, isentou, enc, forma, obs=""):
 
     <div style="text-align:center;border-bottom:1px dashed #9CA3AF;
                 padding-bottom:12px;margin-bottom:12px">
-        <div style="font-size:20px;font-weight:700">NOME DA LOJA</div>
-        <div style="font-size:12px;color:#6B7280">Moda Feminina — JGAutomações.AI</div>
+        <div style="font-size:20px;font-weight:700">LOJA GM HOMEM ITAÚNA</div>
+        <div style="font-size:12px;color:#6B7280">Moda Masculina — JGAutomações.AI</div>
         <div style="font-size:11px;color:#6B7280">{agora}</div>
     </div>
 
@@ -1807,7 +1835,7 @@ def _exibir_cupom_baixa(parcela, valor_pago, isentou, enc, forma, obs=""):
     <div style="text-align:center;font-size:10px;color:#9CA3AF;margin-top:12px;
         border-top:1px dashed #9CA3AF;padding-top:8px">
         Obrigada pela preferência! 💜<br>
-        Nome da Loja — Moda Feminina
+        GM Homem Itaúna — Moda Masculina
     </div>
 </div>
 
@@ -2218,7 +2246,7 @@ def _resumo_ia_perfil(cliente_nome: str, historico_txt: str) -> str:
             messages=[{
                 "role": "user",
                 "content": (
-                    f"Você é analista de CRM de uma loja de roupas femininas chamada Nome da Loja. "
+                    f"Você é analista de CRM de uma loja de roupas femininas chamada GM Homem Itaúna. "
                     f"Com base no histórico de compras a seguir do cliente **{cliente_nome}**, "
                     f"escreva um resumo objetivo em 3-5 frases curtas sobre: "
                     f"perfil de consumo, categorias preferidas, ticket médio, frequência de compra, "
@@ -2508,7 +2536,7 @@ def _dlg_balcao_financeiro(cliente_nome: str, username: str) -> None:
                     _total_it = float((_itens_v["qtd"] * _itens_v["unit"]).sum())
                     _cupom_it_txt = (
                         f"{'─'*42}\n"
-                        f"NOME DA LOJA — Itens da Venda\n"
+                        f"LOJA GM HOMEM ITAÚNA — Itens da Venda\n"
                         f"Data: {data_v}  |  {forma_v}\n"
                         f"{'─'*42}\n"
                         + "\n".join(_linhas_it)
@@ -2545,7 +2573,7 @@ def _dlg_balcao_financeiro(cliente_nome: str, username: str) -> None:
                             style="position:absolute;top:-9999px;left:-9999px;
                                    width:1px;height:1px;border:none;"></iframe>
                         <button onclick="imprimirIt_{venda_id[:8].replace('-','_')}()"
-                          style="background:linear-gradient(135deg,#9d5c6d,#c27a9b);
+                          style="background:linear-gradient(135deg,#1A2035,#c27a9b);
                                  color:#fff;border:none;border-radius:8px;
                                  padding:6px 14px;font-size:.85rem;font-weight:600;
                                  cursor:pointer;margin-top:6px">
@@ -2821,7 +2849,7 @@ def _dlg_balcao_financeiro(cliente_nome: str, username: str) -> None:
     with st.expander("📱 Enviar mensagem WhatsApp", expanded=False):
         _blc_msg_default = (
             f"Olá {cliente_nome.split()[0]}! Passando para lembrar sobre "
-            f"suas parcelas em aberto na Loja Manu. Entre em contato conosco. 💛"
+            f"suas parcelas em aberto na GM Homem. Entre em contato conosco. 💛"
         )
         _blc_msg = st.text_area(
             "Mensagem", value=_blc_msg_default, height=90, key="blc_msg_wpp"
@@ -2854,7 +2882,7 @@ def _dlg_itens_venda(venda_id: str, cliente_nome: str, data_venda: str) -> None:
         SELECT v.valor_total, v.forma_pagamento,
                COALESCE(v.codigo_vendedor, v.vendedor_nome, '—') AS vendedor
         FROM vendas v
-        WHERE v.id = '{venda_id}'::uuid
+        WHERE v.id = '{venda_id}'
         LIMIT 1
     """)
     df_it = run_query(f"""
@@ -2863,7 +2891,7 @@ def _dlg_itens_venda(venda_id: str, cliente_nome: str, data_venda: str) -> None:
                (iv.quantidade * iv.preco_unit) AS subtotal
         FROM itens_venda iv
         JOIN produtos p ON p.id = iv.produto_id
-        WHERE iv.venda_id = '{venda_id}'::uuid
+        WHERE iv.venda_id = '{venda_id}'
         ORDER BY p.nome
     """)
 
@@ -2883,8 +2911,8 @@ def _dlg_itens_venda(venda_id: str, cliente_nome: str, data_venda: str) -> None:
 
     _linhas_cupom = [
         SEP,
-        _ctr("NOME DA LOJA"),
-        _ctr("Moda Feminina — Itaúna/MG"),
+        _ctr("LOJA GM HOMEM ITAÚNA"),
+        _ctr("Moda Masculina — Itaúna/MG"),
         SEP,
         f"Cliente:   {cliente_nome[:30]}",
         f"Data:      {data_venda}",
@@ -2926,7 +2954,7 @@ def _dlg_itens_venda(venda_id: str, cliente_nome: str, data_venda: str) -> None:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# MANU AI — Inteligência Central (OpenRouter / Groq + SQL direto)
+# GM HOMEM AI — Inteligência Central (OpenRouter / Groq + SQL direto)
 # ══════════════════════════════════════════════════════════════════════════════
 
 # ── Tools Seguras (Fase 1) ────────────────────────────────────────────────────
@@ -3229,7 +3257,7 @@ def _manu_ai_responder(pergunta: str, historico: list) -> dict:
 
     if dados_vazio or len(dados_json) < 50:
         system = (
-            f"Você é a Manu, assistente da Nome da Loja. "
+            f"Você é a GM Homem, assistente da GM Homem Itaúna. "
             f"Data: {datetime.now().strftime('%d/%m/%Y %H:%M')}. "
             f"Responda em português, direto e amigável (2-3 linhas max). "
             f"Nenhum dado foi encontrado para essa consulta. "
@@ -3237,7 +3265,7 @@ def _manu_ai_responder(pergunta: str, historico: list) -> dict:
         )
     else:
         system = (
-            f"Você é a Manu, gerente de operações da Nome da Loja (moda feminina). "
+            f"Você é a GM Homem, gerente de operações da GM Homem Itaúna (moda masculina). "
             f"Data: {datetime.now().strftime('%d/%m/%Y %H:%M')}. "
             f"Responda em português, direto, amigável. Máximo 3 linhas. "
             f"Use SOMENTE os dados abaixo — NUNCA invente dados ou use placeholders tipo '[Insira...]'.\n\n"
@@ -3261,7 +3289,7 @@ def _manu_ai_responder(pergunta: str, historico: list) -> dict:
     return {"tipo": tipo, "dados": dados, "texto": texto, "acoes": acoes}
 
 
-# ── Código antigo removido na refatoração Manu AI v2 ──────────────────────
+# ── Código antigo removido na refatoração GM Homem AI v2 ──────────────────────
 
 # Início do código legado deletado para agente v2
 def _q_check(nome_fragmento):
@@ -3271,7 +3299,7 @@ def _q_check(nome_fragmento):
         import pandas as _pd
         _env = {}
         try:
-            with open('/opt/jg-projetos/pdv-loja/.env') as _f:
+            with open('/opt/jg-projetos/loja-gmh/.env') as _f:
                 for _l in _f:
                     _l = _l.strip()
                     if '=' in _l and not _l.startswith('#'):
@@ -3282,7 +3310,7 @@ def _q_check(nome_fragmento):
                 f"{_env.get('DB_PASS','JGroot2026')}@"
                 f"{_env.get('DB_HOST','127.0.0.1')}:"
                 f"{_env.get('DB_PORT','5432')}/"
-                f"{_env.get('DB_NAME','pdv_loja')}")
+                f"{_env.get('DB_NAME','gmh_db')}")
         _eng = create_engine(_url)
         with _eng.connect() as _con:
             _df = _pd.read_sql_query(
@@ -3296,11 +3324,11 @@ def _q_check(nome_fragmento):
 
 
 def render_manu_ai(perfil: str) -> None:
-    """Manu AI v2 — Agente com tools estruturadas e UI limpa."""
+    """GM Homem AI v2 — Agente com tools estruturadas e UI limpa."""
 
     # Header
     col_h, col_clr = st.columns([0.9, 0.1])
-    col_h.markdown("### ✨ Manu AI — Agente v2")
+    col_h.markdown("### ✨ GM Homem AI — Agente v2")
     if col_clr.button("🗑️", key="manu_clr", help="Limpar conversa"):
         st.session_state['manu_msgs'] = []
         st.rerun()
@@ -3418,7 +3446,7 @@ def render_manu_ai(perfil: str) -> None:
         st.rerun()
 
 
-_MANU_SYSTEM = """Você é a Manu, Gerente de Operações da Nome da Loja.
+_GMH_SYSTEM = """Você é a GM Homem, Gerente de Operações da GM Homem Itaúna.
 Fale como uma pessoa experiente — direta, profissional e humana. Nunca como um robô ou sistema.
 
 IDENTIDADE (nunca quebre estas regras):
@@ -3438,10 +3466,10 @@ COMO RESPONDER:
 PROIBIDO nas respostas: SELECT, FROM, WHERE, JOIN, TABLE, NULL, ILIKE, UUID, qualquer código.
 
 FOCO EXCLUSIVO (regra inquebrável):
-Você é a Gerente Digital da Nome da Loja. Seu conhecimento é restrito ao banco de dados da loja e ao varejo de moda feminina. Recuse com elegância qualquer assunto fora desse domínio — política, culinária, tecnologia geral, entretenimento, etc. Responda: "Minha especialidade é a Loja Manu — posso te ajudar com estoque, clientes, vendas ou financeiro da loja. Tem algo nisso que posso resolver agora?" """
+Você é a Gerente Digital da GM Homem Itaúna. Seu conhecimento é restrito ao banco de dados da loja e ao varejo de moda masculina. Recuse com elegância qualquer assunto fora desse domínio — política, culinária, tecnologia geral, entretenimento, etc. Responda: "Minha especialidade é a GM Homem — posso te ajudar com estoque, clientes, vendas ou financeiro da loja. Tem algo nisso que posso resolver agora?" """
 
-_MANU_TABELAS_CTX = """
-Banco PostgreSQL — Nome da Loja (roupas femininas).
+_GMH_TABELAS_CTX = """
+Banco PostgreSQL — GM Homem Itaúna (roupas femininas).
 
 VIEWS PRINCIPAIS (use SEMPRE estas — já unem banco novo + sistema legado):
 
@@ -3481,7 +3509,7 @@ REGRAS DE CONSULTA:
 """
 
 
-def _manu_llm(messages: list[dict], system: str = _MANU_SYSTEM) -> str:
+def _manu_llm(messages: list[dict], system: str = _GMH_SYSTEM) -> str:
     """Chama Qwen 2.5-Coder via OpenRouter (fallback: Groq llama3).
 
     max_tokens=1000  — evita respostas truncadas em análises maiores.
@@ -3507,7 +3535,7 @@ def _manu_llm(messages: list[dict], system: str = _MANU_SYSTEM) -> str:
                 },
                 headers={
                     "Authorization": f"Bearer {or_key}",
-                    "HTTP-Referer": "https://pdv-loja.com",
+                    "HTTP-Referer": "https://loja-gmh.com",
                     "Content-Type": "application/json",
                 },
                 timeout=45,
@@ -3670,7 +3698,7 @@ def _manu_resp_detalhe_venda(termo: str) -> dict:
                iv.preco_unit, (iv.quantidade * iv.preco_unit) AS subtotal
         FROM itens_venda iv
         JOIN produtos p ON p.id = iv.produto_id
-        WHERE iv.venda_id = '{vid}'::uuid
+        WHERE iv.venda_id = '{vid}'
         ORDER BY p.nome
     """)
     return {"tipo": "detalhe_venda", "venda": df_v.iloc[0].to_dict(), "itens": df_it}
@@ -3818,7 +3846,7 @@ def reset_banco_para_producao() -> tuple[bool, str]:
 
 
 def _manu_processar(prompt: str, role: str, username: str) -> dict:
-    """Processa prompt da Manu AI e retorna dict com tipo + dados."""
+    """Processa prompt da GM Homem AI e retorna dict com tipo + dados."""
     intent = _manu_detectar_intent(prompt)
 
     if intent == "parcelas":
@@ -3902,7 +3930,7 @@ def _manu_processar(prompt: str, role: str, username: str) -> dict:
 
     resp = _manu_llm(
         [{"role": "user", "content": prompt + ctx_sql}],
-        system=_MANU_SYSTEM + "\n" + _MANU_TABELAS_CTX,
+        system=_GMH_SYSTEM + "\n" + _GMH_TABELAS_CTX,
     )
     return {"tipo": "texto", "content": resp}
 
@@ -3913,7 +3941,7 @@ def _manu_render_action_button(
     key: str,
     action: str = "financeiro",
 ) -> None:
-    """Botão de ação contextual gerado pela Manu AI após exibir dados.
+    """Botão de ação contextual gerado pela GM Homem AI após exibir dados.
 
     Navega para a aba correta e pré-aplica o filtro do cliente automaticamente,
     para que o usuário chegue exatamente onde precisa sem digitar nada.
@@ -3941,7 +3969,7 @@ def _manu_render_action_button(
 
 
 def _manu_render_resultado(res: dict, chat_key: str, username: str) -> None:
-    """Renderiza o resultado estruturado da Manu AI."""
+    """Renderiza o resultado estruturado da GM Homem AI."""
     tipo = res.get("tipo", "texto")
 
     if tipo == "texto":
@@ -4022,20 +4050,20 @@ def _manu_render_resultado(res: dict, chat_key: str, username: str) -> None:
         ) if not df_it.empty else "<tr><td colspan='4'>Sem itens registrados</td></tr>"
 
         st.markdown(f"""
-<div style="position:relative;font-family:monospace;background:#fffbf8;border:1px solid #e0c8d0;
+<div style="position:relative;font-family:monospace;background:#F8F6F0;border:1px solid #C9A84C;
      border-radius:10px;padding:18px 22px;max-width:480px;overflow:hidden">
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);
        font-size:4rem;font-weight:900;color:rgba(158,91,111,0.05);pointer-events:none;
-       white-space:nowrap;user-select:none">NOME DA LOJA</div>
-  <div style="text-align:center;font-weight:800;font-size:1rem;color:#9d5c6d">
-    🛍️ NOME DA LOJA</div>
-  <hr style="border-color:#e0c8d0;margin:6px 0">
+       white-space:nowrap;user-select:none">LOJA GM HOMEM</div>
+  <div style="text-align:center;font-weight:800;font-size:1rem;color:#1A2035">
+    🛍️ LOJA GM HOMEM ITAÚNA</div>
+  <hr style="border-color:#C9A84C;margin:6px 0">
   <div style="font-size:.8rem">
     <b>Cliente:</b> {cli}<br>
     <b>Data:</b> {data} | <b>Pagamento:</b> {forma}<br>
     <b>Vendedor(a):</b> {vend}
   </div>
-  <hr style="border-color:#e0c8d0;margin:6px 0">
+  <hr style="border-color:#C9A84C;margin:6px 0">
   <table style="width:100%;font-size:.8rem;border-collapse:collapse">
     <thead>
       <tr style="background:#fce8ec">
@@ -4047,8 +4075,8 @@ def _manu_render_resultado(res: dict, chat_key: str, username: str) -> None:
     </thead>
     <tbody>{itens_html}</tbody>
   </table>
-  <hr style="border-color:#e0c8d0;margin:6px 0">
-  <div style="text-align:right;font-size:1rem;font-weight:800;color:#9d5c6d">
+  <hr style="border-color:#C9A84C;margin:6px 0">
+  <div style="text-align:right;font-size:1rem;font-weight:800;color:#1A2035">
     TOTAL: R$ {total:,.2f}
   </div>
 </div>
@@ -4150,7 +4178,7 @@ def _manu_render_resultado(res: dict, chat_key: str, username: str) -> None:
                     if _rc[5].button("📲", key=f"manu_atraso_wpp{_rk}",
                                      use_container_width=True):
                         _msg_c = (f"Olá {_nm.split()[0]}! Você possui parcelas em atraso "
-                                  f"na Loja Manu. Entre em contato. 💛")
+                                  f"na GM Homem. Entre em contato. 💛")
                         ok, err = _disparar_whatsapp(_cid, _wpp, _nm, _msg_c, username)
                         if ok:
                             st.success(f"✅ Mensagem enviada para {_nm.split()[0]}!")
@@ -4161,7 +4189,7 @@ def _manu_render_resultado(res: dict, chat_key: str, username: str) -> None:
 
             # Disparo em massa mantido como expander opcional
             if wh_url:
-                _msg_bulk = "Olá {nome}! Você possui parcelas em atraso na Loja Manu. Entre em contato. 💛"
+                _msg_bulk = "Olá {nome}! Você possui parcelas em atraso na GM Homem. Entre em contato. 💛"
                 with st.expander("📱 Disparar WhatsApp para toda a lista"):
                     st.text_area("Mensagem (use {nome})", value=_msg_bulk,
                                  key=f"manu_wpp_msg_{subtipo}", height=80)
@@ -4192,9 +4220,9 @@ def _manu_render_resultado(res: dict, chat_key: str, username: str) -> None:
         wh_url = _get_webhook_url()
         if wh_url and not df.empty:
             if subtipo == "aniversariantes":
-                msg_template = "Feliz aniversário, {nome}! 🎂 A Loja Manu deseja um dia incrível para você! Sua surpresa especial te espera aqui. 💛"
+                msg_template = "Feliz aniversário, {nome}! 🎂 A GM Homem deseja um dia incrível para você! Sua surpresa especial te espera aqui. 💛"
             else:
-                msg_template = "Olá {nome}! Sentimos sua falta na Nome da Loja. Temos novidades esperando por você! 💛"
+                msg_template = "Olá {nome}! Sentimos sua falta na GM Homem Itaúna. Temos novidades esperando por você! 💛"
 
             with st.expander("📱 Disparar WhatsApp para toda a lista"):
                 st.text_area("Mensagem (use {nome})", value=msg_template,
@@ -4258,6 +4286,7 @@ def _h(s: str) -> str:
 _USERS: dict = {
     "admin":        {"senha_hash": _h("admin123"),   "role": "admin"},
     "admin_master": {"senha_hash": _h("jardel2026"), "role": "admin_master"},
+    "master":       {"senha_hash": _h("jardel2026"), "role": "admin_master"},
     "vendas":       {"senha_hash": _h("vendas123"),  "role": "vendas"},
 }
 
@@ -4268,10 +4297,12 @@ _USERS: dict = {
 # ⚡ JG Hub continua exclusivo de admin_master.
 # 🔄 Trocas liberada para todos os perfis.
 
-_ABAS_TODOS  = ["🛒 Vendas", "🔄 Trocas", "📋 Condicional",
-                "💳 Pagamentos",
-                "💳 Recebimentos", "📦 Estoque", "🏠 Visão Geral", "📊 Relatórios",
-                "📚 Histórico Legado", "👤 Equipe", "📣 Mala Direta"]
+_ABAS_TODOS  = ["🛒 Vendas", "💳 Recebimentos", "💳 Pagamentos",
+                "📦 Estoque", "📒 Cadastros",
+                "📋 Condicional", "🔄 Trocas",
+                "📊 Relatórios", "🏠 Visão Geral",
+                "📣 Mala Direta", "👤 Equipe",
+                "📚 Histórico Legado"]
 _ABAS_MASTER = _ABAS_TODOS + ["⚡ JG Hub"]
 
 _TABS_POR_ROLE: dict = {
@@ -4283,7 +4314,7 @@ _TABS_POR_ROLE: dict = {
 # Páginas restritas para perfil 'vendas' (exibe aviso ao entrar)
 _RESTRITAS_VENDAS = frozenset([
     "🏠 Visão Geral",
-    "👤 Equipe", "📣 Mala Direta", "⚡ JG Hub",
+    "👤 Equipe", "📣 Mala Direta", "🏭 Fornecedores", "⚡ JG Hub",
     "💳 Pagamentos",
 ])
 
@@ -4316,7 +4347,7 @@ def _tela_login() -> None:
         try:
             _, _logo_c, _ = st.columns([1, 2, 1])
             with _logo_c:
-                st.image('static/logo.png', width=200)
+                st.image('static/logo-gmh.jpg', width=200)
         except Exception:
             pass
         st.subheader("Acesso ao Dashboard")
@@ -4349,20 +4380,20 @@ _IS_MASTER = _role == "admin_master"
 
 # ── Paleta de tema por perfil ─────────────────────────────────────────────────
 if _IS_ADMIN:
-    _sb_bg       = "#2D1A20"   # fundo marrom-escuro Loja Manu
+    _sb_bg       = "#0D1117"   # fundo marrom-escuro GM Homem
     _sb_text     = "#f5e6ea"   # texto rosado claro
-    _sb_accent   = "#D4AA50"   # dourado — item ativo
-    _sb_btn_bg   = "#9E5B6F"   # botão rosa antigo
+    _sb_accent   = "#E8C97A"   # dourado — item ativo
+    _sb_btn_bg   = "#1A2035"   # botão rosa antigo
     _sb_btn_fg   = "#fff"
     _sb_hr       = "rgba(184,137,42,0.40)"
     _sb_sel_bg   = "rgba(212,170,80,0.15)"
     _main_bg     = ""           # sem override no conteúdo principal
     _btn_radius  = "8px"
 else:                           # vendas — fundo mais claro, identidade feminina
-    _sb_bg       = "#FBF0F2"   # rosa pálido
-    _sb_text     = "#2D1A20"   # texto escuro
-    _sb_accent   = "#9E5B6F"   # rosa antigo — item ativo
-    _sb_btn_bg   = "#9E5B6F"
+    _sb_bg       = "#F0EAD6"   # rosa pálido
+    _sb_text     = "#0D1117"   # texto escuro
+    _sb_accent   = "#1A2035"   # rosa antigo — item ativo
+    _sb_btn_bg   = "#1A2035"
     _sb_btn_fg   = "#fff"
     _sb_hr       = "rgba(158,91,111,0.25)"
     _sb_sel_bg   = "rgba(158,91,111,0.08)"
@@ -4381,8 +4412,8 @@ st.markdown(f"""
 
 /* === Botões (conteúdo principal) ================ */
 .stButton > button {{
-    background-color: #9d5c6d !important;
-    border: 2px solid #9d5c6d !important;
+    background-color: #1A2035 !important;
+    border: 2px solid #1A2035 !important;
     color: #ffffff !important;
     font-weight: 700 !important;
     border-radius: {_btn_radius} !important;
@@ -4391,40 +4422,40 @@ st.markdown(f"""
 }}
 .stButton > button:hover,
 .stButton > button:active {{
-    background-color: #C8909D !important;
-    border-color: #C8909D !important;
+    background-color: #2A3558 !important;
+    border-color: #2A3558 !important;
     color: #ffffff !important;
     opacity: 1 !important;
 }}
 .stFormSubmitButton > button {{
-    background-color: #B8892A !important;
-    border: 2px solid #B8892A !important;
+    background-color: #C9A84C !important;
+    border: 2px solid #C9A84C !important;
     color: #fff !important;
     font-weight: 700 !important;
     border-radius: {_btn_radius} !important;
     transition: background-color .2s, color .2s;
 }}
 .stFormSubmitButton > button:hover {{
-    background-color: #D4AA50 !important;
-    border-color: #D4AA50 !important;
+    background-color: #E8C97A !important;
+    border-color: #E8C97A !important;
     color: #fff !important;
 }}
 
 /* === Métricas ===================================  */
 [data-testid="stMetricValue"] {{
-    color: #9E5B6F !important;
+    color: #1A2035 !important;
     font-weight: 800 !important;
 }}
 [data-testid="stMetricLabel"] {{
-    color: #B8892A !important;
+    color: #C9A84C !important;
     font-weight: 600 !important;
 }}
 
 /* === Tabs ======================================= */
 .stTabs [data-baseweb="tab"] {{ font-weight: 600; }}
 .stTabs [aria-selected="true"] {{
-    color: #9E5B6F !important;
-    border-bottom: 3px solid #B8892A !important;
+    color: #1A2035 !important;
+    border-bottom: 3px solid #C9A84C !important;
 }}
 
 /* === Tabela — alinhar colunas numéricas ========= */
@@ -4503,7 +4534,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ── Sidebar — Logo ───────────────────────────────────────────────────────────
-# Tenta static/logo.png (enviada pelo n8n) e faz fallback para logo-manu.png
+# Tenta static/logo-gmh.jpg (enviada pelo n8n) e faz fallback para logo-gmh.jpg
 _sb_logo_b64: str | None = None
 for _sb_path in (_LOGO_STATIC, _LOGO_PATH):
     try:
@@ -4522,7 +4553,7 @@ if _sb_logo_b64:
         unsafe_allow_html=True,
     )
 else:
-    st.sidebar.title("Nome da Loja")
+    st.sidebar.title("GM Homem Itaúna")
 
 st.sidebar.markdown("---")
 
@@ -4531,13 +4562,11 @@ _IS_ADMIN  = _role in ("admin", "admin_master")
 _IS_MASTER = _role == "admin_master"
 _abas = _TABS_POR_ROLE.get(_role, [])
 
-# Navegação programática (ex: botão "Abrir Financeiro" da Manu AI)
+# Navegação programática (ex: botão "Abrir Financeiro" da GM Homem AI)
 _nav_target = st.session_state.pop("_nav_target", None)
 _nav_index  = _abas.index(_nav_target) if _nav_target and _nav_target in _abas else None
 st.session_state['_abas_cache'] = _abas
 # Se navegação programática, forçar o radio resetando seu state
-if _nav_index is not None:
-    st.session_state['_sidebar_nav'] = _abas[_nav_index]
 pagina = st.sidebar.radio(
     "Navegação", _abas,
     index=_nav_index if _nav_index is not None else 0,
@@ -4551,11 +4580,11 @@ st.sidebar.markdown(
     unsafe_allow_html=True,
 )
 st.sidebar.markdown(
-    """<a href="https://t.me/ManuPDV_bot" target="_blank">
+    """<a href="https://t.me/GM HomemPDV_bot" target="_blank">
     <button style="width:100%;padding:10px;background:#0088cc;color:white;
     border:none;border-radius:8px;cursor:pointer;font-size:13px;
     font-weight:600;margin-bottom:8px">
-    🤖 Manu AI Telegram
+    🤖 GM Homem AI Telegram
     </button></a>""",
     unsafe_allow_html=True
 )
@@ -4579,7 +4608,7 @@ if st.sidebar.button("Sair", key="btn_logout", use_container_width=True):
 
 st.sidebar.markdown("---")
 st.sidebar.markdown(
-    "<div style='font-size:.78rem;line-height:1.6;color:#B8892A'>"
+    "<div style='font-size:.78rem;line-height:1.6;color:#C9A84C'>"
     "<b>Desenvolvido por JGAutomacoes.AI</b><br/>"
     "<span style='font-style:italic'>"
     "Tecnologia de impacto para um império em expansão.</span>"
@@ -4647,9 +4676,9 @@ if _b64:
         f'<div style="display:flex;align-items:center;justify-content:space-between;'
         f'margin-bottom:0.5rem;padding:8px 0">'
         f'<div>'
-        f'<span style="font-size:1.8rem;font-weight:800;color:#9E5B6F;line-height:1.1">'
-        f'Nome da Loja</span><br/>'
-        f'<span style="font-size:0.8rem;color:#B8892A;font-weight:600;letter-spacing:.05em">'
+        f'<span style="font-size:1.8rem;font-weight:800;color:#1A2035;line-height:1.1">'
+        f'GM Homem Itaúna</span><br/>'
+        f'<span style="font-size:0.8rem;color:#C9A84C;font-weight:600;letter-spacing:.05em">'
         f'PDV & Gestão</span>'
         f'</div>'
         f'<img src="data:image/png;base64,{_b64}" height="64" '
@@ -4658,13 +4687,13 @@ if _b64:
         unsafe_allow_html=True,
     )
     st.markdown(
-        f'<div style="height:3px;background:linear-gradient(90deg,#9E5B6F,#B8892A,#9E5B6F);'
+        f'<div style="height:3px;background:linear-gradient(90deg,#1A2035,#C9A84C,#1A2035);'
         f'border-radius:2px;margin-bottom:1rem"></div>',
         unsafe_allow_html=True,
     )
 else:
     st.markdown(
-        '<h1 style="color:#9E5B6F;font-weight:800">Nome da Loja</h1>',
+        '<h1 style="color:#1A2035;font-weight:800">GM Homem Itaúna</h1>',
         unsafe_allow_html=True,
     )
 
@@ -5083,7 +5112,7 @@ def _processar_chat_ia(prompt: str, role: str, username: str) -> dict:
         return {
             "tipo": "resposta",
             "content": (
-                "🤖 **Manu AI — Loja Manu**\n\n"
+                "🤖 **GM Homem AI — GM Homem**\n\n"
                 "**📋 Consultas de clientes:**\n"
                 "- `parcelas de [Nome]` — saldo devedor e vencimentos\n"
                 "- `últimas compras de [Nome]` — histórico das 3 últimas compras\n\n"
@@ -5527,7 +5556,7 @@ def _render_chat_ia(chat_key: str, role: str, username: str,
             )
             _wpp_msg = st.text_area(
                 "Mensagem",
-                value=f"Olá {_wpp_nome.split()[0]}! Temos novidades na Loja Manu esperando por você. 💛",
+                value=f"Olá {_wpp_nome.split()[0]}! Temos novidades na GM Homem esperando por você. 💛",
                 height=80,
                 key=f"wpp_msg_{chat_key}",
             )
@@ -5766,7 +5795,7 @@ def render_ver_itens_nota(documento, codigo_cliente, origem):
     margin:0 auto;padding:20px;border:2px solid #333;border-radius:8px;
     background:#fff;color:#000;font-size:13px">
   <div style="text-align:center;border-bottom:2px dashed #000;padding-bottom:10px;margin-bottom:10px">
-    <div style="font-size:18px;font-weight:700">NOME DA LOJA</div>
+    <div style="font-size:18px;font-weight:700">LOJA GM HOMEM ITAÚNA</div>
     <div style="font-size:11px;color:#555">Comprovante de Compra — Sistema Legado</div>
   </div>
   <div style="background:#fffbf0;border:1px solid #e0c060;border-radius:6px;
@@ -5812,7 +5841,7 @@ def render_ver_itens_nota(documento, codigo_cliente, origem):
   {secao_hist}
   <div style="text-align:center;font-size:10px;color:#888;margin-top:12px;
       border-top:1px dashed #000;padding-top:8px">
-    Nome da Loja — Moda Feminina<br>
+    GM Homem Itaúna — Moda Masculina<br>
     Registro do sistema anterior (ERP legado)
   </div>
 </div>
@@ -6124,7 +6153,7 @@ def _executar_baixa_em_lote_v2(nome_cli, valor_total, forma, df_notas, isentar, 
 <div id="cupom-lote" style="font-family:'Courier New',monospace;max-width:500px;
     margin:0 auto;padding:20px;border:2px solid #000;border-radius:8px;background:#fff;color:#000">
     <div style="text-align:center;border-bottom:2px dashed #000;padding-bottom:12px;margin-bottom:12px">
-        <div style="font-size:20px;font-weight:700">NOME DA LOJA</div>
+        <div style="font-size:20px;font-weight:700">LOJA GM HOMEM ITAÚNA</div>
         <div style="font-size:12px;color:#555">PDV & Gestão · JGAutomações.AI · {agora}</div>
     </div>
     <div style="margin-bottom:10px;font-size:13px">
@@ -6151,7 +6180,7 @@ def _executar_baixa_em_lote_v2(nome_cli, valor_total, forma, df_notas, isentar, 
     </div>
     <div style="text-align:center;font-size:11px;color:#888;margin-top:10px;
         border-top:1px dashed #000;padding-top:8px">
-        Obrigada pela preferência! 💜<br>Nome da Loja — Moda Feminina
+        Obrigada pela preferência! 💜<br>GM Homem Itaúna — Moda Masculina
     </div>
 </div>
 <button onclick="imprimirLote()" style="width:100%;margin-top:12px;padding:12px;
@@ -6176,10 +6205,10 @@ function imprimirLote() {{
     st.rerun()
 
 def render_recebimentos_nasa(perfil):
-    # Redirecionamento da Manu AI
+    # Redirecionamento da GM Homem AI
     if st.session_state.get('_nav_target') == 'Recebimentos':
         del st.session_state['_nav_target']
-    # Texto de busca injetado pela Manu AI
+    # Texto de busca injetado pela GM Homem AI
     _busca_injetada = st.session_state.pop('_busca_rec_texto', None)
     _filtro_rapido = st.session_state.pop('_filtro_rapido_rec', None)
     _filtro_rapido = st.session_state.pop('_filtro_rapido_rec', None)
@@ -6705,7 +6734,7 @@ div[data-testid="stButton"] button{border-radius:8px!important;font-weight:500!i
         _html_pdf = f"""
 <div style="font-family:Arial,sans-serif;padding:16px;color:#000">
     <div style="text-align:center;border-bottom:2px solid #000;padding-bottom:10px;margin-bottom:14px">
-        <h2 style="margin:0">NOME DA LOJA</h2>
+        <h2 style="margin:0">LOJA GM HOMEM ITAÚNA</h2>
         <h3 style="margin:4px 0;color:#555">Relatório de Recebíveis</h3>
         <div style="font-size:12px">{_titulo}{_busca_info} · {_dt_now.now().strftime('%d/%m/%Y %H:%M')}</div>
         <div style="font-size:12px">{len(df)} parcelas · R$ {float(df['valor_saldo'].sum()):,.2f}</div>
@@ -6723,7 +6752,7 @@ div[data-testid="stButton"] button{border-radius:8px!important;font-weight:500!i
         <tbody>{_linhas_html}</tbody>
     </table>
     <div style="margin-top:14px;font-size:10px;color:#888;text-align:center">
-        JGAutomações.AI · Nome da Loja · {_dt_now.now().strftime('%d/%m/%Y')}
+        JGAutomações.AI · GM Homem Itaúna · {_dt_now.now().strftime('%d/%m/%Y')}
     </div>
 </div>
 <button onclick="window.print()" style="margin-top:10px;width:100%;padding:12px;
@@ -6820,12 +6849,29 @@ def render_clientes_unificado(perfil):
             _c, _d = st.columns(2)
             _nc = _c.text_input("CPF", key="cu_nc")
             _nt = _d.text_input("Tags (ex: VEREADORA, VIP)", key="cu_nt")
-            _ce, _en = st.columns(2)
-            _ncep = _ce.text_input("CEP", key="cu_cep", max_chars=9)
-            _nend = _en.text_input("Endereco", key="cu_end")
+            # ── CEP + Buscar ViaCEP ──────────────────────────────────
+            _cep_col, _buscar_col, _end_col = st.columns([1.2, 0.7, 3])
+            _ncep = _cep_col.text_input("CEP", key="cu_cep", max_chars=9, placeholder="00000-000")
+            _buscar_col.markdown("<br>", unsafe_allow_html=True)
+            _buscar_cep_click = _buscar_col.button("🔍 Buscar", key="cu_buscar_cep", use_container_width=True)
+            _nend = _end_col.text_input("📍 Endereço", key="cu_end",
+                value=st.session_state.get("_cep_end_auto", ""))
+            if _buscar_cep_click and _ncep:
+                _cep_data = buscar_cep(_ncep)
+                if _cep_data:
+                    st.session_state["_cep_end_auto"] = _cep_data.get("logradouro", "")
+                    st.session_state["_cep_bai_auto"] = _cep_data.get("bairro", "")
+                    st.session_state["_cep_cid_auto"] = _cep_data.get("localidade", "Itauna")
+                    st.session_state["_cep_est_auto"] = _cep_data.get("uf", "")
+                    st.rerun()
+                else:
+                    st.warning("CEP não encontrado.")
+            # ── Bairro / Cidade ──────────────────────────────────────────
             _nb, _nci = st.columns(2)
-            _nbai = _nb.text_input("Bairro", key="cu_bai")
-            _ncid = _nci.text_input("Cidade", key="cu_cid", value="Itauna")
+            _nbai = _nb.text_input("Bairro", key="cu_bai",
+                value=st.session_state.get("_cep_bai_auto", ""))
+            _ncid = _nci.text_input("Cidade", key="cu_cid",
+                value=st.session_state.get("_cep_cid_auto", "Itauna"))
             _nobs = st.text_input("Observacao", key="cu_obs")
             _s1, _s2 = st.columns([1,4])
             if _s1.button("Salvar", key="cu_ns", type="primary"):
@@ -7112,7 +7158,7 @@ def render_clientes_unificado(perfil):
                     _wh2 = _dfc['whatsapp'].iloc[0] if not _dfc.empty else ''
                     if _wh2:
                         _wn = ''.join(filter(str.isdigit, str(_wh2)))
-                        _wmsg = f"Ola {_nome.split()[0]}! Passando para lembrar das suas parcelas em aberto na Loja Manu"
+                        _wmsg = f"Ola {_nome.split()[0]}! Passando para lembrar das suas parcelas em aberto na GM Homem"
                         st.markdown(f'''<a href="https://wa.me/55{_wn}?text={_wmsg.replace(' ','%20')}" target="_blank"><button style="padding:6px 14px;background:#0F6E56;color:white;border:none;border-radius:8px;cursor:pointer;font-size:12px;margin-top:6px">WhatsApp cobranca</button></a>''', unsafe_allow_html=True)
                     if not _sels:
                         st.info("Selecione parcelas para dar baixa.")
@@ -7201,7 +7247,7 @@ def render_clientes_unificado(perfil):
                                 _ne = _nome.replace("'","\\\'").replace('"','&quot;')
                                 _qs = 'QUITACAO TOTAL' if len(_sels)==_qtdp else 'PAGAMENTO PARCIAL'
                                 _sep = '<tr><td colspan="2"><hr style="border:1px dashed #D1D5DB;margin:6px 0"></td></tr>'
-                                _html_c = f"""<div id="cpjg" style="font-family:'Courier New',monospace;max-width:380px;margin:0 auto;padding:20px;border:2px solid #374151;border-radius:8px;background:#fff;color:#111"><div style="text-align:center;border-bottom:1px dashed #9CA3AF;padding-bottom:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:700">NOME DA LOJA</div><div style="font-size:11px;color:#6B7280">Moda Feminina · {_agora}</div></div><table style="width:100%;font-size:13px;border-collapse:collapse"><tr><td style="color:#6B7280">Cliente</td><td style="text-align:right;font-weight:700">{_nome}</td></tr>{_sep}<tr><td colspan="2" style="font-size:11px;font-weight:700;padding:4px 0">PAGO</td></tr>{_lp}{'<tr><td colspan="2" style="font-size:11px;font-weight:700;padding:4px 0">A VENCER</td></tr>' if _lr else ''}{_lr}{_sep}<tr style="background:#F3F4F6"><td style="padding:5px 4px;font-weight:700">TOTAL</td><td style="text-align:right;font-weight:700;font-size:16px;color:#15803D">R$ {float(_vrec):,.2f}</td></tr><tr><td style="color:#6B7280">Forma</td><td style="text-align:right">{_forma}</td></tr></table><div style="text-align:center;font-size:11px;color:#16A34A;margin-top:12px;padding:8px;border:1px solid #16A34A;border-radius:6px;font-weight:700">{_qs}</div><div style="text-align:center;font-size:10px;color:#9CA3AF;margin-top:12px;border-top:1px dashed #9CA3AF;padding-top:8px">Obrigada pela preferencia! Loja Manu Itauna</div></div><button onclick="(function(){{var c=document.getElementById('cpjg').outerHTML;var w=window.open('','_blank','width=460,height=700');w.document.write('<html><head><title>Cupom</title><style>body{{font-family:Courier New,monospace;padding:20px}}@media print{{button{{display:none}}}}</style></head><body>'+c+'<br><button onclick=window.print() style=width:100%;padding:10px;background:#111;color:#fff;border:none;font-size:14px;cursor:pointer;border-radius:6px>Imprimir</button></body></html>');w.document.close();setTimeout(function(){{w.print()}},600)}})()" style="width:100%;margin-top:12px;padding:12px;background:#1D4ED8;color:white;border:none;border-radius:8px;font-size:15px;cursor:pointer;font-weight:600">Imprimir Cupom</button>"""
+                                _html_c = f"""<div id="cpjg" style="font-family:'Courier New',monospace;max-width:380px;margin:0 auto;padding:20px;border:2px solid #374151;border-radius:8px;background:#fff;color:#111"><div style="text-align:center;border-bottom:1px dashed #9CA3AF;padding-bottom:12px;margin-bottom:12px"><div style="font-size:20px;font-weight:700">LOJA GM HOMEM ITAUNA</div><div style="font-size:11px;color:#6B7280">Moda Masculina · {_agora}</div></div><table style="width:100%;font-size:13px;border-collapse:collapse"><tr><td style="color:#6B7280">Cliente</td><td style="text-align:right;font-weight:700">{_nome}</td></tr>{_sep}<tr><td colspan="2" style="font-size:11px;font-weight:700;padding:4px 0">PAGO</td></tr>{_lp}{'<tr><td colspan="2" style="font-size:11px;font-weight:700;padding:4px 0">A VENCER</td></tr>' if _lr else ''}{_lr}{_sep}<tr style="background:#F3F4F6"><td style="padding:5px 4px;font-weight:700">TOTAL</td><td style="text-align:right;font-weight:700;font-size:16px;color:#15803D">R$ {float(_vrec):,.2f}</td></tr><tr><td style="color:#6B7280">Forma</td><td style="text-align:right">{_forma}</td></tr></table><div style="text-align:center;font-size:11px;color:#16A34A;margin-top:12px;padding:8px;border:1px solid #16A34A;border-radius:6px;font-weight:700">{_qs}</div><div style="text-align:center;font-size:10px;color:#9CA3AF;margin-top:12px;border-top:1px dashed #9CA3AF;padding-top:8px">Obrigado pela preferência! GM Homem Itaúna</div></div><button onclick="(function(){{var c=document.getElementById('cpjg').outerHTML;var w=window.open('','_blank','width=460,height=700');w.document.write('<html><head><title>Cupom</title><style>body{{font-family:Courier New,monospace;padding:20px}}@media print{{button{{display:none}}}}</style></head><body>'+c+'<br><button onclick=window.print() style=width:100%;padding:10px;background:#111;color:#fff;border:none;font-size:14px;cursor:pointer;border-radius:6px>Imprimir</button></body></html>');w.document.close();setTimeout(function(){{w.print()}},600)}})()" style="width:100%;margin-top:12px;padding:12px;background:#1D4ED8;color:white;border:none;border-radius:8px;font-size:15px;cursor:pointer;font-weight:600">Imprimir Cupom</button>"""
                                 # Salvar cupom no session_state para exibir ANTES do rerun
                                 st.session_state[f"cupom_baixa_{_sk}"] = _html_c
                                 st.session_state[f"baixa_ok_{_sk}"] = True
@@ -7358,7 +7404,7 @@ def render_clientes_unificado(perfil):
                         "<span style='font-size:11px;color:#6B7280;margin-right:8px'>Volume por ano:</span>" + _anos_html +
                         "</div>"
                     )
-                    _html_e = f"""<div id='extjg' style='font-family:Arial,sans-serif;padding:16px;background:#fff;color:#111'>{_kpis_html}<div style='border-bottom:2px solid #374151;padding-bottom:10px;margin-bottom:14px'><div style='font-size:17px;font-weight:700'>NOME DA LOJA — EXTRATO</div><div style='font-size:12px;color:#6B7280'>Cliente: <b>{_ne_h}</b> | Gerado: {_agora_h} | {len(dh)} registros | R$ {_tv:,.2f} | {_tp} pagos</div></div><table style='width:100%;border-collapse:collapse'><thead><tr style='background:#374151;color:white'><th style='padding:5px 8px;text-align:left;font-size:11px'>Documento</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Vencimento</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Status</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Dt Pagto</th><th style='padding:5px 8px;text-align:right;font-size:11px'>Valor</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Origem</th></tr></thead><tbody>{_rows_h}</tbody></table><div style='margin-top:12px;font-size:10px;color:#9CA3AF;border-top:1px solid #e5e7eb;padding-top:6px'>Obrigada pela preferencia! Loja Manu Itauna</div></div><button onclick="(function(){{var c=document.getElementById('extjg').outerHTML;var w=window.open('','_blank','width=800,height=900');w.document.write('<html><head><title>Extrato</title><style>body{{padding:20px;font-family:Arial}}@media print{{button{{display:none}}}}</style></head><body>'+c+'<br><button onclick=window.print() style=width:100%;padding:10px;background:#111;color:#fff;border:none;cursor:pointer;border-radius:6px>Imprimir / Salvar PDF</button></body></html>');w.document.close();setTimeout(function(){{w.print()}},500)}})()" style='width:100%;padding:10px;background:#1D4ED8;color:white;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;margin-top:10px'>📄 Imprimir / Salvar PDF</button>"""
+                    _html_e = f"""<div id='extjg' style='font-family:Arial,sans-serif;padding:16px;background:#fff;color:#111'>{_kpis_html}<div style='border-bottom:2px solid #374151;padding-bottom:10px;margin-bottom:14px'><div style='font-size:17px;font-weight:700'>LOJA GM HOMEM ITAUNA — EXTRATO</div><div style='font-size:12px;color:#6B7280'>Cliente: <b>{_ne_h}</b> | Gerado: {_agora_h} | {len(dh)} registros | R$ {_tv:,.2f} | {_tp} pagos</div></div><table style='width:100%;border-collapse:collapse'><thead><tr style='background:#374151;color:white'><th style='padding:5px 8px;text-align:left;font-size:11px'>Documento</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Vencimento</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Status</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Dt Pagto</th><th style='padding:5px 8px;text-align:right;font-size:11px'>Valor</th><th style='padding:5px 8px;text-align:left;font-size:11px'>Origem</th></tr></thead><tbody>{_rows_h}</tbody></table><div style='margin-top:12px;font-size:10px;color:#9CA3AF;border-top:1px solid #e5e7eb;padding-top:6px'>Obrigado pela preferência! GM Homem Itaúna</div></div><button onclick="(function(){{var c=document.getElementById('extjg').outerHTML;var w=window.open('','_blank','width=800,height=900');w.document.write('<html><head><title>Extrato</title><style>body{{padding:20px;font-family:Arial}}@media print{{button{{display:none}}}}</style></head><body>'+c+'<br><button onclick=window.print() style=width:100%;padding:10px;background:#111;color:#fff;border:none;cursor:pointer;border-radius:6px>Imprimir / Salvar PDF</button></body></html>');w.document.close();setTimeout(function(){{w.print()}},500)}})()" style='width:100%;padding:10px;background:#1D4ED8;color:white;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-weight:600;margin-top:10px'>📄 Imprimir / Salvar PDF</button>"""
                     _comp2.html(_html_e, height=520, scrolling=True)
                     st.markdown('---')
                     for _, hr in dh.iterrows():
@@ -7425,7 +7471,7 @@ def render_clientes_unificado(perfil):
                     _eav2 = st.checkbox("Ativo", value=bool(rc2['ativo']), key=f"eav2_{cid2}")
                     if st.button("Salvar alteracoes", key=f"es2_{cid2}", type="primary"):
                         _ok_upd = run_command(
-                            "UPDATE clientes SET nome=%s,whatsapp=%s,cpf=%s,ativo=%s WHERE id=%s::uuid",
+                            "UPDATE clientes SET nome=%s,whatsapp=%s,cpf=%s,ativo=%s WHERE id=%s",
                             (_en2.strip(), _ew2 or None, _ec4 or None, _eav2, cid2))
                         if _ok_upd:
                             st.success("Cadastro atualizado com sucesso!")
@@ -7435,11 +7481,188 @@ def render_clientes_unificado(perfil):
 
     return  # fim render_clientes_unificado
 
+# ── DDL Fornecedores (escopo global — garante tabela ao iniciar) ─────────────
+def _ensure_fornecedores_table():
+    run_command("""
+        CREATE TABLE IF NOT EXISTS fornecedores (
+            id    BIGSERIAL PRIMARY KEY,
+            nome  TEXT UNIQUE NOT NULL,
+            tipo  TEXT,
+            ativo BOOLEAN DEFAULT TRUE
+        )
+    """)
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS cnpj_cpf TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS whatsapp1 TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS whatsapp2 TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS instagram1 TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS instagram2 TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS email TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS endereco TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS referencia TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS observacoes TEXT")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS foto_cartao BYTEA")
+    run_command("ALTER TABLE fornecedores ADD COLUMN IF NOT EXISTS foto_cartao_nome TEXT")
+
+_ensure_fornecedores_table()
+
+
+def _render_forn(tipo, tk):
+    import base64 as _b64fc
+    df_fl = run_query("SELECT id, nome, cnpj_cpf, whatsapp1, whatsapp2, instagram1, instagram2, email, endereco, referencia, observacoes, ativo, foto_cartao, foto_cartao_nome FROM fornecedores WHERE tipo=%s ORDER BY nome", params=(tipo,))
+    _b = st.text_input("🔍 Buscar", key=f"pfb_{tk}", placeholder="Nome, referência...")
+    if not df_fl.empty:
+        if _b.strip():
+            _q = _b.strip().lower()
+            df_fl = df_fl[df_fl["nome"].str.lower().str.contains(_q, na=False) | df_fl["referencia"].fillna("").str.lower().str.contains(_q, na=False)]
+        st.caption(f"{len(df_fl)} registro(s)")
+    _records = [] if df_fl.empty else list(df_fl.iterrows())
+    _all_items = _records + [None]
+    for _ri in range(0, len(_all_items), 3):
+        _row_items = _all_items[_ri:_ri + 3]
+        _cols = st.columns(3)
+        for _ci, _item in enumerate(_row_items):
+            with _cols[_ci]:
+                if _item is None:
+                    st.markdown('<div style="background:#1A2035;border:2px dashed #C9A227;border-radius:10px;display:flex;align-items:center;justify-content:center;height:120px;"><span style="font-size:40px;color:#C9A227;">＋</span></div>', unsafe_allow_html=True)
+                    if st.button("➕ Novo cadastro", key=f"add_{tk}_{_ri}", use_container_width=True):
+                        st.session_state[f"sf_{tk}"] = True
+                        st.rerun()
+                    continue
+                _, fr = _item
+                _fid = int(fr["id"])
+                _fc_raw = fr.get("foto_cartao")
+                _has_foto = _fc_raw is not None and len(bytes(_fc_raw)) > 0
+                _fc_b64 = _b64fc.b64encode(bytes(_fc_raw)).decode() if _has_foto else ""
+                _badge = '<span style="position:absolute;top:8px;right:8px;background:#C9A227;color:#000;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;">Cartão</span>' if _has_foto else ""
+                _hdr = f'<img src="data:image/jpeg;base64,{_fc_b64}" style="width:100%;height:120px;object-fit:cover;">' if _has_foto else '<div style="display:flex;align-items:center;justify-content:center;height:120px;font-size:44px;color:#C9A227;">👕</div>'
+                _n = str(fr["nome"] or "—").replace("<", "&lt;").replace(">", "&gt;")
+                _r = str(fr["referencia"] or fr.get("endereco") or "—").replace("<", "&lt;").replace(">", "&gt;")
+                _w = str(fr["whatsapp1"] or "—").replace("<", "&lt;").replace(">", "&gt;")
+                _g = str(fr["instagram1"] or "—").replace("<", "&lt;").replace(">", "&gt;")
+                _ob = str(fr["observacoes"] or "").strip().replace("<", "&lt;").replace(">", "&gt;")
+                _obs_div = f'<div style="background:#1F2937;border-radius:4px;padding:4px 7px;margin-top:5px;font-size:11px;color:#9CA3AF;">{_ob}</div>' if _ob else ""
+                st.markdown(f'<div style="position:relative;background:#1A2035;border-radius:10px 10px 0 0;overflow:hidden;height:120px;">{_hdr}{_badge}</div><div style="background:#0E1117;border:1px solid #1F2937;border-top:none;border-radius:0 0 10px 10px;padding:10px 10px 6px;margin-bottom:4px;"><p style="font-weight:700;font-size:14px;margin:0 0 2px 0;color:#FFF;">{_n}</p><p style="color:#9CA3AF;font-size:12px;margin:0 0 4px 0;">{_r}</p><p style="margin:0 0 1px 0;font-size:12px;color:#25D366;">📱 {_w}</p><p style="margin:0 0 1px 0;font-size:12px;color:#C9A227;">📸 {_g}</p>{_obs_div}</div>', unsafe_allow_html=True)
+                _ba, _bb = st.columns(2)
+                if _ba.button("💬 WhatsApp", key=f"pwa_{tk}_{_fid}", use_container_width=True, disabled=not fr["whatsapp1"]):
+                    _wn = str(fr["whatsapp1"]).replace(" ", "").replace("-", "").replace("(", "").replace(")", "")
+                    st.markdown(f"[↗ Abrir no WhatsApp](https://wa.me/55{_wn})", unsafe_allow_html=True)
+                if _bb.button("🪪 Ver Cartão", key=f"pvcbtn_{tk}_{_fid}", use_container_width=True, disabled=not _has_foto):
+                    _dialog_ver_cartao(str(fr["nome"] or "—"), bytes(_fc_raw) if _has_foto else None, str(fr.get("foto_cartao_nome") or "foto.jpg"))
+                _bc, _bd = st.columns(2)
+                if _bc.button("✏️ Editar", key=f"ped_{tk}_{_fid}", use_container_width=True):
+                    st.session_state[f"pedit_{tk}_{_fid}"] = not st.session_state.get(f"pedit_{tk}_{_fid}", False)
+                if _bd.button("🗑️ Excluir", key=f"pdel_{tk}_{_fid}", use_container_width=True):
+                    run_command("DELETE FROM fornecedores WHERE id=%s", (_fid,))
+                    st.rerun()
+    for _, fr in df_fl.iterrows():
+        _fid = int(fr["id"])
+        if st.session_state.get(f"pedit_{tk}_{_fid}", False):
+            st.markdown(f"---\n#### ✏️ Editar: **{fr['nome']}**")
+            with st.form(f"pef_{tk}_{_fid}"):
+                _en1, _en2 = st.columns(2)
+                _enm = _en1.text_input("Nome *", value=str(fr["nome"] or ""))
+                _ecn = _en2.text_input("CNPJ/CPF", value=str(fr["cnpj_cpf"] or ""))
+                _ew1, _ew2 = st.columns(2)
+                _ewp1 = _ew1.text_input("📱 WhatsApp 1", value=str(fr["whatsapp1"] or ""))
+                _ewp2 = _ew2.text_input("📱 WhatsApp 2", value=str(fr["whatsapp2"] or ""))
+                _ei1, _ei2 = st.columns(2)
+                _eis1 = _ei1.text_input("📸 Instagram 1", value=str(fr["instagram1"] or ""))
+                _eis2 = _ei2.text_input("📸 Instagram 2", value=str(fr["instagram2"] or ""))
+                _ee1, _ee2 = st.columns(2)
+                _eem = _ee1.text_input("📧 Email", value=str(fr["email"] or ""))
+                _erf = _ee2.text_input("🔖 Referência", value=str(fr["referencia"] or ""))
+                _eend = st.text_input("📍 Endereço", value=str(fr["endereco"] or ""))
+                _eobs = st.text_area("💬 Observações", value=str(fr["observacoes"] or ""), height=70)
+                _efp = st.file_uploader("📷 Nova foto do cartão", type=["jpg", "jpeg", "png"], key=f"pefoto_{tk}_{_fid}") if tipo == "Fornecedor" else None
+                _eat = st.checkbox("Ativo", value=bool(fr["ativo"]))
+                _es1, _es2 = st.columns(2)
+                _eok = _es1.form_submit_button("✅ Salvar", use_container_width=True)
+                _eco = _es2.form_submit_button("❌ Cancelar", use_container_width=True)
+                if _eco:
+                    st.session_state[f"pedit_{tk}_{_fid}"] = False
+                    st.rerun()
+                if _eok:
+                    if not _enm.strip():
+                        st.error("Nome obrigatório.")
+                    else:
+                        _efb = _efp.read() if _efp else None
+                        _efn = _efp.name if _efp else None
+                        if _efb:
+                            run_command("UPDATE fornecedores SET nome=%s,cnpj_cpf=%s,whatsapp1=%s,whatsapp2=%s,instagram1=%s,instagram2=%s,email=%s,referencia=%s,endereco=%s,observacoes=%s,ativo=%s,foto_cartao=%s,foto_cartao_nome=%s WHERE id=%s",
+                                (_enm.strip(), _ecn.strip() or None, _ewp1.strip() or None, _ewp2.strip() or None, _eis1.strip() or None, _eis2.strip() or None, _eem.strip() or None, _erf.strip() or None, _eend.strip() or None, _eobs.strip() or None, _eat, _efb, _efn, _fid))
+                        else:
+                            run_command("UPDATE fornecedores SET nome=%s,cnpj_cpf=%s,whatsapp1=%s,whatsapp2=%s,instagram1=%s,instagram2=%s,email=%s,referencia=%s,endereco=%s,observacoes=%s,ativo=%s WHERE id=%s",
+                                (_enm.strip(), _ecn.strip() or None, _ewp1.strip() or None, _ewp2.strip() or None, _eis1.strip() or None, _eis2.strip() or None, _eem.strip() or None, _erf.strip() or None, _eend.strip() or None, _eobs.strip() or None, _eat, _fid))
+                        st.success(f"✅ {_enm.strip()} atualizado!")
+                        st.session_state[f"pedit_{tk}_{_fid}"] = False
+                        st.rerun()
+
+
+def _form_forn(tipo, tk):
+    st.markdown("---")
+    _sk = f"sf_{tk}"
+    if not st.session_state.get(_sk):
+        if st.button(f"➕ Novo {tipo}",key=f"btn_{tk}",use_container_width=True):
+            st.session_state[_sk]=True; st.rerun()
+        return
+    st.markdown(f"#### ➕ Novo {tipo}")
+    with st.form(f"pf_{tk}"):
+        n1,n2 = st.columns(2)
+        _nm = n1.text_input("Nome *",placeholder="Ex: Inovar Modas")
+        _cnpj = n2.text_input("CNPJ/CPF",placeholder="00.000.000/0001-00")
+        w1,w2 = st.columns(2)
+        _w1 = w1.text_input("📱 WhatsApp 1",placeholder="37 99999-9999")
+        _w2 = w2.text_input("📱 WhatsApp 2",placeholder="11 99999-9999")
+        i1,i2 = st.columns(2)
+        _i1 = i1.text_input("📸 Instagram 1",placeholder="@fornecedor")
+        _i2 = i2.text_input("📸 Instagram 2",placeholder="@perfil2")
+        e1,e2 = st.columns(2)
+        _em = e1.text_input("📧 Email",placeholder="contato@empresa.com")
+        _ref = e2.text_input("🔖 Referência",placeholder="Rua da Juta, Brás-SP")
+        _end = st.text_input("📍 Endereço",placeholder="Rua X, 000 — Bairro — Cidade/UF")
+        _obs = st.text_area("💬 Observações",height=70)
+        _foto = st.file_uploader("📷 Foto cartão de visita",type=["jpg","jpeg","png"],key=f"foto_{tk}") if tipo=="Fornecedor" else None
+        sb1,sb2 = st.columns(2)
+        _ok = sb1.form_submit_button("✅ Salvar",use_container_width=True)
+        _no = sb2.form_submit_button("❌ Cancelar",use_container_width=True)
+        if _no: st.session_state[_sk]=False; st.rerun()
+        if _ok:
+            if not _nm.strip(): st.error("Nome obrigatório.")
+            else:
+                _fb = _foto.read() if _foto else None
+                _fn = _foto.name if _foto else None
+                run_command("INSERT INTO fornecedores (nome,tipo,cnpj_cpf,whatsapp1,whatsapp2,instagram1,instagram2,email,referencia,endereco,observacoes,foto_cartao,foto_cartao_nome) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING",
+                    (_nm.strip(),tipo,_cnpj.strip() or None,_w1.strip() or None,_w2.strip() or None,_i1.strip() or None,_i2.strip() or None,_em.strip() or None,_ref.strip() or None,_end.strip() or None,_obs.strip() or None,_fb,_fn))
+                st.success(f"✅ {_nm.strip()} salvo!")
+                st.session_state[_sk]=False; st.rerun()
+
+def _render_lista_forn_pag(tipo_filtro):
+    _tk = tipo_filtro.split()[0][:4].lower()
+    _render_forn(tipo_filtro, _tk)
+
+def _form_novo_forn_pag(tipo):
+    _tk = tipo.split()[0][:4].lower()
+    _form_forn(tipo, _tk)
+
+
+
 if pagina == "🏠 Visão Geral":
     if _role == "vendas":
         st.error("🔒 Área restrita — somente administradores.")
         st.stop()
     st.subheader("🏠 Visão Geral")
+
+    # ── 🎂 Aniversariantes do Dia ─────────────────────────────────────────────
+    _df_aniv = run_query("""
+        SELECT nome FROM clientes
+        WHERE ativo = true AND data_nascimento IS NOT NULL
+          AND EXTRACT(MONTH FROM data_nascimento) = EXTRACT(MONTH FROM CURRENT_DATE)
+          AND EXTRACT(DAY   FROM data_nascimento) = EXTRACT(DAY   FROM CURRENT_DATE)
+        ORDER BY nome
+    """)
+    if not _df_aniv.empty:
+        _nomes_aniv = ", ".join(_df_aniv["nome"].tolist())
+        st.info(f"🎂 Aniversariantes hoje: **{_nomes_aniv}**")
 
     # ── 🚨 Sentinela de Boletos ───────────────────────────────────────────────
     _df_sentinela = run_query("""
@@ -7579,6 +7802,87 @@ if pagina == "🏠 Visão Geral":
 
     st.markdown("---")
 
+    # ── Vendas hoje vs ontem ─────────────────────────────────────────────
+    _df_hj_on = run_query("""
+        SELECT
+          COALESCE(SUM(CASE WHEN DATE(created_at)=CURRENT_DATE AND status!='cancelada' THEN valor_total END),0) AS hoje,
+          COALESCE(SUM(CASE WHEN DATE(created_at)=CURRENT_DATE-1 AND status!='cancelada' THEN valor_total END),0) AS ontem,
+          COUNT(CASE WHEN DATE(created_at)=CURRENT_DATE AND status!='cancelada' THEN 1 END) AS qtd_hoje,
+          COUNT(CASE WHEN DATE(created_at)=CURRENT_DATE-1 AND status!='cancelada' THEN 1 END) AS qtd_ontem
+        FROM vendas
+    """)
+    _vhj = float(_df_hj_on["hoje"].iloc[0]) if not _df_hj_on.empty else 0.0
+    _von = float(_df_hj_on["ontem"].iloc[0]) if not _df_hj_on.empty else 0.0
+    _delta_v = _vhj - _von
+    _qhj = int(_df_hj_on["qtd_hoje"].iloc[0]) if not _df_hj_on.empty else 0
+    _qon = int(_df_hj_on["qtd_ontem"].iloc[0]) if not _df_hj_on.empty else 0
+
+    _vg_c1, _vg_c2 = st.columns(2)
+    _vg_c1.metric("📊 Vendas Hoje", f"R$ {_vhj:,.2f}",
+                   delta=f"R$ {_delta_v:+,.2f} vs ontem")
+    _vg_c2.metric("🛒 Vendas Hoje (Qtd)", _qhj, delta=f"{_qhj - _qon:+d} vs ontem")
+
+    # ── Meta mensal ───────────────────────────────────────────────────────
+    _df_meta_cfg = run_query(
+        "SELECT valor FROM config_geral WHERE chave = 'meta_mensal_vendas' LIMIT 1"
+    )
+    _meta_val = float(_df_meta_cfg["valor"].iloc[0]) if not _df_meta_cfg.empty else 0.0
+    if _meta_val > 0:
+        import datetime as _dtnow_vg
+        _df_mes_vg = run_query("""
+            SELECT COALESCE(SUM(valor_total),0) AS total
+            FROM vendas
+            WHERE DATE_TRUNC('month', created_at) = DATE_TRUNC('month', CURRENT_DATE)
+              AND status != 'cancelada'
+        """)
+        _realizado_vg = float(_df_mes_vg["total"].iloc[0]) if not _df_mes_vg.empty else 0.0
+        _pct_meta = min(_realizado_vg / _meta_val * 100, 100)
+        st.markdown(f"**🎯 Meta Mensal: R$ {_meta_val:,.2f}**")
+        st.progress(int(_pct_meta), text=f"R$ {_realizado_vg:,.2f} realizado ({_pct_meta:.1f}%)")
+    else:
+        run_command(
+            "INSERT INTO config_geral (chave, valor) VALUES ('meta_mensal_vendas','0') ON CONFLICT DO NOTHING"
+        )
+        _meta_input = st.number_input("🎯 Definir Meta Mensal (R$)", min_value=0.0, step=500.0, key="vg_meta_input")
+        if st.button("Salvar Meta", key="vg_salvar_meta"):
+            run_command("UPDATE config_geral SET valor=%s WHERE chave='meta_mensal_vendas'",
+                        (str(_meta_input),))
+            st.rerun()
+
+    # ── Alertas ───────────────────────────────────────────────────────────
+    _alertas = []
+    _df_estq_crit = run_query(
+        "SELECT COUNT(*) AS n FROM produtos WHERE ativo IS NOT FALSE AND estoque_atual <= 3"
+    )
+    _n_estq = int(_df_estq_crit["n"].iloc[0]) if not _df_estq_crit.empty else 0
+    if _n_estq > 0:
+        _alertas.append(f"📦 {_n_estq} produto(s) com estoque crítico (≤ 3 unidades)")
+
+    _df_contas_venc = run_query("""
+        SELECT COUNT(*) AS n FROM contas_a_pagar
+        WHERE status='pendente' AND data_vencimento <= CURRENT_DATE + 3
+    """)
+    _n_cv = int(_df_contas_venc["n"].iloc[0]) if not _df_contas_venc.empty else 0
+    if _n_cv > 0:
+        _alertas.append(f"💳 {_n_cv} conta(s) a pagar vencendo em até 3 dias")
+
+    _df_aniv = run_query("""
+        SELECT nome FROM clientes
+        WHERE ativo=true AND data_nascimento IS NOT NULL
+          AND EXTRACT(MONTH FROM data_nascimento) = EXTRACT(MONTH FROM CURRENT_DATE)
+          AND EXTRACT(DAY FROM data_nascimento) = EXTRACT(DAY FROM CURRENT_DATE)
+    """)
+    if not _df_aniv.empty:
+        _nomes_aniv = ", ".join(_df_aniv["nome"].tolist())
+        _alertas.append(f"🎂 Aniversariantes hoje: {_nomes_aniv}")
+
+    if _alertas:
+        st.markdown("---")
+        st.markdown("**🔔 Alertas**")
+        for _al in _alertas:
+            st.warning(_al)
+    st.markdown("---")
+
     col_a, col_b = st.columns(2)
 
     with col_a:
@@ -7626,6 +7930,7 @@ elif pagina == "📊 Relatórios":
         "Vendas por Período","Recebimentos por Período","Duplicatas a Vencer",
         "Vendas por Cliente","Produtos Mais Vendidos","Margem por Produto",
         "Inadimplência","Fluxo de Caixa Diário",
+        "Vendas por Forma de Pagamento","Ranking de Produtos","Ranking de Clientes","Clientes Inativos",
     ], key="rel_tipo")
     _col_d1,_col_d2,_col_gb = st.columns([2,2,1])
     _hoje_r = _dt_rel.date.today()
@@ -7658,18 +7963,20 @@ elif pagina == "📊 Relatórios":
         if _tipo == "Vendas por Período":
             _w_cli_vp = f"AND c.nome ILIKE '%{_cli_busca_vp.replace(chr(39),chr(39)*2)}%'" if _cli_busca_vp.strip() else ""
             df_r = run_query(f"""
-                SELECT TO_CHAR(v.data_venda,'DD/MM/YYYY') as Data,
+                SELECT TO_CHAR(v.created_at,'DD/MM/YYYY') as Data,
                        c.nome as Cliente, v.valor_total as Total,
                        v.forma_pagamento as Forma, v.parcelas as Parcelas,
                        v.status_pagamento as Status,
                        v.id::text as venda_id,
-                       STRING_AGG(p.nome||' x'||iv.quantidade::text,', ') as Itens
-                FROM vendas v JOIN clientes c ON c.id=v.cliente_id
+                       STRING_AGG(COALESCE(iv.nome_produto,p.nome)||' x'||iv.quantidade::text,', ') as Itens
+                FROM vendas v
+                LEFT JOIN clientes c ON c.id=v.cliente_id
                 LEFT JOIN itens_venda iv ON iv.venda_id=v.id
                 LEFT JOIN produtos p ON p.id=iv.produto_id
-                WHERE v.data_venda::date BETWEEN '{_d1s}' AND '{_d2s}' {_w_cli_vp}
-                GROUP BY v.id,v.data_venda,c.nome,v.valor_total,v.forma_pagamento,v.parcelas,v.status_pagamento
-                ORDER BY v.data_venda DESC""")
+                WHERE v.created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                  AND v.status != 'cancelada' {_w_cli_vp}
+                GROUP BY v.id,v.created_at,c.nome,v.valor_total,v.forma_pagamento,v.parcelas,v.status_pagamento
+                ORDER BY v.created_at DESC""")
             if df_r.empty:
                 st.info("Nenhuma venda no período.")
             else:
@@ -7681,7 +7988,7 @@ elif pagina == "📊 Relatórios":
                     with st.expander(f"📦 {row['data']} · {row['cliente']} · R$ {float(row['total']):,.2f} · {row['forma']}"):
                         st.write(f"**Itens:** {row['itens'] or '—'}")
                         st.write(f"**Parcelas:** {row['parcelas']} · **Status:** {row['status']}")
-                        _cr=run_query(f"SELECT TO_CHAR(data_vencimento,'DD/MM/YYYY') as Vencimento, valor_parcela as Valor, status as Status FROM contas_receber WHERE venda_id='{row['venda_id']}'::uuid ORDER BY data_vencimento")
+                        _cr=run_query(f"SELECT TO_CHAR(dt_vencimento,'DD/MM/YYYY') as Vencimento, valor_parcela as Valor, status as Status FROM contas_receber WHERE venda_id='{row['venda_id']}' ORDER BY dt_vencimento")
                         if not _cr.empty: st.dataframe(_cr,use_container_width=True,hide_index=True)
         elif _tipo == "Recebimentos por Período":
             df_r=run_query(f"""
@@ -7722,19 +8029,21 @@ elif pagina == "📊 Relatórios":
                 _w_vc = f"AND c.nome ILIKE '%{_esc}%'"
                 df_r = run_query(f"""
                     SELECT v.id::text as venda_id,
-                           TO_CHAR(v.data_venda,'DD/MM/YYYY') as Data,
+                           TO_CHAR(v.created_at,'DD/MM/YYYY') as Data,
                            c.nome as Cliente,
                            v.valor_total as Total,
                            v.forma_pagamento as Forma,
                            v.parcelas as Parcelas,
                            v.status_pagamento as Status,
-                           STRING_AGG(p.nome||' x'||iv.quantidade::text, ', ') as Itens
-                    FROM vendas v JOIN clientes c ON c.id=v.cliente_id
+                           STRING_AGG(COALESCE(iv.nome_produto,p.nome)||' x'||iv.quantidade::text, ', ') as Itens
+                    FROM vendas v
+                    LEFT JOIN clientes c ON c.id=v.cliente_id
                     LEFT JOIN itens_venda iv ON iv.venda_id=v.id
                     LEFT JOIN produtos p ON p.id=iv.produto_id
-                    WHERE v.data_venda::date BETWEEN '{_d1s}' AND '{_d2s}' {_w_vc}
-                    GROUP BY v.id,v.data_venda,c.nome,v.valor_total,v.forma_pagamento,v.parcelas,v.status_pagamento
-                    ORDER BY v.data_venda DESC
+                    WHERE v.created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                      AND v.status != 'cancelada' {_w_vc}
+                    GROUP BY v.id,v.created_at,c.nome,v.valor_total,v.forma_pagamento,v.parcelas,v.status_pagamento
+                    ORDER BY v.created_at DESC
                 """)
                 if df_r.empty:
                     st.info("Nenhuma venda no periodo para este cliente.")
@@ -7748,7 +8057,7 @@ elif pagina == "📊 Relatórios":
                     st.markdown("---")
                     for _, row in df_r.iterrows():
                         _vid = str(row["venda_id"])
-                        _cr = run_query(f"SELECT TO_CHAR(data_vencimento,'DD/MM/YYYY') as Vencimento, valor_parcela as Valor, status as Status, TO_CHAR(data_pagamento,'DD/MM/YYYY') as Pago_em FROM contas_receber WHERE venda_id='{_vid}'::uuid ORDER BY data_vencimento")
+                        _cr = run_query(f"SELECT TO_CHAR(dt_vencimento,'DD/MM/YYYY') as Vencimento, valor_parcela as Valor, status as Status, TO_CHAR(dt_pagamento,'DD/MM/YYYY') as Pago_em FROM contas_receber WHERE venda_id='{_vid}' ORDER BY dt_vencimento")
                         _n_p = len(_cr) if not _cr.empty else int(row["parcelas"])
                         _sico = "OK" if str(row["status"]).lower()=="pago" else "ABERTO"
                         with st.expander(f"{_sico} | {row["data"]} | R$ {float(row["total"]):,.2f} | {row["forma"]} {_n_p}x | {row["itens"] or '---'}"):
@@ -7759,8 +8068,8 @@ elif pagina == "📊 Relatórios":
                                 st.markdown("**Parcelas:**")
                                 st.dataframe(_cr, use_container_width=True, hide_index=True)
                             if st.button("Ver Cupom", key=f"cup_{_vid}"):
-                                _cup = run_query(f"SELECT cupom_text FROM vendas WHERE id='{_vid}'::uuid LIMIT 1")
-                                if not _cup.empty and _cup.iloc[0]["cupom_text"]:
+                                _cup = run_query(f"SELECT cupom_texto FROM vendas WHERE id='{_vid}' LIMIT 1")
+                                if not _cup.empty and _cup.iloc[0]["cupom_texto"]:
                                     st.code(_cup.iloc[0]["cupom_text"], language=None)
                                 else:
                                     st.info("Cupom nao disponivel.")
@@ -7772,7 +8081,8 @@ elif pagina == "📊 Relatórios":
                        ROUND(AVG(iv.preco_unit),2) as PrecoMedio
                 FROM itens_venda iv JOIN produtos p ON p.id=iv.produto_id
                 JOIN vendas v ON v.id=iv.venda_id
-                WHERE v.data_venda::date BETWEEN '{_d1s}' AND '{_d2s}'
+                WHERE v.created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                  AND v.status != 'cancelada'
                 GROUP BY p.nome,p.codigo_barras ORDER BY QtdVendida DESC LIMIT 50""")
             if df_r.empty: st.info("Nenhum item vendido.")
             else: st.dataframe(df_r,use_container_width=True,hide_index=True)
@@ -7785,7 +8095,8 @@ elif pagina == "📊 Relatórios":
                        ROUND((AVG(iv.preco_unit)-p.preco_custo)/NULLIF(AVG(iv.preco_unit),0)*100,1) as MargemPct
                 FROM itens_venda iv JOIN produtos p ON p.id=iv.produto_id
                 JOIN vendas v ON v.id=iv.venda_id
-                WHERE v.data_venda::date BETWEEN '{_d1s}' AND '{_d2s}'
+                WHERE v.created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                  AND v.status != 'cancelada'
                 GROUP BY p.nome,p.preco_custo ORDER BY MargemPct DESC""")
             if df_r.empty: st.info("Nenhum dado.")
             else: st.dataframe(df_r,use_container_width=True,hide_index=True)
@@ -7802,6 +8113,139 @@ elif pagina == "📊 Relatórios":
             else:
                 c1,c2=st.columns(2); c1.metric("👥 Clientes",len(df_r)); c2.metric("Total em atraso",f"R$ {float(df_r['TotalDevido'].sum()):,.2f}")
                 st.dataframe(df_r,use_container_width=True,hide_index=True)
+        elif _tipo == "Vendas por Forma de Pagamento":
+            df_r = run_query(f"""
+                SELECT
+                  forma_pagamento AS "Forma",
+                  COUNT(*) AS "Nº Vendas",
+                  COALESCE(SUM(valor_total),0) AS "Total (R$)",
+                  ROUND(100.0*SUM(valor_total)/NULLIF(SUM(SUM(valor_total)) OVER(),0),1) AS "% Total"
+                FROM vendas
+                WHERE created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                  AND status != 'cancelada'
+                GROUP BY forma_pagamento ORDER BY "Total (R$)" DESC
+            """)
+            if df_r.empty:
+                st.info("Nenhuma venda no período.")
+            else:
+                df_r.columns = [c.lower().replace(" ","_").replace("(r$)","rs").replace("%","pct") for c in df_r.columns]
+                try:
+                    import plotly.express as _px_fp
+                    _fig_fp = _px_fp.pie(df_r, names="forma", values="total_rs",
+                                         title="Distribuição por Forma de Pagamento",
+                                         hole=0.4, color_discrete_sequence=_px_fp.colors.qualitative.Pastel)
+                    st.plotly_chart(_fig_fp, use_container_width=True)
+                except Exception:
+                    st.bar_chart(df_r.set_index("forma")["total_rs"])
+                df_r_show = run_query(f"""
+                    SELECT forma_pagamento AS "Forma",COUNT(*) AS "Nº Vendas",
+                           COALESCE(SUM(valor_total),0) AS "Total (R$)"
+                    FROM vendas WHERE created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                      AND status != 'cancelada'
+                    GROUP BY forma_pagamento ORDER BY "Total (R$)" DESC
+                """)
+                st.dataframe(df_r_show, use_container_width=True, hide_index=True)
+                try:
+                    import plotly.express as _px_ev
+                    _df_evol = run_query(f"""
+                        SELECT TO_CHAR(DATE_TRUNC('month',created_at),'MM/YYYY') AS "Mês",
+                               forma_pagamento AS "Forma",
+                               SUM(valor_total) AS "Total"
+                        FROM vendas WHERE created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                          AND status != 'cancelada'
+                        GROUP BY DATE_TRUNC('month',created_at), forma_pagamento
+                        ORDER BY DATE_TRUNC('month',created_at)
+                    """)
+                    if not _df_evol.empty:
+                        _fig_ev = _px_ev.line(_df_evol, x="Mês", y="Total", color="Forma",
+                                               title="Evolução Mensal por Forma de Pagamento",
+                                               markers=True)
+                        st.plotly_chart(_fig_ev, use_container_width=True)
+                except Exception:
+                    pass
+        elif _tipo == "Ranking de Produtos":
+            df_r = run_query(f"""
+                SELECT p.nome AS "Produto", p.codigo_barras AS "Ref",
+                       COALESCE(p.categoria, '—') AS "Categoria",
+                       SUM(iv.quantidade) AS "Qtd Vendida",
+                       SUM(iv.quantidade*iv.preco_unit) AS "Faturamento (R$)",
+                       ROUND(AVG(iv.preco_unit),2) AS "Preço Médio"
+                FROM itens_venda iv
+                JOIN produtos p ON p.id = iv.produto_id
+                JOIN vendas v ON v.id = iv.venda_id
+                WHERE v.created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                  AND v.status != 'cancelada'
+                GROUP BY p.nome, p.codigo_barras, p.categoria
+                ORDER BY "Qtd Vendida" DESC LIMIT 10
+            """)
+            if df_r.empty:
+                st.info("Nenhum item vendido no período.")
+            else:
+                st.markdown("**Top 10 Produtos por Quantidade**")
+                try:
+                    import plotly.express as _px_pr
+                    _fig_pr = _px_pr.bar(df_r, x="Produto", y="Qtd Vendida",
+                                          color="Faturamento (R$)",
+                                          title="Top 10 Produtos Mais Vendidos",
+                                          color_continuous_scale="Reds")
+                    st.plotly_chart(_fig_pr, use_container_width=True)
+                except Exception:
+                    pass
+                st.dataframe(df_r, use_container_width=True, hide_index=True)
+        elif _tipo == "Ranking de Clientes":
+            df_r = run_query(f"""
+                SELECT c.nome AS "Cliente",
+                       COUNT(v.id) AS "Nº Compras",
+                       SUM(v.valor_total) AS "Total (R$)",
+                       ROUND(AVG(v.valor_total),2) AS "Ticket Médio",
+                       MAX(v.created_at::date) AS "Última Compra"
+                FROM vendas v JOIN clientes c ON c.id = v.cliente_id
+                WHERE v.created_at::date BETWEEN '{_d1s}' AND '{_d2s}'
+                  AND v.status != 'cancelada'
+                GROUP BY c.nome ORDER BY "Total (R$)" DESC LIMIT 10
+            """)
+            if df_r.empty:
+                st.info("Nenhuma venda no período.")
+            else:
+                st.markdown("**Top 10 Clientes por Valor**")
+                try:
+                    import plotly.express as _px_cli
+                    _fig_cli = _px_cli.bar(df_r, x="Cliente", y="Total (R$)",
+                                            title="Top 10 Clientes", color="Nº Compras",
+                                            color_continuous_scale="Purples")
+                    st.plotly_chart(_fig_cli, use_container_width=True)
+                except Exception:
+                    pass
+                st.dataframe(df_r, use_container_width=True, hide_index=True)
+        elif _tipo == "Clientes Inativos":
+            df_r = run_query("""
+                SELECT c.nome AS "Cliente",
+                       COALESCE(c.whatsapp,'—') AS "WhatsApp",
+                       MAX(v.created_at::date) AS "Última Compra",
+                       (CURRENT_DATE - MAX(v.created_at::date))::int AS "Dias Inativo",
+                       COUNT(v.id) AS "Total Compras"
+                FROM clientes c LEFT JOIN vendas v ON v.cliente_id = c.id
+                WHERE c.ativo = true
+                GROUP BY c.id, c.nome, c.whatsapp
+                HAVING MAX(v.created_at::date) < CURRENT_DATE - INTERVAL '60 days'
+                   OR MAX(v.created_at::date) IS NULL
+                ORDER BY "Dias Inativo" DESC NULLS FIRST
+            """)
+            if df_r.empty:
+                st.success("Nenhum cliente inativo (todos compraram nos últimos 60 dias)!")
+            else:
+                st.warning(f"⚠️ {len(df_r)} clientes inativos há mais de 60 dias")
+                st.dataframe(df_r, use_container_width=True, hide_index=True)
+                try:
+                    _taxa_ret = run_query("""
+                        SELECT ROUND(100.0 * COUNT(DISTINCT cliente_id) /
+                               NULLIF((SELECT COUNT(*) FROM clientes WHERE ativo=true),0),1) AS taxa
+                        FROM vendas WHERE created_at >= CURRENT_DATE - INTERVAL '60 days'
+                    """)
+                    if not _taxa_ret.empty:
+                        st.metric("Taxa de Retorno (60d)", f"{float(_taxa_ret['taxa'].iloc[0])}%")
+                except Exception:
+                    pass
         elif _tipo == "Fluxo de Caixa Diário":
             df_leg=run_query(f"SELECT TO_CHAR(dt_baixa,'DD/MM/YYYY') as Data, SUM(valor_pago_total) as Legado FROM duplicatas_abertas WHERE status='Pago' AND dt_baixa BETWEEN '{_d1s}' AND '{_d2s}' GROUP BY dt_baixa ORDER BY dt_baixa")
             df_pdv=run_query(f"SELECT TO_CHAR(data_pagamento,'DD/MM/YYYY') as Data, SUM(valor_pago_final) as PDV FROM contas_receber WHERE status='Pago' AND data_pagamento BETWEEN '{_d1s}' AND '{_d2s}' GROUP BY data_pagamento ORDER BY data_pagamento")
@@ -7831,7 +8275,7 @@ elif pagina == "📊 Relatórios":
                 _h2 = f"<div style='font-size:17px;font-weight:700'>{_tipo_l}</div>"
                 _h3 = f"<div style='font-size:11px;color:#6B7280'>Periodo: {_d1_l} a {_d2_l} | {_dt_str}</div>"
                 _h4 = f"<table style='width:100%;border-collapse:collapse'><thead><tr>{_th}</tr></thead><tbody>{_tb}</tbody></table>"
-                _h5 = "<div style='font-size:10px;color:#9CA3AF;margin-top:8px'>JGAutomacoes.AI - Loja Manu Itauna</div></div>"
+                _h5 = "<div style='font-size:10px;color:#9CA3AF;margin-top:8px'>JGAutomacoes.AI - GM Homem Itauna</div></div>"
                 _html_final = _h1 + _h2 + _h3 + _h4 + _h5
                 _btn_js = "<button onclick=\"(function(){var c=document.getElementById('reljg').outerHTML;var w=window.open('','_blank','width=900,height=700');w.document.write('<html><head><title>Rel</title><style>body{padding:20px;font-family:Arial}@media print{button{display:none}}</style></head><body>'+c+'<br><button onclick=window.print() style=width:100%;padding:10px;background:#111;color:#fff;border:none;cursor:pointer>Imprimir</button></body></html>');w.document.close();setTimeout(function(){w.print()},500)})()\" style='width:100%;padding:12px;background:#1D4ED8;color:white;border:none;border-radius:8px;cursor:pointer;margin-top:10px'>Imprimir / Salvar PDF</button>"
                 _comp_r.html(_html_final + _btn_js, height=600, scrolling=True)
@@ -7841,6 +8285,7 @@ elif pagina == "📦 Estoque":
     st.subheader("📦 Estoque de Produtos")
     _is_admin = _IS_ADMIN
     run_command("ALTER TABLE produtos ADD COLUMN IF NOT EXISTS observacao TEXT")
+    run_command("ALTER TABLE produtos ADD COLUMN IF NOT EXISTS cor TEXT")
 
     # Vendas só vê o Catálogo (consulta); abas de cadastro são exclusivas do admin
     if _is_admin:
@@ -7852,46 +8297,48 @@ elif pagina == "📦 Estoque":
 
     with _tab_cat:
 
-        # ── Estado para o dialog de detalhes ─────────────────────────────────────
-        if "est_dlg_row" not in st.session_state:
-            st.session_state.est_dlg_row = None
-        if "est_dlg_reset" not in st.session_state:
-            st.session_state.est_dlg_reset = 0
+        # ── Estado ───────────────────────────────────────────────────────────────
+        for _k0, _v0 in [("est_dlg_row", None), ("est_dlg_reset", 0),
+                         ("est_edit_pid", None), ("est_grade_pid", None), ("est_del_pid", None)]:
+            if _k0 not in st.session_state:
+                st.session_state[_k0] = _v0
 
-        # ── Miniatura de produto: converte foto_url em data URI (thumbnail 80px) ──
+        # ── Miniatura de produto ─────────────────────────────────────────────────
         _FOTO_DIR_EST = _FOTO_DIR_PROD
         _ICONE_PADRAO = (
             "data:image/svg+xml;charset=utf-8,"
-            "%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E"
-            "%3Crect width='80' height='80' rx='8' fill='%23ececec'/%3E"
+            "%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E"
+            "%3Crect width='200' height='200' fill='%23f0ead6'/%3E"
             "%3Ctext x='50%25' y='54%25' dominant-baseline='middle' "
-            "text-anchor='middle' font-size='36' fill='%23bbb'%3E%F0%9F%93%A6%3C/text%3E"
+            "text-anchor='middle' font-size='72' fill='%23C9A84C'%3E%F0%9F%93%A6%3C/text%3E"
             "%3C/svg%3E"
         )
 
         def _foto_thumb(foto_url_raw):
-            import base64, io
-            from PIL import Image
-            nome = str(foto_url_raw or "").strip().lstrip("=").strip()
-            if not nome or nome in ("pendente.jpg", "sem-foto.jpg", ""):
+            import base64 as _b64, io as _io
+            from PIL import Image as _Img
+            _nome = str(foto_url_raw or "").strip().lstrip("=").strip()
+            if not _nome or _nome in ("pendente.jpg", "sem-foto.jpg", ""):
                 return _ICONE_PADRAO
-            caminho = os.path.join(_FOTO_DIR_EST, nome)
-            if not os.path.exists(caminho):
+            _cam = os.path.join(_FOTO_DIR_EST, _nome)
+            if not os.path.exists(_cam):
                 return _ICONE_PADRAO
             try:
-                with Image.open(caminho) as img:
-                    img.thumbnail((80, 80), Image.LANCZOS)
-                    buf = io.BytesIO()
-                    img.convert("RGB").save(buf, format="JPEG", quality=75)
-                return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+                with _Img.open(_cam) as _im:
+                    _im.thumbnail((300, 300), _Img.LANCZOS)
+                    _buf = _io.BytesIO()
+                    _im.convert("RGB").save(_buf, format="JPEG", quality=80)
+                return "data:image/jpeg;base64," + _b64.b64encode(_buf.getvalue()).decode()
             except Exception:
                 return _ICONE_PADRAO
 
+        # ── Carregar produtos ────────────────────────────────────────────────────
         df_est = run_query("""
             SELECT id::text,
                    codigo_barras,
                    nome,
                    categoria,
+                   cor,
                    fornecedor_ref,
                    preco_custo,
                    preco_venda,
@@ -7910,242 +8357,433 @@ elif pagina == "📦 Estoque":
         if not df_est.empty:
             df_est["_codigo"] = df_est["id"].str[:8].str.upper()
 
+        # ── Carregar grades (uma query) ──────────────────────────────────────────
+        df_var_all = run_query(
+            "SELECT produto_id::text AS pid, tamanho, estoque "
+            "FROM produto_variacoes WHERE estoque > 0 ORDER BY tamanho"
+        )
+        _grades: dict = {}
+        if not df_var_all.empty:
+            for _, _vr in df_var_all.iterrows():
+                _grades.setdefault(str(_vr["pid"]), []).append(
+                    (str(_vr["tamanho"]), int(_vr["estoque"]))
+                )
+
         if df_est.empty:
             st.info("Nenhum produto cadastrado.")
         else:
-            # ── Métricas (admin vê mais) ───────────────────────────────────────────
+            # ── KPIs ─────────────────────────────────────────────────────────────
+            _total_skus  = len(df_est)
+            _total_unid  = int(df_est["estoque_atual"].fillna(0).sum())
+            _total_custo = float(
+                (df_est["preco_custo"].fillna(0) * df_est["estoque_atual"].fillna(0)).sum()
+            )
+            _total_venda = float(
+                (df_est["preco_venda"].fillna(0) * df_est["estoque_atual"].fillna(0)).sum()
+            )
+            _criticos = int(
+                (df_est["estoque_atual"].fillna(0) < df_est["estoque_minimo"].fillna(0)).sum()
+            )
+
+            _km1, _km2, _km3, _km4 = st.columns(4)
+            _km1.metric("Produtos", _total_skus)
+            _km2.metric("Total Unidades", f"{_total_unid}")
             if _is_admin:
-                criticos = int(
-                    (df_est["estoque_atual"].fillna(0) < df_est["estoque_minimo"].fillna(0)).sum()
-                )
-                m1, m2, m3, m4 = st.columns(4)
-                m1.metric("Total de SKUs", len(df_est))
-                m2.metric("Sem estoque", int((df_est["estoque_atual"].fillna(0) <= 0).sum()))
-                m3.metric("Categorias", df_est["categoria"].dropna().nunique())
-                m4.metric("Abaixo do mínimo", criticos,
-                          delta=f"-{criticos}" if criticos else None,
-                          delta_color="inverse")
+                _km3.metric("Custo Total Estoque", f"R$ {_total_custo:,.2f}")
+                _km4.metric("Valor Total a Venda", f"R$ {_total_venda:,.2f}")
             else:
-                m1, m2, m3 = st.columns(3)
-                m1.metric("Total de SKUs", len(df_est))
-                m2.metric("Sem estoque", int((df_est["estoque_atual"].fillna(0) <= 0).sum()))
-                m3.metric("Categorias", df_est["categoria"].dropna().nunique())
+                _km3.metric("Valor a Venda", f"R$ {_total_venda:,.2f}")
+                _km4.metric("Abaixo do Mínimo", _criticos,
+                            delta=f"-{_criticos}" if _criticos else None,
+                            delta_color="inverse")
 
             st.markdown("---")
 
-            # ── Filtros avançados ─────────────────────────────────────────────────
+            # ── Filtros ───────────────────────────────────────────────────────────
             if _is_admin:
-                fc1, fc2, fc3 = st.columns(3)
+                _ff1, _ff2, _ff3, _ff4 = st.columns(4)
             else:
-                fc1, fc2 = st.columns(2)
+                _ff1, _ff2, _ff3 = st.columns(3)
+                _ff4 = None
 
-            with fc1:
-                cats_lista = ["Todas"] + sorted(df_est["categoria"].dropna().unique().tolist())
-                cat_sel = st.selectbox("Categoria", cats_lista, key="est_cat_sel")
-
-            with fc2:
-                busca = st.text_input(
-                    "Nome / Referência / Código de barras", key="est_busca"
+            with _ff1:
+                _est_busca = st.text_input(
+                    "🔍 Buscar produto", key="est_busca",
+                    placeholder="Nome, referência, cor..."
                 ).strip().lower()
-
-            forn_sel = "Todos"
-            if _is_admin:
-                with fc3:
-                    forn_lista = ["Todos"] + sorted(
+            with _ff2:
+                _cats_lista = ["Todas"] + sorted(
+                    df_est["categoria"].dropna().unique().tolist()
+                )
+                _cat_sel = st.selectbox("Categoria", _cats_lista, key="est_cat_sel")
+            with _ff3:
+                _cors_raw = df_est["cor"].dropna()
+                _cors_raw = _cors_raw[_cors_raw.str.strip() != ""]
+                _cors_lista = ["Todas"] + sorted(_cors_raw.unique().tolist())
+                _cor_sel = st.selectbox("Cor", _cors_lista, key="est_cor_sel")
+            _forn_sel = "Todos"
+            if _is_admin and _ff4 is not None:
+                with _ff4:
+                    _forn_lista = ["Todos"] + sorted(
                         df_est["fornecedor_ref"].dropna().unique().tolist()
                     )
-                    forn_sel = st.selectbox("Fornecedor", forn_lista, key="est_forn_sel")
+                    _forn_sel = st.selectbox("Fornecedor", _forn_lista, key="est_forn_sel")
 
             # ── Aplicar filtros ───────────────────────────────────────────────────
             df_filtrado = df_est.copy()
-            if cat_sel != "Todas":
-                df_filtrado = df_filtrado[df_filtrado["categoria"] == cat_sel]
-            if forn_sel != "Todos":
-                df_filtrado = df_filtrado[df_filtrado["fornecedor_ref"] == forn_sel]
-            if busca:
+            if _cat_sel != "Todas":
+                df_filtrado = df_filtrado[df_filtrado["categoria"] == _cat_sel]
+            if _cor_sel != "Todas":
+                df_filtrado = df_filtrado[df_filtrado["cor"] == _cor_sel]
+            if _forn_sel != "Todos":
+                df_filtrado = df_filtrado[df_filtrado["fornecedor_ref"] == _forn_sel]
+            if _est_busca:
                 import unicodedata as _ud
                 def _sem_acento(s):
-                    return ''.join(c for c in _ud.normalize('NFD', str(s).lower()) if _ud.category(c) != 'Mn')
-                _busca_norm = _sem_acento(busca)
-                mask = (
-                    df_filtrado["nome"].apply(_sem_acento).str.contains(_busca_norm, na=False)
-                    | df_filtrado["codigo_barras"].fillna("").apply(_sem_acento).str.contains(_busca_norm, na=False)
-                    | df_filtrado["categoria"].fillna("").apply(_sem_acento).str.contains(_busca_norm, na=False)
+                    return ''.join(
+                        c for c in _ud.normalize('NFD', str(s).lower())
+                        if _ud.category(c) != 'Mn'
+                    )
+                _bn = _sem_acento(_est_busca)
+                _mask_est = (
+                    df_filtrado["nome"].apply(_sem_acento).str.contains(_bn, na=False)
+                    | df_filtrado["codigo_barras"].fillna("").apply(_sem_acento).str.contains(_bn, na=False)
+                    | df_filtrado["cor"].fillna("").apply(_sem_acento).str.contains(_bn, na=False)
+                    | df_filtrado["categoria"].fillna("").apply(_sem_acento).str.contains(_bn, na=False)
                 )
-                df_filtrado = df_filtrado[mask]
-                # Banner inteligente: informa quando o termo bateu em uma categoria
-                if cat_sel == "Todas":
-                    cats_match = sorted(df_filtrado["categoria"].dropna().unique().tolist())
-                    if cats_match:
-                        st.info(f"Categoria(s) encontrada(s): **{', '.join(cats_match)}**")
+                df_filtrado = df_filtrado[_mask_est]
 
             st.caption(f"{len(df_filtrado)} produto(s) encontrado(s)")
 
-            # ── Gerar miniaturas para a tabela ────────────────────────────────────
-            df_filtrado = df_filtrado.copy()
-            df_filtrado["_foto_uri"] = df_filtrado["foto_url"].apply(_foto_thumb)
-
-            # ── Montar colunas e nomes da tabela por perfil ───────────────────────
-            if _is_admin:
-                colunas_sel = ["_foto_uri", "_codigo", "nome", "categoria", "fornecedor_ref",
-                               "preco_custo", "preco_venda", "estoque_atual",
-                               "estoque_minimo", "data_lancamento", "ultima_entrada"]
-                rename_map = {
-                    "_foto_uri":       "Foto",
-                    "_codigo":         "Cód.",
-                    "nome":            "Nome",
-                    "categoria":       "Categoria",
-                    "fornecedor_ref":  "Fornecedor",
-                    "preco_custo":     "Custo (R$)",
-                    "preco_venda":     "Venda (R$)",
-                    "estoque_atual":   "📦 Estoque",
-                    "estoque_minimo":  "Estoque Mínimo",
-                    "data_lancamento": "Lançamento",
-                    "ultima_entrada":  "Última Entrada",
-                }
-            else:
-                # Referência (codigo_barras) omitida da tabela quando vazia —
-                # está disponível nos Detalhes do Produto (dialog).
-                _tem_ref = df_filtrado["codigo_barras"].notna().any() and \
-                           df_filtrado["codigo_barras"].str.strip().ne("").any()
-                colunas_sel = ["_foto_uri", "_codigo", "nome", "categoria", "estoque_atual", "preco_venda", "data_lancamento"]
-                rename_map  = {
-                    "_foto_uri":       "Foto",
-                    "_codigo":         "Cód.",
-                    "nome":            "Nome",
-                    "categoria":       "Categoria",
-                    "estoque_atual":   "📦 Estoque",
-                    "preco_venda":     "Valor de Venda (R$)",
-                    "data_lancamento": "Lançamento",
-                }
-                if _tem_ref:
-                    colunas_sel.insert(3, "codigo_barras")
-                    rename_map["codigo_barras"] = "Referência"
-
-            df_tabela = df_filtrado[colunas_sel].rename(columns=rename_map)
-
-            # ── Destaque vermelho para estoque abaixo do mínimo (admin only) ──────
-            _col_cfg_admin = {
-                "Foto":          st.column_config.ImageColumn("Foto", width="small"),
-                "Cód.":          st.column_config.TextColumn("Cód.", width="small"),
-                "Custo (R$)":    st.column_config.NumberColumn("Custo (R$)",    format="R$ %.2f"),
-                "Venda (R$)":    st.column_config.NumberColumn("Venda (R$)",    format="R$ %.2f"),
-                "📦 Estoque":       st.column_config.NumberColumn("📦 Estoque",       format="%d un."),
-                "Estoque Mínimo":st.column_config.NumberColumn("Estoque Mínimo",format="%d un."),
-                "Lançamento":    st.column_config.DateColumn("Lançamento",      format="DD/MM/YYYY"),
-            }
-            _col_cfg_vendas = {
-                "Foto":                st.column_config.ImageColumn("Foto", width="small"),
-                "Cód.":               st.column_config.TextColumn("Cód.", width="small"),
-                "Valor de Venda (R$)": st.column_config.NumberColumn("Valor de Venda (R$)", format="R$ %.2f"),
-                "📦 Estoque":             st.column_config.NumberColumn("📦 Estoque", format="%d un."),
-                "Lançamento":          st.column_config.DateColumn("Lançamento", format="DD/MM/YYYY"),
-            }
-
-            # Colunas a centralizar (Valor e Estoque)
-            _COLS_CENTRO_ADMIN = [
-                c for c in ["📦 Estoque", "Estoque Mínimo", "Custo (R$)", "Venda (R$)", "Lançamento"]
-                if c in df_tabela.columns
-            ]
-            _COLS_CENTRO_VENDAS = [
-                c for c in ["📦 Estoque", "Valor de Venda (R$)", "Lançamento"]
-                if c in df_tabela.columns
-            ]
-
-            # A chave inclui os filtros ativos: qualquer mudança recria o widget,
-            # garantindo que o dataframe re-renderize com os dados filtrados.
-            _df_key = (
-                f"df_est_{st.session_state.est_dlg_reset}"
-                f"_{cat_sel}_{forn_sel}_{busca}"
-            )
-            st.caption("Clique em qualquer linha para ver os detalhes do produto.")
-
-            if _is_admin:
-                def _marca_critico(row):
-                    try:
-                        if pd.notna(row["Estoque Mínimo"]) and int(row["📦 Estoque"]) < int(row["Estoque Mínimo"]):
-                            return ["background-color: #ffd6d6; color: #8b0000"] * len(row)
-                    except (TypeError, ValueError):
-                        pass
-                    return [""] * len(row)
-
-                _styler = df_tabela.style.apply(_marca_critico, axis=1)
-                if _COLS_CENTRO_ADMIN:
-                    _styler = _styler.set_properties(
-                        subset=_COLS_CENTRO_ADMIN,
-                        **{"text-align": "center"}
+            # ── Confirmação de exclusão (admin_master) ────────────────────────────
+            _del_pid = st.session_state.get("est_del_pid")
+            if _del_pid and _IS_MASTER:
+                _del_r = df_est[df_est["id"] == _del_pid]
+                _del_nome = _del_r["nome"].iloc[0] if not _del_r.empty else _del_pid
+                st.warning(f"⚠️ Confirmar exclusão de **{_del_nome}**? Não pode ser desfeito.")
+                _dc1, _dc2, _ = st.columns([1, 1, 4])
+                if _dc1.button("🗑️ Confirmar exclusão", type="primary",
+                               key="est_del_confirm", use_container_width=True):
+                    run_command(
+                        "UPDATE produtos SET ativo=FALSE WHERE id::text=%s", (_del_pid,)
                     )
-                _sel_result = st.dataframe(
-                    _styler,
-                    use_container_width=True,
-                    hide_index=True,
-                    column_config=_col_cfg_admin,
-                    on_select="rerun",
-                    selection_mode="single-row",
-                    key=_df_key,
-                )
-            else:
-                _styler = df_tabela.style
-                if _COLS_CENTRO_VENDAS:
-                    _styler = _styler.set_properties(
-                        subset=_COLS_CENTRO_VENDAS,
-                        **{"text-align": "center"}
-                    )
-                _sel_result = st.dataframe(
-                    _styler,
-                    use_container_width=True,
-                    hide_index=True,
-                    column_config=_col_cfg_vendas,
-                    on_select="rerun",
-                    selection_mode="single-row",
-                    key=_df_key,
-                )
+                    st.session_state.est_del_pid = None
+                    st.session_state.est_dlg_reset += 1
+                    st.rerun()
+                if _dc2.button("Cancelar", key="est_del_cancel", use_container_width=True):
+                    st.session_state.est_del_pid = None
+                    st.rerun()
 
-            # ── Abrir dialog ao clicar numa linha ────────────────────────────────
-            _sel_rows = (
-                _sel_result.selection.rows
-                if hasattr(_sel_result, "selection") and _sel_result.selection
-                else []
-            )
-            if _sel_rows:
-                st.session_state.est_dlg_row = _sel_rows[0]
+            # ── Formulário inline: Ajustar Grade ─────────────────────────────────
+            _grade_pid = st.session_state.get("est_grade_pid")
+            if _grade_pid and _is_admin:
+                _gp_r = df_est[df_est["id"] == _grade_pid]
+                if not _gp_r.empty:
+                    _gp_nome = _gp_r["nome"].iloc[0]
+                    with st.expander(f"📏 Ajustar Grade — **{_gp_nome}**", expanded=True):
+                        _tamanhos_g = ["PP","P","M","G","GG","XGG",
+                                       "34","36","38","40","42","44","46","48","U"]
+                        _pv_map_g = dict(_grades.get(_grade_pid, []))
+                        with st.form(f"grade_form_{_grade_pid[:8]}"):
+                            _gu_c = st.columns(8)
+                            _gu_q: dict = {}
+                            for _gi_g, _tam_g in enumerate(_tamanhos_g):
+                                with _gu_c[_gi_g % 8]:
+                                    _gu_q[_tam_g] = st.number_input(
+                                        _tam_g, min_value=0,
+                                        value=int(_pv_map_g.get(_tam_g, 0)),
+                                        step=1, key=f"gf_{_grade_pid[:8]}_{_tam_g}"
+                                    )
+                            _total_grade_f = sum(_gu_q.values())
+                            if _total_grade_f > 0:
+                                st.info(f"Total: **{_total_grade_f}** unidades")
+                            _gc1, _gc2 = st.columns(2)
+                            if _gc1.form_submit_button("💾 Salvar Grade",
+                                                        use_container_width=True):
+                                try:
+                                    with _db_get_conn() as _conn_gf:
+                                        with _conn_gf.cursor() as _cur_gf:
+                                            for _tam_gf, _qtd_gf in _gu_q.items():
+                                                _cur_gf.execute(
+                                                    "INSERT INTO produto_variacoes "
+                                                    "(produto_id, tamanho, estoque) "
+                                                    "VALUES (%s, %s, %s) "
+                                                    "ON CONFLICT (produto_id, tamanho) "
+                                                    "DO UPDATE SET estoque=EXCLUDED.estoque",
+                                                    (_grade_pid, _tam_gf, _qtd_gf),
+                                                )
+                                            _cur_gf.execute(
+                                                "UPDATE produtos SET estoque_atual=%s "
+                                                "WHERE id::text=%s",
+                                                (_total_grade_f, _grade_pid),
+                                            )
+                                    st.session_state.est_grade_pid = None
+                                    st.session_state.est_dlg_reset += 1
+                                    st.success(
+                                        f"Grade salva! Estoque total: {_total_grade_f} un."
+                                    )
+                                    st.rerun()
+                                except Exception as _e_gf:
+                                    st.error(f"Erro ao salvar grade: {_e_gf}")
+                            if _gc2.form_submit_button("Fechar", use_container_width=True):
+                                st.session_state.est_grade_pid = None
+                                st.rerun()
 
+            # ── Formulário inline: Editar Produto ────────────────────────────────
+            _edit_pid = st.session_state.get("est_edit_pid")
+            if _edit_pid and _is_admin:
+                _ep_r = df_est[df_est["id"] == _edit_pid]
+                if not _ep_r.empty:
+                    _ep = _ep_r.iloc[0]
+                    with st.expander(f"✏️ Editando — **{_ep['nome']}**", expanded=True):
+                        with st.form(f"edit_form_{_edit_pid[:8]}"):
+                            _ec1, _ec2 = st.columns(2)
+                            _ep_nome = _ec1.text_input(
+                                "Nome *", value=str(_ep.get("nome") or ""),
+                                key=f"ef_nome_{_edit_pid[:8]}"
+                            )
+                            _ep_cat_opts = ["Camisas","Camisetas","Calças","Moletons",
+                                            "Bermudas","Jaquetas","Acessórios","Calçados","Outros"]
+                            _ep_cat_val = str(_ep.get("categoria") or "Outros")
+                            _ep_cat_idx = (_ep_cat_opts.index(_ep_cat_val)
+                                           if _ep_cat_val in _ep_cat_opts else 0)
+                            _ep_cat = _ec2.selectbox(
+                                "Categoria", _ep_cat_opts, index=_ep_cat_idx,
+                                key=f"ef_cat_{_edit_pid[:8]}"
+                            )
+                            _ec3, _ec4 = st.columns(2)
+                            _cores_e = ["","Preto","Branco","Cinza","Cinza Mescla","Marrom",
+                                        "Marrom Claro","Bege","Azul Marinho","Azul Claro",
+                                        "Vinho","Verde","Verde Militar","Caramelo","Laranja",
+                                        "Vermelho","Roxo","Rosa","Amarelo","Estampado","Multicolor"]
+                            _ep_cor_val = str(_ep.get("cor") or "")
+                            _ep_cor_idx = (_cores_e.index(_ep_cor_val)
+                                           if _ep_cor_val in _cores_e else 0)
+                            _ep_cor = _ec3.selectbox(
+                                "🎨 Cor", _cores_e, index=_ep_cor_idx,
+                                key=f"ef_cor_{_edit_pid[:8]}"
+                            )
+                            _df_fe = run_query("SELECT nome FROM fornecedores WHERE ativo=true ORDER BY nome")
+                            _fe_opts = ["— Nenhum —"] + _df_fe["nome"].tolist() if not _df_fe.empty else ["— Nenhum —"]
+                            _fe_atual = str(_ep.get("fornecedor_ref") or "")
+                            _fe_idx = _fe_opts.index(_fe_atual) if _fe_atual in _fe_opts else 0
+                            _ep_forn = _ec4.selectbox("🏭 Fornecedor", _fe_opts, index=_fe_idx, key=f"ef_forn_{_edit_pid[:8]}")
+                            _ep_forn = _ep_forn if _ep_forn != "— Nenhum —" else ""
+                            _ep1, _ep2, _ep3 = st.columns(3)
+                            _ep_custo = _ep1.number_input(
+                                "Custo (R$)", min_value=0.0,
+                                value=float(_ep.get("preco_custo") or 0),
+                                format="%.2f", key=f"ef_custo_{_edit_pid[:8]}"
+                            )
+                            _ep_venda = _ep2.number_input(
+                                "Venda (R$)", min_value=0.0,
+                                value=float(_ep.get("preco_venda") or 0),
+                                format="%.2f", key=f"ef_venda_{_edit_pid[:8]}"
+                            )
+                            _ep_min = _ep3.number_input(
+                                "Est. mínimo", min_value=0,
+                                value=int(_ep.get("estoque_minimo") or 0),
+                                key=f"ef_min_{_edit_pid[:8]}"
+                            )
+                            _ep_desc = st.text_area(
+                                "Descrição / Observação",
+                                value=str(_ep.get("descricao_detalhada") or ""),
+                                key=f"ef_desc_{_edit_pid[:8]}"
+                            )
+                            _esb1, _esb2 = st.columns(2)
+                            if _esb1.form_submit_button("💾 Salvar", use_container_width=True):
+                                if not _ep_nome.strip():
+                                    st.error("Nome obrigatório.")
+                                elif _ep_venda <= 0:
+                                    st.error("Preço de venda deve ser maior que zero.")
+                                else:
+                                    _ok_ep = run_command(
+                                        "UPDATE produtos SET nome=%s, categoria=%s, cor=%s, "
+                                        "fornecedor_ref=%s, preco_custo=%s, preco_venda=%s, "
+                                        "estoque_minimo=%s, descricao_detalhada=%s "
+                                        "WHERE id::text=%s",
+                                        (_ep_nome.strip(), _ep_cat,
+                                         _ep_cor if _ep_cor else None,
+                                         _ep_forn.strip() or None,
+                                         _ep_custo, _ep_venda, _ep_min,
+                                         _ep_desc.strip() or None,
+                                         _edit_pid),
+                                    )
+                                    if _ok_ep:
+                                        st.session_state.est_edit_pid = None
+                                        st.session_state.est_dlg_reset += 1
+                                        st.success("✅ Produto atualizado!")
+                                        st.rerun()
+                            if _esb2.form_submit_button("Cancelar", use_container_width=True):
+                                st.session_state.est_edit_pid = None
+                                st.rerun()
+
+                        # Foto fora do form (file_uploader não funciona bem dentro de form)
+                        _ef_foto_cur = str(_ep.get("foto_url") or "").strip()
+                        if _ef_foto_cur and _ef_foto_cur not in ("pendente.jpg", "sem-foto.jpg"):
+                            _ef_foto_path = os.path.join(_FOTO_DIR_PROD, _ef_foto_cur)
+                            if os.path.exists(_ef_foto_path):
+                                st.image(_ef_foto_path, width=120, caption="Foto atual")
+                        _ef_nova_foto = st.file_uploader(
+                            "📷 Nova foto do produto",
+                            type=["jpg", "jpeg", "png", "webp"],
+                            key=f"ef_foto_{_edit_pid[:8]}",
+                        )
+                        if _ef_nova_foto:
+                            st.image(_ef_nova_foto, width=120, caption="Preview nova foto")
+                            if st.button("📷 Atualizar Foto", key=f"btn_foto_{_edit_pid[:8]}", use_container_width=True):
+                                import io as _io_ef
+                                from PIL import Image as _PilEf
+                                os.makedirs(_FOTO_DIR_PROD, exist_ok=True)
+                                _ef_img = _PilEf.open(_ef_nova_foto)
+                                _ef_img.thumbnail((800, 800), _PilEf.LANCZOS)
+                                _ef_fname = f"{_edit_pid}.jpg"
+                                _ef_img.convert("RGB").save(
+                                    os.path.join(_FOTO_DIR_PROD, _ef_fname), "JPEG", quality=85
+                                )
+                                run_command(
+                                    "UPDATE produtos SET foto_url=%s WHERE id::text=%s",
+                                    (_ef_fname, _edit_pid),
+                                )
+                                st.success("✅ Foto atualizada!")
+                                st.rerun()
+
+            # ── Cards em grade 4 colunas ──────────────────────────────────────────
+            df_filtrado = df_filtrado.reset_index(drop=True)
+            _COLS_CARD = 4
+
+            st.markdown("""
+<style>
+.gm-card{border:1px solid #e0ddd5;border-radius:12px;overflow:hidden;background:#fff;
+  margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.07);}
+.gm-card img{width:100%;height:200px;object-fit:contain;display:block;background:#f8f6f0;padding:8px;}
+.gm-card-body{padding:10px 10px 6px;}
+.gm-badges{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px;}
+.gm-badge-cat{background:#1A2035;color:#fff;padding:2px 7px;
+  border-radius:10px;font-size:10px;font-weight:600;}
+.gm-badge-cor{background:#C9A84C;color:#fff;padding:2px 7px;
+  border-radius:10px;font-size:10px;font-weight:600;}
+.gm-badge-low{background:#ffd6d6;color:#8b0000;padding:2px 7px;
+  border-radius:10px;font-size:10px;font-weight:600;}
+.gm-nome{font-weight:700;font-size:13px;line-height:1.3;color:#0D1117;
+  margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.gm-forn{font-size:11px;color:#888;margin-bottom:5px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.gm-pricerow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
+.gm-price{font-size:15px;font-weight:800;color:#C9A84C;}
+.gm-margem{font-size:11px;font-weight:600;color:#27ae60;}
+.gm-grade{font-size:10px;color:#555;background:#f5f3ee;padding:3px 6px;
+  border-radius:6px;font-family:monospace;}
+</style>""", unsafe_allow_html=True)
+
+            for _ci in range(0, len(df_filtrado), _COLS_CARD):
+                _chunk = df_filtrado.iloc[_ci:_ci + _COLS_CARD]
+                _gcols = st.columns(_COLS_CARD)
+                for _cj, (_, _row) in enumerate(_chunk.iterrows()):
+                    with _gcols[_cj]:
+                        _pid_c   = str(_row.get("id") or "")
+                        _pid_key = _pid_c[:12]
+
+                        # Grade de tamanhos
+                        _grade_items = _grades.get(_pid_c, [])
+                        if _grade_items:
+                            _grade_str = " · ".join(
+                                f"{_t}:{_q}" for _t, _q in _grade_items[:5]
+                            )
+                            if len(_grade_items) > 5:
+                                _grade_str += f" +{len(_grade_items)-5}"
+                        else:
+                            _ea_c = int(_row.get("estoque_atual") or 0)
+                            _grade_str = (f"{_ea_c} un."
+                                         if _ea_c > 0 else "⚠️ Sem estoque")
+
+                        # Preço e margem
+                        _pv_c     = float(_row.get("preco_venda") or 0)
+                        _pc_c     = float(_row.get("preco_custo") or 0)
+                        _margem_c = (((_pv_c - _pc_c) / _pc_c) * 100) if _pc_c > 0 else 0
+                        _margem_s = (f"+{_margem_c:.0f}%"
+                                     if _is_admin and _pc_c > 0 else "")
+                        _preco_s  = f"R$ {_pv_c:,.2f}" if _pv_c > 0 else "—"
+
+                        # Estoque crítico
+                        _ea_c2  = int(_row.get("estoque_atual") or 0)
+                        _emin_c = _row.get("estoque_minimo")
+                        _baixo  = pd.notna(_emin_c) and _ea_c2 < int(_emin_c or 0)
+
+                        # Campos de texto
+                        _cat_b  = str(_row.get("categoria") or "").strip()
+                        _cor_b  = str(_row.get("cor") or "").strip()
+                        _forn_b = str(_row.get("fornecedor_ref") or "—")
+                        _nome_b = str(_row.get("nome") or "Produto")
+
+                        _bh = ""
+                        if _cat_b:
+                            _bh += f'<span class="gm-badge-cat">{_cat_b}</span>'
+                        if _cor_b:
+                            _bh += f'<span class="gm-badge-cor">{_cor_b}</span>'
+                        if _baixo:
+                            _bh += '<span class="gm-badge-low">⚠️ Est. baixo</span>'
+
+                        _furi = _foto_thumb(_row.get("foto_url"))
+                        _margem_html = (
+                            f'<span class="gm-margem">{_margem_s}</span>'
+                            if _margem_s else ""
+                        )
+
+                        st.markdown(
+                            f'<div class="gm-card">'
+                            f'<img src="{_furi}" title="{_nome_b}">'
+                            f'<div class="gm-card-body">'
+                            f'<div class="gm-badges">{_bh}</div>'
+                            f'<div class="gm-nome" title="{_nome_b}">{_nome_b}</div>'
+                            f'<div class="gm-forn">{_forn_b}</div>'
+                            f'<div class="gm-pricerow">'
+                            f'<span class="gm-price">{_preco_s}</span>'
+                            f'{_margem_html}'
+                            f'</div>'
+                            f'<div class="gm-grade">{_grade_str}</div>'
+                            f'</div></div>',
+                            unsafe_allow_html=True,
+                        )
+
+                        # Botões de ação
+                        if _is_admin:
+                            if _IS_MASTER:
+                                _ba1, _ba2, _ba3 = st.columns(3)
+                            else:
+                                _ba1, _ba2 = st.columns(2)
+                                _ba3 = None
+                            if _ba1.button("✏️ Editar", key=f"ed_{_pid_key}",
+                                           use_container_width=True):
+                                st.session_state.est_edit_pid  = _pid_c
+                                st.session_state.est_grade_pid = None
+                                st.rerun()
+                            if _ba2.button("📏 Grade", key=f"gr_{_pid_key}",
+                                           use_container_width=True):
+                                st.session_state.est_grade_pid = _pid_c
+                                st.session_state.est_edit_pid  = None
+                                st.rerun()
+                            if _ba3 is not None and _ba3.button(
+                                "🗑️", key=f"del_{_pid_key}", use_container_width=True
+                            ):
+                                st.session_state.est_del_pid = _pid_c
+                                st.rerun()
+                        else:
+                            if st.button("🔍 Detalhes", key=f"det_{_pid_key}",
+                                         use_container_width=True):
+                                st.session_state.est_dlg_row  = _ci + _cj
+                                st.session_state.est_edit_pid = None
+                                st.rerun()
+
+            # ── Dialog de detalhes (não-admin) ────────────────────────────────────
             if st.session_state.est_dlg_row is not None:
                 _dlg_idx = st.session_state.est_dlg_row
                 if _dlg_idx < len(df_filtrado):
-                    _dlg_produto(df_filtrado.reset_index(drop=True).iloc[_dlg_idx], _is_admin)
+                    _dlg_produto(
+                        df_filtrado.reset_index(drop=True).iloc[_dlg_idx], _is_admin
+                    )
                 else:
                     st.session_state.est_dlg_row = None
-
-            # ── Visão Agrupada por Categoria ──────────────────────────────────────
-            st.markdown("---")
-            st.markdown("#### 📂 Estoque por Categoria")
-            _cats_grupo = sorted(
-                df_filtrado["categoria"].fillna("Sem Categoria").unique().tolist()
-            )
-            for _cg in _cats_grupo:
-                _df_cg = df_filtrado[
-                    df_filtrado["categoria"].fillna("Sem Categoria") == _cg
-                ]
-                _total_itens_cg = int(_df_cg["estoque_atual"].fillna(0).sum())
-                _sem_est_cg     = int((_df_cg["estoque_atual"].fillna(0) <= 0).sum())
-                _badge = f"  ⚠️ {_sem_est_cg} sem estoque" if _sem_est_cg else ""
-                with st.expander(
-                    f"**{_cg}** — {len(_df_cg)} produto(s) · {_total_itens_cg} un. totais{_badge}",
-                    expanded=False,
-                ):
-                    for _, _rg in _df_cg.sort_values("nome").iterrows():
-                        _est_cg  = int(_rg["estoque_atual"] or 0)
-                        _pv_cg   = f"R$ {float(_rg['preco_venda']):,.2f}" if pd.notna(_rg.get("preco_venda")) else "—"
-                        _alerta  = " 🔴" if _est_cg <= 0 else (" ⚠️" if (pd.notna(_rg.get("estoque_minimo")) and _est_cg < int(_rg["estoque_minimo"] or 0)) else "")
-                        _cod_cg  = str(_rg.get("id") or "")[:8].upper()
-                        _dl_raw2 = _rg.get("data_lancamento")
-                        _dl_cg   = _fmt_data(_dl_raw2) if _dl_raw2 and pd.notna(_dl_raw2) else ""
-                        st.markdown(
-                            f"- `{_cod_cg}` **{_rg['nome']}**{_alerta} — "
-                            f"{_est_cg} un. · {_pv_cg}"
-                            + (f" · {_dl_cg}" if _dl_cg else "")
-                        )
 
 
     if _is_admin:
@@ -8185,7 +8823,7 @@ elif pagina == "📦 Estoque":
                         _ne2   = _ea2 + _parsed2["qtd"]
                         ok2 = run_command(
                             "UPDATE produtos SET estoque_atual=%s, preco_custo=%s, "
-                            "preco_venda=%s, categoria=COALESCE(categoria,%s) WHERE id=%s::uuid",
+                            "preco_venda=%s, categoria=COALESCE(categoria,%s) WHERE id=%s",
                             (_ne2, _parsed2["custo"], _parsed2["venda"], _cat2, _pid2),
                         )
                         if ok2:
@@ -8241,25 +8879,43 @@ elif pagina == "📦 Estoque":
             run_command("""
                 CREATE TABLE IF NOT EXISTS produto_variacoes (
                     id         BIGSERIAL    PRIMARY KEY,
-                    produto_id UUID         NOT NULL REFERENCES produtos(id) ON DELETE CASCADE,
+                    produto_id INTEGER      NOT NULL REFERENCES produtos(id) ON DELETE CASCADE,
                     tamanho    TEXT         NOT NULL,
                     estoque    INTEGER      NOT NULL DEFAULT 0,
                     created_at TIMESTAMPTZ  DEFAULT NOW(),
                     UNIQUE (produto_id, tamanho)
                 )
             """)
+            # ── Fornecedor FORA do form (botão não pode estar dentro) ──
+            _df_forn_opts = run_query("SELECT id, nome FROM fornecedores WHERE tipo='Fornecedor' AND ativo=true ORDER BY nome")
+            _forn_opcoes = ["— Nenhum —"] + _df_forn_opts["nome"].tolist() if not _df_forn_opts.empty else ["— Nenhum —"]
+            _ffc1, _ffc2 = st.columns([5,1])
+            with _ffc1:
+                _cforn_sel = st.selectbox("🏭 Fornecedor", _forn_opcoes, key="est_forn_sel_completo", label_visibility="visible")
+                _cforn = _cforn_sel if _cforn_sel != "— Nenhum —" else ""
+            with _ffc2:
+                st.markdown("<div style='margin-top:28px'>", unsafe_allow_html=True)
+                if st.button("➕ Novo", key="btn_forn_novo_est", use_container_width=True):
+                    _dialog_novo_fornecedor_rapido()
+                st.markdown("</div>", unsafe_allow_html=True)
+
             with st.form("est_form_completo"):
                 _cc1, _cc2 = st.columns(2)
-                _cnome   = _cc1.text_input("Nome do produto *", placeholder="Calça resinada")
-                _ccat    = _cc2.selectbox("Categoria", ["Blusas","Calças","Vestidos","Saias","Acessórios","Calçados","Outros"])
+                _cnome   = _cc1.text_input("Nome do produto *", placeholder="Ex: Moleton Brooksfield")
+                _ccat    = _cc2.selectbox("Categoria", ["Camisas","Camisetas","Calças","Moletons","Bermudas","Jaquetas","Acessórios","Calçados","Outros"])
                 _cd1, _cd2, _cd3 = st.columns(3)
-                _ccusto  = _cd1.number_input("Custo (R$)", min_value=0.0, value=0.0, format="%.2f")
-                _cvenda  = _cd2.number_input("Venda (R$)", min_value=0.0, value=0.0, format="%.2f")
-                _cmin    = _cd3.number_input("Estoque mínimo", min_value=0, value=2)
-                _cforn   = st.text_input("Fornecedor ref.", placeholder="Atacadão Moda")
+                _ccusto  = _cd1.number_input("Custo (R$)", min_value=0.0, value=None, format="%.2f", placeholder="0,00")
+                _cvenda  = _cd2.number_input("Venda (R$)", min_value=0.0, value=None, format="%.2f", placeholder="0,00")
+                _cmin    = _cd3.number_input("Estoque mínimo", min_value=0, value=1)
+                _cores_lista = ["— Sem cor —","Preto","Branco","Cinza","Cinza Mescla","Marrom","Marrom Claro","Bege","Azul Marinho","Azul Claro","Vinho","Verde","Verde Militar","Caramelo","Laranja","Vermelho","Roxo","Rosa","Amarelo","Estampado","Multicolor"]
+                _ccor = st.selectbox("🎨 Cor", _cores_lista, key="est_cor_completo")
+                _ccor = _ccor if _ccor != "— Sem cor —" else ""
                 _cdata   = st.date_input("📅 Data de lançamento", value=__import__("datetime").date.today(), format="DD/MM/YYYY", key="est_data_completo")
                 _cobs    = st.text_input("Observação", placeholder="Ex: coleção inverno...", max_chars=200, key="est_obs_completo")
                 _cdesc   = st.text_area("Descrição", placeholder="Detalhes do produto...")
+                _cfoto   = st.file_uploader("📷 Foto do produto", type=["jpg","jpeg","png","webp"], key="est_foto_completo")
+                if _cfoto:
+                    st.image(_cfoto, width=120, caption="Preview")
                 st.markdown("##### Grade de Tamanhos")
                 st.caption("Informe o estoque para cada tamanho que deseja cadastrar. Deixe 0 para não cadastrar.")
                 _tam_cols = st.columns(8)
@@ -8287,11 +8943,12 @@ elif pagina == "📦 Estoque":
                                     _cur_c.execute(
                                         "INSERT INTO produtos (nome,categoria,fornecedor_ref,"
                                         "descricao_detalhada,estoque_atual,estoque_minimo,preco_custo,preco_venda,"
-                                        "data_lancamento,observacao) "
-                                        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id::text",
+                                        "data_lancamento,observacao,cor) "
+                                        "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id",
                                         (_cnome.strip(), _ccat, _cforn.strip() or None,
                                          _cdesc.strip() or None, _est_total, int(_cmin),
-                                         _ccusto, _cvenda, str(_cdata), _cobs.strip() or None)
+                                         _ccusto, _cvenda, str(_cdata), _cobs.strip() or None,
+                                         _ccor or None)
                                     )
                                     _novo_prod_id = _cur_c.fetchone()
                                     if _novo_prod_id:
@@ -8300,10 +8957,28 @@ elif pagina == "📦 Estoque":
                                             if _qtd > 0:
                                                 _cur_c.execute(
                                                     "INSERT INTO produto_variacoes (produto_id, tamanho, estoque) "
-                                                    "VALUES (%s::uuid, %s, %s) ON CONFLICT (produto_id, tamanho) "
+                                                    "VALUES (%s, %s, %s) ON CONFLICT (produto_id, tamanho) "
                                                     "DO UPDATE SET estoque = EXCLUDED.estoque",
-                                                    (_novo_prod_id, _tam, _qtd),
+                                                    (int(_novo_prod_id), _tam, _qtd),
                                                 )
+                                        if _cfoto is not None:
+                                            import io as _io_ins
+                                            from PIL import Image as _PilIns
+                                            os.makedirs(_FOTO_DIR_PROD, exist_ok=True)
+                                            _img_ins = _PilIns.open(_cfoto)
+                                            _img_ins.thumbnail((800, 800), _PilIns.LANCZOS)
+                                            _fname_ins = f"{_novo_prod_id}.jpg"
+                                            _img_ins.convert("RGB").save(
+                                                os.path.join(_FOTO_DIR_PROD, _fname_ins), "JPEG", quality=85
+                                            )
+                                            _cur_c.execute(
+                                                "UPDATE produtos SET foto_url=%s WHERE id=%s",
+                                                (_fname_ins, int(_novo_prod_id)),
+                                            )
+                            # Limpar campos após salvar
+                            for _k in list(st.session_state.keys()):
+                                if any(x in _k for x in ["est_nome","est_cat","est_forn","est_cor","est_data","est_obs","est_desc","ccg_"]):
+                                    del st.session_state[_k]
                             _tam_resumo = ", ".join(
                                 f"{t}:{q}" for t, q in _tam_qtds.items() if q > 0
                             )
@@ -8330,7 +9005,7 @@ elif pagina == "📦 Estoque":
                 _gp_id = _df_prod_grade["id"].iloc[_gp_idx]
                 _df_grade = run_query(
                     f"SELECT tamanho, estoque FROM produto_variacoes "
-                    f"WHERE produto_id = '{_gp_id}'::uuid ORDER BY tamanho"
+                    f"WHERE produto_id = {_gp_id} ORDER BY tamanho"
                 )
                 if _df_grade.empty:
                     st.info("Este produto não possui grade de tamanhos cadastrada.")
@@ -8359,13 +9034,13 @@ elif pagina == "📦 Estoque":
                         for _tam_u, _qtd_u in _gu_qtds.items():
                             _cur_u.execute(
                                 "INSERT INTO produto_variacoes (produto_id, tamanho, estoque) "
-                                "VALUES (%s::uuid, %s, %s) ON CONFLICT (produto_id, tamanho) "
+                                "VALUES (%s, %s, %s) ON CONFLICT (produto_id, tamanho) "
                                 "DO UPDATE SET estoque = EXCLUDED.estoque",
                                 (_gp_id, _tam_u, _qtd_u),
                             )
                         _est_sum = sum(_gu_qtds.values())
                         _cur_u.execute(
-                            "UPDATE produtos SET estoque_atual=%s WHERE id=%s::uuid",
+                            "UPDATE produtos SET estoque_atual=%s WHERE id=%s",
                             (_est_sum, _gp_id),
                         )
                         _conn_u.commit()
@@ -8474,12 +9149,30 @@ elif pagina == "💳 Pagamentos":
             st.info("Nenhuma conta a pagar registrada.")
 
     with _aba_forn:
-        st.markdown("#### 🏭 Fornecedores")
-        st.info(
-            "Módulo em preparação. Aqui serão lançadas as contas de fornecedores, "
-            "prazos de pagamento e histórico de compras por fornecedor."
-        )
-        st.caption("Lançamentos manuais serão ativados em breve.")
+        st.markdown("#### 🏭 Fornecedores / Prestadores / Utilidades")
+        _busca_forn = st.text_input("🔍 Buscar fornecedor", key="fin_forn_busca", placeholder="Nome, tipo...")
+        _tipo_filtro = st.selectbox("Filtrar por tipo", ["Todos", "Fornecedor", "Prestador de Serviço", "Utilidade/Conta Fixa"], key="fin_forn_tipo")
+        df_forn_pg = run_query("SELECT id, nome, tipo, whatsapp1, instagram1, ativo FROM fornecedores ORDER BY nome")
+        if not df_forn_pg.empty:
+            if _busca_forn.strip():
+                _qf = _busca_forn.strip().lower()
+                df_forn_pg = df_forn_pg[df_forn_pg["nome"].str.lower().str.contains(_qf, na=False)]
+            if _tipo_filtro != "Todos":
+                df_forn_pg = df_forn_pg[df_forn_pg["tipo"] == _tipo_filtro]
+            for _, frow in df_forn_pg.iterrows():
+                _icone = "🏭" if frow["tipo"] == "Fornecedor" else ("🔧" if frow["tipo"] == "Prestador de Serviço" else "💡")
+                with st.expander(f"{_icone} {frow['nome']} — {frow['tipo'] or '—'}"):
+                    fc1, fc2 = st.columns(2)
+                    fc1.write(f"📱 WhatsApp: {frow['whatsapp1'] or '—'}")
+                    fc2.write(f"📸 Instagram: {frow['instagram1'] or '—'}")
+                    fc1b, fc2b = st.columns(2)
+                    if fc1b.button("✏️ Editar", key=f"fin_forn_ed_{frow['id']}", use_container_width=True):
+                        st.session_state[f"edit_forn_{frow['id']}"] = True
+                    if fc2b.button("Inativar" if frow["ativo"] else "Ativar", key=f"fin_forn_tog_{frow['id']}", use_container_width=True):
+                        run_command("UPDATE fornecedores SET ativo = NOT ativo WHERE id = %s", (int(frow["id"]),))
+                        st.rerun()
+        else:
+            st.info("Nenhum fornecedor cadastrado ainda.")
 
 elif pagina == "💳 Recebimentos":
     render_clientes_unificado(perfil=_role)
@@ -8548,7 +9241,7 @@ elif pagina == "📋 Condicional":
                     else:
                         try:
                             import psycopg2 as _pg2_nc
-                            _conn_nc = _pg2_nc.connect(host="localhost", port=5432, dbname="pdv_loja", user="jgadmin", password="JGroot2026")
+                            _conn_nc = _pg2_nc.connect(host="localhost", port=5432, dbname="gmh_db", user="jgadmin", password="JGroot2026")
                             _cur_nc  = _conn_nc.cursor()
                             _wpp_nc  = re.sub(r"\D", "", _cnc_tel.strip()) if _cnc_tel.strip() else None
                             _cpf_nc  = re.sub(r"\D", "", _cnc_cpf.strip()) if _cnc_cpf.strip() else None
@@ -8612,7 +9305,7 @@ elif pagina == "📋 Condicional":
             if _prod_c_sel != "— Selecione —":
                 _pid_c = _prod_c_map_id.get(_prod_c_sel, "")
                 if _pid_c:
-                    _df_gc = run_query(f"SELECT tamanho FROM produto_variacoes WHERE produto_id='{_pid_c}'::uuid AND estoque>0 ORDER BY tamanho")
+                    _df_gc = run_query(f"SELECT tamanho FROM produto_variacoes WHERE produto_id={_pid_c} AND estoque>0 ORDER BY tamanho")
                     if not _df_gc.empty:
                         _tam_c = st.selectbox("Tamanho", _df_gc["tamanho"].tolist(), key="cond_tam")
 
@@ -8679,7 +9372,7 @@ elif pagina == "📋 Condicional":
                         _cond_id = _cond_id_r.iloc[0]["id"]
                         for _cit in st.session_state["cond_carrinho"]:
                             run_command(
-                                "INSERT INTO itens_condicional (condicional_id,produto_id,nome,referencia,tamanho,quantidade,preco_unit) VALUES (%s::uuid,%s::uuid,%s,%s,%s,%s,%s)",
+                                "INSERT INTO itens_condicional (condicional_id,produto_id,nome,referencia,tamanho,quantidade,preco_unit) VALUES (%s,%s,%s,%s,%s,%s,%s)",
                                 (_cond_id, _cit["produto_id"] or None, _cit["nome"], _cit["referencia"], _cit["tamanho"], _cit["qtd"], _cit["preco_unit"])
                             )
                     _rows_cond  = "".join([f"<tr><td style='padding:4px 8px;border-bottom:1px solid #e5e7eb'>{it['nome']}</td><td style='padding:4px 8px;border-bottom:1px solid #e5e7eb;text-align:center'>{it['qtd']}</td><td style='padding:4px 8px;border-bottom:1px solid #e5e7eb;text-align:right'>R$ {it['preco_unit']:,.2f}</td></tr>" for it in st.session_state["cond_carrinho"]])
@@ -8687,8 +9380,8 @@ elif pagina == "📋 Condicional":
                     _obs_html   = f"<p style='font-size:11px;color:#6B7280'><b>Obs:</b> {_cond_obs}</p>" if _cond_obs else ""
                     _html_cond  = f"""<div id='condjg' style='font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px;border:2px solid #374151;border-radius:8px'>
                         <div style='text-align:center;border-bottom:2px solid #374151;padding-bottom:10px;margin-bottom:12px'>
-                            <div style='font-size:18px;font-weight:700'>NOME DA LOJA</div>
-                            <div style='font-size:13px;color:#6B7280'>Moda Feminina - Itauna/MG</div>
+                            <div style='font-size:18px;font-weight:700'>LOJA GM HOMEM ITAUNA</div>
+                            <div style='font-size:13px;color:#6B7280'>Moda Masculina - Itauna/MG</div>
                             <div style='font-size:12px;font-weight:700;color:#DC2626;margin-top:4px'>CONDICIONAL Nº {_num:04d}</div>
                         </div>
                         <table style='width:100%;font-size:12px;margin-bottom:8px'>
@@ -8868,7 +9561,7 @@ elif pagina == "🔄 Trocas":
             SELECT v.id::text AS venda_id, v.data_venda::date AS data,
                    v.valor_total, v.forma_pagamento
             FROM vendas v
-            WHERE v.cliente_id = '{_tr_cli_id}'::uuid
+            WHERE v.cliente_id = '{_tr_cli_id}'
             ORDER BY v.data_venda DESC
             LIMIT 50
         """)
@@ -8894,7 +9587,7 @@ elif pagina == "🔄 Trocas":
                        iv.preco_unit AS unit
                 FROM itens_venda iv
                 JOIN produtos p ON p.id = iv.produto_id
-                WHERE iv.venda_id = '{_tr_venda_id}'::uuid
+                WHERE iv.venda_id = '{_tr_venda_id}'
                 ORDER BY p.nome
             """)
 
@@ -8956,7 +9649,7 @@ elif pagina == "🔄 Trocas":
                         for _it in itens_selecionados:
                             if not run_command(
                                 "UPDATE produtos SET estoque_atual = estoque_atual + %s "
-                                "WHERE id = %s::uuid",
+                                "WHERE id = %s",
                                 (_it["qtd"], _it["produto_id"]),
                             ):
                                 _tr_erros += 1
@@ -8965,7 +9658,7 @@ elif pagina == "🔄 Trocas":
                             _ok_vale = run_command(
                                 """INSERT INTO vales_troca
                                        (cliente_id, venda_id, valor, saldo, operador, motivo)
-                                   VALUES (%s::uuid, %s::uuid, %s, %s, %s, %s)""",
+                                   VALUES (%s, %s, %s, %s, %s, %s)""",
                                 (_tr_cli_id, _tr_venda_id, _tr_valor_vale, _tr_valor_vale,
                                  st.session_state.get("username", ""), _tr_motivo or None),
                             )
@@ -9069,7 +9762,7 @@ elif pagina == "🔄 Trocas":
                     _msg_vale = (
                         f"Olá {str(_vr['cliente']).split()[0]}! Você tem um "
                         f"Vale-Troca de R$ {float(_vr['saldo']):,.2f} disponível "
-                        f"na Loja Manu. Venha nos visitar! 💛"
+                        f"na GM Homem. Venha nos visitar! 💛"
                     )
                     _ok, _err = _disparar_whatsapp(
                         cliente_id=_vr["cliente_id"],
@@ -9084,861 +9777,1167 @@ elif pagina == "🔄 Trocas":
                         st.warning(f"Falha: {_err}")
 
 elif pagina == "🛒 Vendas":
-    st.subheader("🛒 Vendas — PDV Híbrido")
+    _vtab_pdv, _vtab_dia, _vtab_hist = st.tabs(
+        ["🛒 PDV — Nova Venda", "📊 Painel do Dia", "📋 Histórico de Vendas"]
+    )
 
-    # ── CSS local ─────────────────────────────────────────────────────────────
-    st.markdown("""
-<style>
-/* Botão Adicionar ao Carrinho (form submit) — teal */
-[data-testid="stFormSubmitButton"] button {
-    background: #5bc5d3 !important;
-    border-color: #5bc5d3 !important;
-    color: #fff !important;
-    font-weight: 700 !important;
-    border-radius: 8px !important;
-}
-[data-testid="stFormSubmitButton"] button:hover {
-    background: #3db5c4 !important;
-    border-color: #3db5c4 !important;
-}
-/* Botão Finalizar Venda (override primary → teal) */
-button[data-testid="baseButton-primary"].pdv-finalizar {
-    background: #5bc5d3 !important;
-    border-color: #5bc5d3 !important;
-}
-</style>
-""", unsafe_allow_html=True)
+    with _vtab_pdv:
+        st.subheader("🛒 Vendas — PDV Híbrido")
 
-    # ── Estado de sessão ──────────────────────────────────────────────────────
-    for _k, _v in [
-        ("va_messages",     []),
-        ("va_pendente",     None),
-        ("va_ultimo_cupom", None),
-        ("pdv_carrinho",    []),
-        ("pdv_checkout",    False),
-        ("pdv_ultima_venda", None),   # info da última venda p/ botão WhatsApp
-        ("pdv_obs_preset",  ""),
-    ]:
-        if _k not in st.session_state:
-            st.session_state[_k] = _v
+        # ── CSS local ─────────────────────────────────────────────────────────────
+        st.markdown("""
+    <style>
+    /* Botão Adicionar ao Carrinho (form submit) — teal */
+    [data-testid="stFormSubmitButton"] button {
+        background: #5bc5d3 !important;
+        border-color: #5bc5d3 !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+    }
+    [data-testid="stFormSubmitButton"] button:hover {
+        background: #3db5c4 !important;
+        border-color: #3db5c4 !important;
+    }
+    /* Botão Finalizar Venda (override primary → teal) */
+    button[data-testid="baseButton-primary"].pdv-finalizar {
+        background: #5bc5d3 !important;
+        border-color: #5bc5d3 !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    # ── Cupom (largura total, acima do layout) ────────────────────────────────
-    if st.session_state.va_ultimo_cupom:
-        _c = st.session_state.va_ultimo_cupom
-        with st.expander(f"🧾 Cupom #{_c['num']:06d} — clique para ver / imprimir",
-                         expanded=True):
-            st.markdown(_cupom_html_display(_c["text"]), unsafe_allow_html=True)
-            _col_dl, _col_fch = st.columns([2, 1])
-            with _col_dl:
-                components.html(
-                    _cupom_iframe_html(_c["text"], "pf_va", "🖨️ Imprimir Cupom"),
-                    height=52,
-                )
-            if _col_fch.button("✕ Fechar cupom", key="va_fechar_cupom",
-                                use_container_width=True):
-                st.session_state.va_ultimo_cupom = None
-                st.rerun()
+        # ── Estado de sessão ──────────────────────────────────────────────────────
+        for _k, _v in [
+            ("va_messages",     []),
+            ("va_pendente",     None),
+            ("va_ultimo_cupom", None),
+            ("pdv_carrinho",    []),
+            ("pdv_checkout",    False),
+            ("pdv_ultima_venda", None),   # info da última venda p/ botão WhatsApp
+            ("pdv_obs_preset",  ""),
+        ]:
+            if _k not in st.session_state:
+                st.session_state[_k] = _v
 
-    # ── Painel WhatsApp — última venda confirmada ─────────────────────────────
-    if st.session_state.pdv_ultima_venda:
-        _uv = st.session_state.pdv_ultima_venda
-        _wpp_raw  = re.sub(r"\D", "", _uv.get("wpp", "") or "")
-        _wpp_br   = ("55" + _wpp_raw) if _wpp_raw and not _wpp_raw.startswith("55") else _wpp_raw
-        _cupom_tx = _uv.get("cupom_text", "")
-
-        # Mensagem pré-formatada para WhatsApp
-        _msg_wpp = (
-            f"Olá {_uv['cliente_nome']}! 😊\n\n"
-            f"Segue o comprovante da sua compra na *Nome da Loja*:\n\n"
-            f"```\n{_cupom_tx}\n```\n\n"
-            f"Obrigada pela preferência! 🛍️"
-        )
-        _wpp_url = (
-            f"https://wa.me/{_wpp_br}?text={urllib.parse.quote(_msg_wpp)}"
-            if _wpp_br else None
-        )
-
-        with st.container():
-            st.markdown(
-                f"<div style='background:linear-gradient(135deg,#075e54 0%,#128c7e 100%);"
-                f"border-radius:12px;padding:14px 20px;margin-bottom:12px;"
-                f"display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px'>"
-                f"<div style='color:#fff'>"
-                f"<div style='font-size:.73rem;font-weight:800;letter-spacing:.1em;"
-                f"opacity:.8;margin-bottom:3px'>✅ VENDA #{_uv['num']:06d} REGISTRADA</div>"
-                f"<div style='font-size:1rem;font-weight:700'>"
-                f"{_uv['cliente_nome']} &nbsp;·&nbsp; "
-                f"<span style='color:#25d366'>R$ {_uv['valor']:,.2f}</span></div>"
-                f"<div style='font-size:.8rem;opacity:.75;margin-top:2px'>"
-                f"Ref: <code style='color:#fff'>{_uv['venda_id'][-8:].upper()}</code>"
-                f"{'&nbsp;·&nbsp;WhatsApp: ' + _uv['wpp'] if _uv.get('wpp') else '&nbsp;·&nbsp;sem WhatsApp cadastrado'}"
-                f"</div></div></div>",
-                unsafe_allow_html=True,
-            )
-
-            _wc1, _wc2, _wc3 = st.columns([2, 2, 1])
-
-            # Botão wa.me (abre WhatsApp com cupom pré-preenchido)
-            if _wpp_url:
-                with _wc1:
-                    st.link_button(
-                        "📲 Enviar Comprovante via WhatsApp",
-                        _wpp_url,
-                        use_container_width=True,
+        # ── Cupom (largura total, acima do layout) ────────────────────────────────
+        if st.session_state.va_ultimo_cupom:
+            _c = st.session_state.va_ultimo_cupom
+            with st.expander(f"🧾 Cupom #{_c['num']:06d} — clique para ver / imprimir",
+                             expanded=True):
+                st.markdown(_cupom_html_display(_c["text"]), unsafe_allow_html=True)
+                _col_dl, _col_fch = st.columns([2, 1])
+                with _col_dl:
+                    components.html(
+                        _cupom_iframe_html(_c["text"], "pf_va", "🖨️ Imprimir Cupom"),
+                        height=52,
                     )
-                    st.caption("⚠️ Abrirá uma nova aba — limitação do navegador.")
-            else:
-                _wc1.warning("Sem WhatsApp cadastrado para este cliente.")
-
-            # Botão webhook n8n (envia pelo número da loja, não do navegador)
-            with _wc2:
-                if _uv.get("wpp") and st.button(
-                    "🤖 Enviar via n8n (loja)",
-                    key="pdv_wpp_n8n",
-                    use_container_width=True,
-                    help="Dispara o webhook n8n/pdv-loja-comprovante",
-                ):
-                    _ok_wpp, _det_wpp = enviar_comprovante_wpp(
-                        _uv["cliente_id"], _uv["wpp"],
-                        _uv["venda_id"], _cupom_tx,
-                    )
-                    if _ok_wpp:
-                        st.toast("✅ Comprovante enviado via n8n!", icon="✅")
-                    else:
-                        st.error(f"Falha: {_det_wpp}")
-
-            with _wc3:
-                if st.button("✕ Fechar", key="pdv_wpp_fechar",
-                             use_container_width=True):
-                    st.session_state.pdv_ultima_venda = None
+                if _col_fch.button("✕ Fechar cupom", key="va_fechar_cupom",
+                                    use_container_width=True):
+                    st.session_state.va_ultimo_cupom = None
                     st.rerun()
 
-    col_pdv = st.container()  # PDV ocupa largura total — IA concentrada em ✨ Manu AI
+        # ── Painel WhatsApp — última venda confirmada ─────────────────────────────
+        if st.session_state.pdv_ultima_venda:
+            _uv = st.session_state.pdv_ultima_venda
+            _wpp_raw  = re.sub(r"\D", "", _uv.get("wpp", "") or "")
+            _wpp_br   = ("55" + _wpp_raw) if _wpp_raw and not _wpp_raw.startswith("55") else _wpp_raw
+            _cupom_tx = _uv.get("cupom_text", "")
 
-    # ════════════════════════════════════════════════════════════════════════
-    # COLUNA ESQUERDA — PDV Manual com Carrinho
-    # ════════════════════════════════════════════════════════════════════════
-    with col_pdv:
-        st.markdown(
-            "<div class='pdv-card'><h4>🖥️ PDV Manual</h4>",
-            unsafe_allow_html=True,
-        )
+            # Mensagem pré-formatada para WhatsApp
+            _msg_wpp = (
+                f"Olá {_uv['cliente_nome']}! 😊\n\n"
+                f"Segue o comprovante da sua compra na *GM Homem Itaúna*:\n\n"
+                f"```\n{_cupom_tx}\n```\n\n"
+                f"Obrigada pela preferência! 🛍️"
+            )
+            _wpp_url = (
+                f"https://wa.me/{_wpp_br}?text={urllib.parse.quote(_msg_wpp)}"
+                if _wpp_br else None
+            )
 
-        # ── Dados do banco ────────────────────────────────────────────────
-        df_cli_pdv = run_query(
-            "SELECT id::text, nome FROM clientes WHERE ativo = true ORDER BY nome"
-        )
-        df_prod_pdv = run_query(
-            "SELECT id::text, codigo_barras, nome, preco_venda, estoque_atual "
-            "FROM produtos WHERE ativo IS NOT FALSE AND estoque_atual > 0 ORDER BY nome"
-        )
-        _cli_nomes  = df_cli_pdv["nome"].tolist() if not df_cli_pdv.empty else []
-        # Opções com preço e estoque: "Produto [CODIGO] — R$ 39,90 (8 un)"
-        if not df_prod_pdv.empty:
-            _prod_opts = [
-                f"{row['nome']} [{row['codigo_barras']}] — R$ {float(row['preco_venda']):,.2f} ({int(row['estoque_atual']) if pd.notna(row['estoque_atual']) else 0} un)"
-                for _, row in df_prod_pdv.iterrows()
-            ]
-            # Mapa label → id (uso id para evitar conflito de nomes iguais)
-            _prod_label_to_nome = {
-                f"{row['nome']} [{row['codigo_barras']}] — R$ {float(row['preco_venda']):,.2f} ({int(row['estoque_atual']) if pd.notna(row['estoque_atual']) else 0} un)": row['nome']
-                for _, row in df_prod_pdv.iterrows()
-            }
-            _prod_label_to_id = {
-                f"{row['nome']} [{row['codigo_barras']}] — R$ {float(row['preco_venda']):,.2f} ({int(row['estoque_atual']) if pd.notna(row['estoque_atual']) else 0} un)": str(row['id'])
-                for _, row in df_prod_pdv.iterrows()
-            }
-        else:
-            _prod_opts = []
-            _prod_label_to_nome = {}
-
-        # ── Modo confirmação via Chat IA ──────────────────────────────────
-        _pendente = st.session_state.va_pendente
-        if _pendente and _pendente.get("origem") == "chat":
-            _d       = _pendente
-            _df_vnd_opts = run_query(
-                "SELECT codigo_vendedor, COALESCE(nome_vendedor, codigo_vendedor) AS label "
-                "FROM config_comissao WHERE ativo = true ORDER BY codigo_vendedor"
-            )
-            if not _df_vnd_opts.empty:
-                _vnd_opts_chat = _df_vnd_opts["codigo_vendedor"].tolist()
-                _vnd_lbl_chat  = _df_vnd_opts["label"].tolist()
-                _vnd_idx_chat  = 0
-                if _d.get("codigo_vendedor") in _vnd_opts_chat:
-                    _vnd_idx_chat = _vnd_opts_chat.index(_d["codigo_vendedor"])
-                _chat_cod_vnd = st.selectbox(
-                    "🏷️ Vendedora *", range(len(_vnd_opts_chat)),
-                    format_func=lambda i: f"{_vnd_opts_chat[i]} — {_vnd_lbl_chat[i]}",
-                    index=_vnd_idx_chat, key="va_cod_vnd",
-                )
-                _d["codigo_vendedor"] = _vnd_opts_chat[_chat_cod_vnd]
-            else:
-                _chat_cod_vnd = st.text_input(
-                    "🏷️ Código Vendedor *", key="va_cod_vnd",
-                    value=_d.get("codigo_vendedor", ""),
-                    placeholder="Cadastre vendedoras em Administração.",
-                )
-                _d["codigo_vendedor"] = _chat_cod_vnd.strip()
-            _desc_pct = st.number_input(
-                "Desconto (%)", min_value=0.0, max_value=100.0,
-                value=float(_d.get("desconto_pct", 0.0)),
-                step=1.0, format="%.1f", key="va_desconto_pct",
-            )
-            _d["desconto_pct"] = _desc_pct
-            _v_orig    = _d["valor_total"]
-            _desc_real = round(_v_orig * _desc_pct / 100, 2)
-            _v_final   = round(_v_orig - _desc_real, 2)
-            _parc_val  = _v_final / _d["parcelas"]
-            _parc_lbl  = (
-                f"{_d['parcelas']}x de R$ {_parc_val:,.2f}"
-                if _d["parcelas"] > 1 else f"1x de R$ {_v_final:,.2f}"
-            )
-            _desc_span = (
-                f"&nbsp;<span style='color:#d97706'>(-{_desc_pct:.1f}% = "
-                f"-R$ {_desc_real:,.2f})</span>" if _desc_pct > 0 else ""
-            )
-            st.markdown(
-                f"<div style='background:#e8f8fa;border-left:4px solid #5bc5d3;"
-                f"border-radius:10px;padding:14px 18px;margin:8px 0 16px'>"
-                f"<div style='font-size:.73rem;color:#5bc5d3;font-weight:800;"
-                f"letter-spacing:.1em;margin-bottom:10px'>📋 PREENCHIDO PELO CHAT IA</div>"
-                f"<table style='width:100%;border-collapse:collapse;font-size:.93rem'>"
-                f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>👤 Cliente</b></td>"
-                f"<td>{_d['cliente_nome']}</td></tr>"
-                f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>📦 Itens</b></td>"
-                f"<td>{_d['descricao']}</td></tr>"
-                f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>💰 Valor</b></td>"
-                f"<td><b>R$ {_v_final:,.2f}</b>{_desc_span}</td></tr>"
-                f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>💳 Pagamento</b></td>"
-                f"<td>{_d['forma_pagamento']} — {_parc_lbl}</td></tr>"
-                f"</table></div>",
-                unsafe_allow_html=True,
-            )
-            _cc1, _cc2 = st.columns(2)
-            with _cc1:
-                if st.button("✅ Confirmar Venda", key="pdv_confirmar",
-                             use_container_width=True, type="primary"):
-                    if not _d.get("codigo_vendedor", "").strip():
-                        st.error("Informe o **Código Vendedor** antes de confirmar.")
-                    else:
-                        try:
-                            _d["valor_original"] = _v_orig
-                            _d["valor_total"]    = _v_final
-                            _d["vendedor_nome"]  = st.session_state.get("username", "")
-                            _vid = salvar_venda(_d)
-                            _dfn = run_query("SELECT COUNT(*) AS total FROM vendas")
-                            _nc  = int(_dfn["total"].iloc[0]) if not _dfn.empty else 1
-                            _cupom_txt = gerar_cupom(_d, _vid, _nc,
-                                                      vendedor=_d["vendedor_nome"])
-                            # Salva o cupom gerado na venda
-                            with _db_get_conn() as conn:
-                                with conn.cursor() as cur:
-                                    cur.execute(
-                                        "UPDATE vendas SET cupom_text = %s WHERE id = %s",
-                                        (_cupom_txt, _vid)
-                                    )
-                                    conn.commit()
-                            st.session_state.va_ultimo_cupom = {
-                                "text":     _cupom_txt,
-                                "venda_id": _vid,
-                                "num":      _nc,
-                            }
-                            _parc_m = (
-                                f"{_d['parcelas']} parcela(s) em *Contas a Receber*."
-                                if _d["forma_pagamento"] in ("cartão", "crediário")
-                                else "Pagamento registrado como recebido."
-                            )
-                            st.session_state.va_messages.append({
-                                "role": "assistant",
-                                "content": (
-                                    f"✅ Venda #{_nc:06d} salva!  \n"
-                                    f"**Cliente:** {_d['cliente_nome']}  \n"
-                                    f"**Valor:** R$ {_v_final:,.2f}  \n{_parc_m}"
-                                ),
-                            })
-                            st.session_state.va_pendente = None
-                            st.rerun()
-                        except Exception as e:
-                            st.error(f"Erro ao salvar: {e}")
-            with _cc2:
-                if st.button("❌ Cancelar", key="pdv_cancelar_chat",
-                             use_container_width=True):
-                    st.session_state.va_messages.append({
-                        "role": "assistant",
-                        "content": "Venda cancelada. Digite uma nova quando quiser.",
-                    })
-                    st.session_state.va_pendente = None
-                    st.rerun()
-
-        else:
-            # ════════════════════════════════════════════════════════════
-            # PDV com Carrinho
-            # ════════════════════════════════════════════════════════════
-
-            # ── Seleção de Cliente + Cadastro Express ─────────────────
-            _col_cli, _col_clr_cli, _col_btn = st.columns([5, 1, 1])
-            with _col_cli:
-                pdv_cli_sel = st.selectbox(
-                    "👤 Cliente",
-                    ["— Selecione —"] + _cli_nomes,
-                    key="pdv_cli_selectbox",
-                    index=0,
-                )
-            with _col_clr_cli:
-                st.markdown("<div style='margin-top:28px'>", unsafe_allow_html=True)
-                if st.button("✕", key="pdv_btn_clr_cli", help="Limpar cliente",
-                             use_container_width=True):
-                    st.session_state["pdv_cli_selectbox"] = "— Selecione —"
-                    st.rerun()
-                st.markdown("</div>", unsafe_allow_html=True)
-            with _col_btn:
+            with st.container():
                 st.markdown(
-                    "<div style='margin-top:28px'>",
+                    f"<div style='background:linear-gradient(135deg,#075e54 0%,#128c7e 100%);"
+                    f"border-radius:12px;padding:14px 20px;margin-bottom:12px;"
+                    f"display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px'>"
+                    f"<div style='color:#fff'>"
+                    f"<div style='font-size:.73rem;font-weight:800;letter-spacing:.1em;"
+                    f"opacity:.8;margin-bottom:3px'>✅ VENDA #{_uv['num']:06d} REGISTRADA</div>"
+                    f"<div style='font-size:1rem;font-weight:700'>"
+                    f"{_uv['cliente_nome']} &nbsp;·&nbsp; "
+                    f"<span style='color:#25d366'>R$ {_uv['valor']:,.2f}</span></div>"
+                    f"<div style='font-size:.8rem;opacity:.75;margin-top:2px'>"
+                    f"Ref: <code style='color:#fff'>{_uv['venda_id'][-8:].upper()}</code>"
+                    f"{'&nbsp;·&nbsp;WhatsApp: ' + _uv['wpp'] if _uv.get('wpp') else '&nbsp;·&nbsp;sem WhatsApp cadastrado'}"
+                    f"</div></div></div>",
                     unsafe_allow_html=True,
                 )
-                if st.button("➕", key="pdv_btn_novo_cli",
-                             help="Cadastrar Novo Cliente", use_container_width=True):
-                    _dlg_cadastro_rapido()
-                st.markdown("</div>", unsafe_allow_html=True)
 
-            # ── Seleção de Produto (fora do form para permitir reatividade) ─
-            if not st.session_state.pdv_checkout:
-                _col_prod, _col_novo_prod = st.columns([6, 1])
-                with _col_prod:
-                    if _prod_opts:
-                        _auto_prod = st.session_state.pop('_pdv_auto_select_prod', None)
-                        if _auto_prod:
-                            for _ai, _ao in enumerate(_prod_opts):
-                                if _auto_prod in _ao:
-                                    st.session_state["pdv_prod_label_main"] = _ao
-                                    break
-                        _prod_label = st.selectbox(
-                            "👗 Produto", ["— Selecione —"] + _prod_opts,
-                            key="pdv_prod_label_main",
+                _wc1, _wc2, _wc3 = st.columns([2, 2, 1])
+
+                # Botão wa.me (abre WhatsApp com cupom pré-preenchido)
+                if _wpp_url:
+                    with _wc1:
+                        st.link_button(
+                            "📲 Enviar Comprovante via WhatsApp",
+                            _wpp_url,
+                            use_container_width=True,
                         )
-                    else:
-                        _prod_label = "— Selecione —"
-                        st.warning("Nenhum produto em estoque.")
-                with _col_novo_prod:
-                    st.markdown("<div style='margin-top:28px'>", unsafe_allow_html=True)
-                    if st.button("➕", key="pdv_btn_novo_prod", help="Cadastrar Novo Produto", use_container_width=True):
-                        st.session_state['_pdv_novo_prod_open'] = not st.session_state.get('_pdv_novo_prod_open', False)
-                    st.markdown("</div>", unsafe_allow_html=True)
-                # Form cadastro rápido de produto
-                if st.session_state.get('_pdv_novo_prod_open'):
-                    with st.container(border=True):
-                        st.markdown("#### Novo Produto")
-                        _pa, _pb = st.columns(2)
-                        _pnome = _pa.text_input("Nome *", key="pdv_np_nome")
-                        _pcod  = _pb.text_input("Cod. Barras / Referencia", key="pdv_np_cod")
-                        _pc, _pd, _pe = st.columns(3)
-                        _ppreco = _pc.number_input("Preco Venda R$", min_value=0.0, step=0.01, format="%.2f", key="pdv_np_preco")
-                        _pcusto = _pd.number_input("Preco Custo R$", min_value=0.0, step=0.01, format="%.2f", key="pdv_np_custo")
-                        _pestq  = _pe.number_input("Estoque inicial", min_value=0, step=1, key="pdv_np_estq")
-                        _ps1, _ps2 = st.columns([1,4])
-                        if _ps1.button("Salvar produto", key="pdv_np_salvar", type="primary"):
-                            if _pnome.strip():
-                                run_command(
-                                    "INSERT INTO produtos (nome,codigo_barras,preco_venda,preco_custo,estoque_atual,ativo,created_at) VALUES (%s,%s,%s,%s,%s,true,NOW())",
-                                    (_pnome.strip().upper(), _pcod or None, _ppreco or None, _pcusto or None, int(_pestq))
-                                )
-                                st.success(f"Produto {_pnome} cadastrado!")
-                                st.session_state['_pdv_novo_prod_open'] = False
-                                st.session_state['_pdv_auto_select_prod'] = _pnome.strip().upper()
-                                st.rerun()
-                            else:
-                                st.warning("Nome obrigatorio.")
-                        if _ps2.button("Cancelar", key="pdv_np_cancel"):
-                            st.session_state['_pdv_novo_prod_open'] = False
-                            st.rerun()
+                        st.caption("⚠️ Abrirá uma nova aba — limitação do navegador.")
+                else:
+                    _wc1.warning("Sem WhatsApp cadastrado para este cliente.")
 
-                # ── Detectar grade de tamanhos do produto selecionado ─────
-                _grade_pdv: list[str] = []
-                _grade_estoques: dict[str, int] = {}
-                _prod_tem_grade = False
-                if _prod_label != "— Selecione —":
-                    _pnr_check = _prod_label_to_nome.get(_prod_label, _prod_label)
-                    _pr_chk = df_prod_pdv[df_prod_pdv["nome"] == _pnr_check]
-                    if not _pr_chk.empty:
-                        _pid_chk = str(_pr_chk["id"].iloc[0])
+                # Botão webhook n8n (envia pelo número da loja, não do navegador)
+                with _wc2:
+                    if _uv.get("wpp") and st.button(
+                        "🤖 Enviar via n8n (loja)",
+                        key="pdv_wpp_n8n",
+                        use_container_width=True,
+                        help="Dispara o webhook n8n/loja-gmh-comprovante",
+                    ):
+                        _ok_wpp, _det_wpp = enviar_comprovante_wpp(
+                            _uv["cliente_id"], _uv["wpp"],
+                            _uv["venda_id"], _cupom_tx,
+                        )
+                        if _ok_wpp:
+                            st.toast("✅ Comprovante enviado via n8n!", icon="✅")
+                        else:
+                            st.error(f"Falha: {_det_wpp}")
+
+                with _wc3:
+                    if st.button("✕ Fechar", key="pdv_wpp_fechar",
+                                 use_container_width=True):
+                        st.session_state.pdv_ultima_venda = None
+                        st.rerun()
+
+        col_pdv = st.container()  # PDV ocupa largura total — IA concentrada em ✨ GM Homem AI
+
+        # ════════════════════════════════════════════════════════════════════════
+        # COLUNA ESQUERDA — PDV GM Homem com Carrinho
+        # ════════════════════════════════════════════════════════════════════════
+        with col_pdv:
+            st.markdown(
+                "<div class='pdv-card'><h4>🖥️ PDV GM Homem</h4>",
+                unsafe_allow_html=True,
+            )
+
+            # ── Dados do banco ────────────────────────────────────────────────
+            df_cli_pdv = run_query(
+                "SELECT id::text, nome FROM clientes WHERE ativo = true ORDER BY nome"
+            )
+            df_prod_pdv = run_query(
+                "SELECT id::text, codigo_barras, nome, cor, preco_venda, estoque_atual "
+                "FROM produtos WHERE ativo IS NOT FALSE AND estoque_atual > 0 ORDER BY nome"
+            )
+            _cli_nomes = df_cli_pdv["nome"].tolist() if not df_cli_pdv.empty else []
+
+            # ── Modo confirmação via Chat IA ──────────────────────────────────
+            _pendente = st.session_state.va_pendente
+            if _pendente and _pendente.get("origem") == "chat":
+                _d       = _pendente
+                _df_vnd_opts = run_query(
+                    "SELECT codigo_vendedor, COALESCE(nome_vendedor, codigo_vendedor) AS label "
+                    "FROM config_comissao WHERE ativo = true ORDER BY codigo_vendedor"
+                )
+                if not _df_vnd_opts.empty:
+                    _vnd_opts_chat = _df_vnd_opts["codigo_vendedor"].tolist()
+                    _vnd_lbl_chat  = _df_vnd_opts["label"].tolist()
+                    _vnd_idx_chat  = 0
+                    if _d.get("codigo_vendedor") in _vnd_opts_chat:
+                        _vnd_idx_chat = _vnd_opts_chat.index(_d["codigo_vendedor"])
+                    _chat_cod_vnd = st.selectbox(
+                        "🏷️ Vendedora *", range(len(_vnd_opts_chat)),
+                        format_func=lambda i: f"{_vnd_opts_chat[i]} — {_vnd_lbl_chat[i]}",
+                        index=_vnd_idx_chat, key="va_cod_vnd",
+                    )
+                    _d["codigo_vendedor"] = _vnd_opts_chat[_chat_cod_vnd]
+                else:
+                    _chat_cod_vnd = st.text_input(
+                        "🏷️ Código Vendedor *", key="va_cod_vnd",
+                        value=_d.get("codigo_vendedor", ""),
+                        placeholder="Cadastre vendedoras em Administração.",
+                    )
+                    _d["codigo_vendedor"] = _chat_cod_vnd.strip()
+                _desc_pct = st.number_input(
+                    "Desconto (%)", min_value=0.0, max_value=100.0,
+                    value=float(_d.get("desconto_pct", 0.0)),
+                    step=1.0, format="%.1f", key="va_desconto_pct",
+                )
+                _d["desconto_pct"] = _desc_pct
+                _v_orig    = _d["valor_total"]
+                _desc_real = round(_v_orig * _desc_pct / 100, 2)
+                _v_final   = round(_v_orig - _desc_real, 2)
+                _parc_val  = _v_final / _d["parcelas"]
+                _parc_lbl  = (
+                    f"{_d['parcelas']}x de R$ {_parc_val:,.2f}"
+                    if _d["parcelas"] > 1 else f"1x de R$ {_v_final:,.2f}"
+                )
+                _desc_span = (
+                    f"&nbsp;<span style='color:#d97706'>(-{_desc_pct:.1f}% = "
+                    f"-R$ {_desc_real:,.2f})</span>" if _desc_pct > 0 else ""
+                )
+                st.markdown(
+                    f"<div style='background:#e8f8fa;border-left:4px solid #5bc5d3;"
+                    f"border-radius:10px;padding:14px 18px;margin:8px 0 16px'>"
+                    f"<div style='font-size:.73rem;color:#5bc5d3;font-weight:800;"
+                    f"letter-spacing:.1em;margin-bottom:10px'>📋 PREENCHIDO PELO CHAT IA</div>"
+                    f"<table style='width:100%;border-collapse:collapse;font-size:.93rem'>"
+                    f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>👤 Cliente</b></td>"
+                    f"<td>{_d['cliente_nome']}</td></tr>"
+                    f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>📦 Itens</b></td>"
+                    f"<td>{_d['descricao']}</td></tr>"
+                    f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>💰 Valor</b></td>"
+                    f"<td><b>R$ {_v_final:,.2f}</b>{_desc_span}</td></tr>"
+                    f"<tr><td style='padding:4px 12px 4px 0;color:#555'><b>💳 Pagamento</b></td>"
+                    f"<td>{_d['forma_pagamento']} — {_parc_lbl}</td></tr>"
+                    f"</table></div>",
+                    unsafe_allow_html=True,
+                )
+                _cc1, _cc2 = st.columns(2)
+                with _cc1:
+                    if st.button("✅ Confirmar Venda", key="pdv_confirmar",
+                                 use_container_width=True, type="primary"):
+                        if not _d.get("codigo_vendedor", "").strip():
+                            st.error("Informe o **Código Vendedor** antes de confirmar.")
+                        else:
+                            try:
+                                _d["valor_original"] = _v_orig
+                                _d["valor_total"]    = _v_final
+                                _d["vendedor_nome"]  = st.session_state.get("username", "")
+                                _vid = salvar_venda(_d)
+                                _dfn = run_query("SELECT COUNT(*) AS total FROM vendas")
+                                _nc  = int(_dfn["total"].iloc[0]) if not _dfn.empty else 1
+                                _cupom_txt = gerar_cupom(_d, _vid, _nc,
+                                                          vendedor=_d["vendedor_nome"])
+                                # Salva o cupom gerado na venda
+                                with _db_get_conn() as conn:
+                                    with conn.cursor() as cur:
+                                        cur.execute(
+                                            "UPDATE vendas SET cupom_text = %s WHERE id = %s",
+                                            (_cupom_txt, _vid)
+                                        )
+                                        conn.commit()
+                                st.session_state.va_ultimo_cupom = {
+                                    "text":     _cupom_txt,
+                                    "venda_id": _vid,
+                                    "num":      _nc,
+                                }
+                                _parc_m = (
+                                    f"{_d['parcelas']} parcela(s) em *Contas a Receber*."
+                                    if _d["forma_pagamento"] in ("cartão", "crediário")
+                                    else "Pagamento registrado como recebido."
+                                )
+                                st.session_state.va_messages.append({
+                                    "role": "assistant",
+                                    "content": (
+                                        f"✅ Venda #{_nc:06d} salva!  \n"
+                                        f"**Cliente:** {_d['cliente_nome']}  \n"
+                                        f"**Valor:** R$ {_v_final:,.2f}  \n{_parc_m}"
+                                    ),
+                                })
+                                st.session_state.va_pendente = None
+                                st.rerun()
+                            except Exception as e:
+                                st.error(f"Erro ao salvar: {e}")
+                with _cc2:
+                    if st.button("❌ Cancelar", key="pdv_cancelar_chat",
+                                 use_container_width=True):
+                        st.session_state.va_messages.append({
+                            "role": "assistant",
+                            "content": "Venda cancelada. Digite uma nova quando quiser.",
+                        })
+                        st.session_state.va_pendente = None
+                        st.rerun()
+
+            else:
+                # ════════════════════════════════════════════════════════════
+                # PDV com Carrinho
+                # ════════════════════════════════════════════════════════════
+
+                # ── Seleção de Cliente + Cadastro Express ─────────────────
+                _col_cli, _col_clr_cli, _col_btn = st.columns([5, 1, 1])
+                with _col_cli:
+                    pdv_cli_sel = st.selectbox(
+                        "👤 Cliente",
+                        ["— Selecione —"] + _cli_nomes,
+                        key="pdv_cli_selectbox",
+                        index=0,
+                    )
+                with _col_clr_cli:
+                    st.markdown("<div style='margin-top:28px'>", unsafe_allow_html=True)
+                    if st.button("✕", key="pdv_btn_clr_cli", help="Limpar cliente",
+                                 use_container_width=True):
+                        st.session_state["pdv_cli_selectbox"] = "— Selecione —"
+                        st.rerun()
+                    st.markdown("</div>", unsafe_allow_html=True)
+                with _col_btn:
+                    st.markdown(
+                        "<div style='margin-top:28px'>",
+                        unsafe_allow_html=True,
+                    )
+                    if st.button("➕", key="pdv_btn_novo_cli",
+                                 help="Cadastrar Novo Cliente", use_container_width=True):
+                        _dlg_cadastro_rapido()
+                    st.markdown("</div>", unsafe_allow_html=True)
+
+                # ── Seleção de Produto — Fluxo em Etapas ─────────────────────────────
+                if not st.session_state.pdv_checkout:
+                    # Inicializar keys do fluxo de variantes
+                    for _vk in ("pdv_nome_sel", "pdv_cor_sel", "pdv_tam_sel", "_pdv_nome_prev"):
+                        if _vk not in st.session_state:
+                            st.session_state[_vk] = None
+
+                    # ── Botão Novo Produto ────────────────────────────────────────
+                    _col_prod, _col_novo_prod = st.columns([6, 1])
+                    with _col_novo_prod:
+                        st.markdown("<div style='margin-top:28px'>", unsafe_allow_html=True)
+                        if st.button("➕", key="pdv_btn_novo_prod", help="Cadastrar Novo Produto", use_container_width=True):
+                            st.session_state['_pdv_novo_prod_open'] = not st.session_state.get('_pdv_novo_prod_open', False)
+                        st.markdown("</div>", unsafe_allow_html=True)
+                    if st.session_state.get('_pdv_novo_prod_open'):
+                        with st.container(border=True):
+                            st.markdown("#### Novo Produto")
+                            _pa, _pb = st.columns(2)
+                            _pnome = _pa.text_input("Nome *", key="pdv_np_nome")
+                            _pcod  = _pb.text_input("Cod. Barras / Referencia", key="pdv_np_cod")
+                            _pc, _pd, _pe = st.columns(3)
+                            _ppreco = _pc.number_input("Preco Venda R$", min_value=0.0, step=0.01, format="%.2f", key="pdv_np_preco")
+                            _pcusto = _pd.number_input("Preco Custo R$", min_value=0.0, step=0.01, format="%.2f", key="pdv_np_custo")
+                            _pestq  = _pe.number_input("Estoque inicial", min_value=0, step=1, key="pdv_np_estq")
+                            _ps1, _ps2 = st.columns([1, 4])
+                            if _ps1.button("Salvar produto", key="pdv_np_salvar", type="primary"):
+                                if _pnome.strip():
+                                    run_command(
+                                        "INSERT INTO produtos (nome,codigo_barras,preco_venda,preco_custo,estoque_atual,ativo,created_at) VALUES (%s,%s,%s,%s,%s,true,NOW())",
+                                        (_pnome.strip().upper(), _pcod or None, _ppreco or None, _pcusto or None, int(_pestq))
+                                    )
+                                    st.success(f"Produto {_pnome} cadastrado!")
+                                    st.session_state['_pdv_novo_prod_open'] = False
+                                    st.session_state["pdv_nome_sel"] = _pnome.strip().upper()
+                                    st.session_state["_pdv_nome_prev"] = None
+                                    st.session_state.pop("pdv_prod_label_main", None)
+                                    st.rerun()
+                                else:
+                                    st.warning("Nome obrigatorio.")
+                            if _ps2.button("Cancelar", key="pdv_np_cancel"):
+                                st.session_state['_pdv_novo_prod_open'] = False
+                                st.rerun()
+
+                    # ── Construir opções agrupadas por nome ───────────────────────
+                    if not df_prod_pdv.empty:
+                        _df_pv = df_prod_pdv.copy()
+                        _df_pv["estoque_atual"] = pd.to_numeric(_df_pv["estoque_atual"], errors="coerce").fillna(0)
+                        _nomes_agg = _df_pv.groupby("nome", as_index=False).agg(
+                            total_est=("estoque_atual", "sum"),
+                            preco_min=("preco_venda", "min"),
+                        )
+                        _cores_cnt = (
+                            _df_pv[_df_pv["cor"].notna() & (_df_pv["cor"] != "")]
+                            .groupby("nome")["cor"].nunique()
+                        )
+                        _nomes_agg["n_cores"] = _nomes_agg["nome"].map(_cores_cnt).fillna(0).astype(int)
+                        def _fmt_np(r):
+                            n_c = int(r["n_cores"])
+                            n_e = int(r["total_est"])
+                            return f"{r['nome']}  ({n_c} cores · {n_e} un.)" if n_c > 1 else f"{r['nome']}  ({n_e} un.)"
+                        _nome_opts_pdv  = [_fmt_np(r) for _, r in _nomes_agg.iterrows()]
+                        _label_to_nome  = {_fmt_np(r): r["nome"] for _, r in _nomes_agg.iterrows()}
+                        _nome_to_label  = {r["nome"]: _fmt_np(r) for _, r in _nomes_agg.iterrows()}
+                    else:
+                        _nome_opts_pdv = []
+                        _label_to_nome = {}
+                        _nome_to_label = {}
+
+                    # ── ETAPA 1: Selectbox de nome único ─────────────────────────
+                    with _col_prod:
+                        if _nome_opts_pdv:
+                            _pre_nome = st.session_state.get("pdv_nome_sel")
+                            _pre_label = _nome_to_label.get(_pre_nome, "— Selecione —") if _pre_nome else "— Selecione —"
+                            _opts_n = ["— Selecione —"] + _nome_opts_pdv
+                            _idx_n = _opts_n.index(_pre_label) if _pre_label in _opts_n else 0
+                            _nome_label_widget = st.selectbox(
+                                "👗 Produto", _opts_n, index=_idx_n,
+                                key="pdv_prod_label_main",
+                            )
+                            _pdv_nome_sel = _label_to_nome.get(_nome_label_widget) if _nome_label_widget != "— Selecione —" else None
+                        else:
+                            st.warning("Nenhum produto em estoque.")
+                            _pdv_nome_sel = None
+
+                    # Detectar troca de nome → resetar cor e tamanho
+                    if _pdv_nome_sel != st.session_state.get("_pdv_nome_prev"):
+                        st.session_state["pdv_nome_sel"]  = _pdv_nome_sel
+                        st.session_state["pdv_cor_sel"]   = None
+                        st.session_state["pdv_tam_sel"]   = None
+                        st.session_state["_pdv_nome_prev"] = _pdv_nome_sel
+
+                    # ── ETAPA 2: Seleção de Cor ───────────────────────────────────
+                    _pdv_cor_sel  = st.session_state.get("pdv_cor_sel")
+                    _pdv_prod_id  = None
+                    _pdv_prod_row = None
+                    _prod_tem_grade = False
+                    _grade_pdv_dict: dict = {}
+
+                    if _pdv_nome_sel:
+                        _df_vars = df_prod_pdv[
+                            (df_prod_pdv["nome"] == _pdv_nome_sel) &
+                            (pd.to_numeric(df_prod_pdv["estoque_atual"], errors="coerce").fillna(0) > 0)
+                        ].copy()
+                        _cores_disp = [
+                            str(r["cor"]) for _, r in _df_vars.iterrows()
+                            if r["cor"] and str(r["cor"]).strip()
+                        ]
+                        if len(_cores_disp) == 0:
+                            _pdv_cor_sel = ""
+                            st.session_state["pdv_cor_sel"] = ""
+                            if not _df_vars.empty:
+                                _pdv_prod_row = _df_vars.iloc[0]
+                                _pdv_prod_id  = str(_pdv_prod_row["id"])
+                        elif len(_cores_disp) == 1:
+                            if _pdv_cor_sel != _cores_disp[0]:
+                                _pdv_cor_sel = _cores_disp[0]
+                                st.session_state["pdv_cor_sel"] = _pdv_cor_sel
+                            _df_cm = _df_vars[_df_vars["cor"] == _pdv_cor_sel]
+                            if not _df_cm.empty:
+                                _pdv_prod_row = _df_cm.iloc[0]
+                                _pdv_prod_id  = str(_pdv_prod_row["id"])
+                            st.caption(f"🎨 Cor: **{_pdv_cor_sel}** (única disponível)")
+                        else:
+                            _cor_css_map = {
+                                "preto":"#1a1a1a","branco":"#e8e8e8","cinza":"#808080","cinza mescla":"#a8a8a8",
+                                "marrom":"#8B4513","marrom claro":"#c68a4a","bege":"#d4b896","caramelo":"#c68642",
+                                "azul marinho":"#1A2035","azul claro":"#7ab8d4","vinho":"#722F37",
+                                "verde":"#2d5a1b","verde militar":"#4a5240","laranja":"#e08c3c",
+                                "vermelho":"#dc143c","roxo":"#6B3FA0","rosa":"#e8a0b0",
+                                "amarelo":"#e0c830","estampado":"#cc6699","multicolor":"#ff6b6b",
+                            }
+                            _cores_claras = {"branco","bege","amarelo","cinza mescla","marrom claro","azul claro","rosa"}
+                            st.markdown("**🎨 Escolha a Cor:**")
+                            _n_cc = min(len(_cores_disp), 5)
+                            _cor_cols = st.columns(_n_cc)
+                            for _ci2, _cor_nm in enumerate(_cores_disp):
+                                _bg   = _cor_css_map.get(_cor_nm.lower(), "#888888")
+                                _tc   = "#222" if _cor_nm.lower() in _cores_claras else "#fff"
+                                _brd  = "3px solid #B8892A" if _pdv_cor_sel == _cor_nm else "2px solid transparent"
+                                with _cor_cols[_ci2 % _n_cc]:
+                                    st.markdown(
+                                        f"<div style='background:{_bg};color:{_tc};border:{_brd};"
+                                        f"border-radius:8px;padding:6px 4px;text-align:center;"
+                                        f"font-size:.78rem;font-weight:700;margin-bottom:2px'>{_cor_nm}</div>",
+                                        unsafe_allow_html=True,
+                                    )
+                                    if st.button(_cor_nm, key=f"pdv_cor_btn_{_ci2}", use_container_width=True):
+                                        st.session_state["pdv_cor_sel"] = _cor_nm
+                                        st.session_state["pdv_tam_sel"] = None
+                                        st.rerun()
+                            if _pdv_cor_sel and _pdv_cor_sel in _cores_disp:
+                                _df_cm = _df_vars[_df_vars["cor"] == _pdv_cor_sel]
+                                if not _df_cm.empty:
+                                    _pdv_prod_row = _df_cm.iloc[0]
+                                    _pdv_prod_id  = str(_pdv_prod_row["id"])
+
+                    # ── ETAPA 3: Seleção de Tamanho ─── produto_id INTEGER no GMH ─
+                    _pdv_tam_sel = st.session_state.get("pdv_tam_sel")
+                    if _pdv_prod_id and _pdv_cor_sel is not None:
                         _df_gv = run_query(
                             f"SELECT tamanho, estoque FROM produto_variacoes "
-                            f"WHERE produto_id = '{_pid_chk}'::uuid AND estoque > 0 "
-                            f"ORDER BY tamanho"
+                            f"WHERE produto_id = {_pdv_prod_id} ORDER BY tamanho"
                         )
                         if not _df_gv.empty:
                             _prod_tem_grade = True
-                            _grade_pdv = _df_gv["tamanho"].tolist()
-                            _grade_estoques = {
-                                r["tamanho"]: int(r["estoque"])
-                                for _, r in _df_gv.iterrows()
-                            }
-
-                # Pre-calcular preco de referencia para o number_input
-                _pdv_preco_ref = 0.01
-                if _prod_label != "— Selecione —":
-                    _pid_ref = _prod_label_to_id.get(_prod_label, "")
-                    _pr_ref = df_prod_pdv[df_prod_pdv["id"] == _pid_ref] if _pid_ref else df_prod_pdv[df_prod_pdv["nome"] == _prod_label_to_nome.get(_prod_label,"")]
-                    if not _pr_ref.empty and pd.notna(_pr_ref["preco_venda"].iloc[0]):
-                        _pdv_preco_ref = float(_pr_ref["preco_venda"].iloc[0])
-                # Se produto mudou, apaga a key do number_input para forcar novo valor
-                if st.session_state.get("_pdv_preco_ref") != _pdv_preco_ref:
-                    st.session_state["_pdv_preco_ref"] = _pdv_preco_ref
-                    if "pdv_preco_edit" in st.session_state:
-                        del st.session_state["pdv_preco_edit"]
-
-                # ── Observação e Data da Venda ───────────────────────────
-                _col_obs, _col_dt = st.columns([3, 1])
-                with _col_obs:
-                    # Injetar preset do condicional se vier de lá
-                    _obs_preset_val = st.session_state.pop("pdv_obs_preset", "")
-                    if _obs_preset_val and not st.session_state.get("pdv_obs_venda"):
-                        st.session_state["pdv_obs_venda"] = _obs_preset_val
-                    _obs_venda = st.text_input(
-                        "📝 Observação da venda",
-                        key="pdv_obs_venda",
-                        placeholder="Ex: para Mariana filha, presente da Ana...",
-                        max_chars=200,
-                        label_visibility="visible"
-                    )
-                with _col_dt:
-                    import datetime as _dt
-                    _data_venda = st.date_input(
-                        "📅 Data",
-                        value=_dt.date.today(),
-                        key="pdv_data_venda",
-                        format="DD/MM/YYYY"
-                    )
-
-                # ── Formulário: Adicionar ao Carrinho ────────────────────
-                with st.form("pdv_add_item", clear_on_submit=True):
-                    _fi1, _fi2 = st.columns([3, 1])
-                    with _fi1:
-                        if _prod_tem_grade:
-                            _tam_opcoes = [
-                                f"{t}  ({_grade_estoques[t]} un.)"
-                                for t in _grade_pdv
-                            ]
-                            _tam_label = st.selectbox(
-                                "📏 Tamanho *",
-                                ["— Selecione o tamanho —"] + _tam_opcoes,
-                            )
-                            _tam_sel = (
-                                _tam_label.split("  (")[0]
-                                if _tam_label != "— Selecione o tamanho —"
-                                else None
-                            )
+                            for _, _gvr in _df_gv.iterrows():
+                                _grade_pdv_dict[str(_gvr["tamanho"])] = int(_gvr["estoque"])
+                            _tams_ok = [t for t, e in _grade_pdv_dict.items() if e > 0]
+                            if not _pdv_tam_sel and len(_tams_ok) == 1:
+                                _pdv_tam_sel = _tams_ok[0]
+                                st.session_state["pdv_tam_sel"] = _pdv_tam_sel
+                            if _tams_ok:
+                                st.markdown("**📏 Escolha o Tamanho:**")
+                                _tam_order = ["PP","P","M","G","GG","XGG","34","36","38","40","42","44","46","48","U"]
+                                _tams_ord  = sorted(_grade_pdv_dict.keys(), key=lambda t: _tam_order.index(t) if t in _tam_order else 99)
+                                _n_tc = min(len(_tams_ord), 8)
+                                _tam_cols = st.columns(_n_tc)
+                                for _ti, _tam in enumerate(_tams_ord):
+                                    _test  = _grade_pdv_dict[_tam]
+                                    _is_st = (_pdv_tam_sel == _tam)
+                                    _bg_t  = "#5bc5d3" if _is_st else ("#f0f0f0" if _test > 0 else "#e0e0e0")
+                                    _c_t   = "#fff"   if _is_st else ("#333"   if _test > 0 else "#aaa")
+                                    _brd_t = "3px solid #3db5c4" if _is_st else "1px solid #ccc"
+                                    with _tam_cols[_ti % _n_tc]:
+                                        st.markdown(
+                                            f"<div style='background:{_bg_t};color:{_c_t};border:{_brd_t};"
+                                            f"border-radius:6px;padding:6px 2px;text-align:center;"
+                                            f"font-size:.82rem;font-weight:700;margin-bottom:2px'>{_tam}</div>",
+                                            unsafe_allow_html=True,
+                                        )
+                                        if st.button(_tam, key=f"pdv_tam_btn_{_ti}", use_container_width=True, disabled=(_test == 0)):
+                                            st.session_state["pdv_tam_sel"] = _tam
+                                            st.rerun()
                         else:
-                            _tam_sel = None
-                            st.caption("Produto sem grade de tamanhos.")
-                    with _fi2:
+                            _prod_tem_grade = False
+                            if _pdv_tam_sel is None:
+                                _pdv_tam_sel = ""
+                                st.session_state["pdv_tam_sel"] = ""
+
+                    # ── Preço de referência ───────────────────────────────────────
+                    _pdv_preco_ref = 0.01
+                    if _pdv_prod_row is not None and pd.notna(_pdv_prod_row.get("preco_venda")):
+                        _pdv_preco_ref = float(_pdv_prod_row["preco_venda"])
+                    if st.session_state.get("_pdv_preco_ref") != _pdv_preco_ref:
+                        st.session_state["_pdv_preco_ref"] = _pdv_preco_ref
+                        st.session_state.pop("pdv_preco_edit", None)
+
+                    # ── Resumo da seleção ──────────────────────────────────────────
+                    _pronto = (
+                        _pdv_nome_sel is not None and
+                        _pdv_cor_sel  is not None and
+                        _pdv_tam_sel  is not None and
+                        _pdv_prod_id  is not None
+                    )
+                    if _pronto:
+                        _cor_rsum = f" | {_pdv_cor_sel}" if _pdv_cor_sel else ""
+                        _tam_rsum = f" | {_pdv_tam_sel}" if _pdv_tam_sel else ""
+                        _est_rsum = (
+                            _grade_pdv_dict.get(_pdv_tam_sel, 0) if _prod_tem_grade and _pdv_tam_sel
+                            else (int(_pdv_prod_row["estoque_atual"]) if _pdv_prod_row is not None else 0)
+                        )
+                        st.markdown(
+                            f"<div style='background:#f0faf0;border-left:4px solid #5bc5d3;"
+                            f"border-radius:8px;padding:8px 14px;margin:8px 0;font-size:.9rem'>"
+                            f"✅ <b>{_pdv_nome_sel}</b>{_cor_rsum}{_tam_rsum} "
+                            f"| R$ {_pdv_preco_ref:,.2f} | {_est_rsum} un. disponíveis</div>",
+                            unsafe_allow_html=True,
+                        )
+
+                    # ── Observação e Data da Venda ────────────────────────────────
+                    _col_obs, _col_dt = st.columns([3, 1])
+                    with _col_obs:
+                        _obs_preset_val = st.session_state.pop("pdv_obs_preset", "")
+                        if _obs_preset_val and not st.session_state.get("pdv_obs_venda"):
+                            st.session_state["pdv_obs_venda"] = _obs_preset_val
+                        _obs_venda = st.text_input(
+                            "📝 Observação da venda",
+                            key="pdv_obs_venda",
+                            placeholder="Ex: para Mariana filha, presente da Ana...",
+                            max_chars=200,
+                            label_visibility="visible"
+                        )
+                    with _col_dt:
+                        import datetime as _dt
+                        _data_venda = st.date_input(
+                            "📅 Data",
+                            value=_dt.date.today(),
+                            key="pdv_data_venda",
+                            format="DD/MM/YYYY"
+                        )
+
+                    # ── Formulário: Adicionar ao Carrinho ────────────────────────
+                    with st.form("pdv_add_item", clear_on_submit=True):
                         _qtd_sel = st.number_input("Qtd", min_value=1, value=1, step=1)
-
-                    # Campo de preco: vazio = usa preco do cadastro; preenchido = usa valor digitado
-                    _preco_placeholder = f"Padrao: R$ {st.session_state.get('_pdv_preco_ref', 0):.2f} (deixe vazio para usar este)"
-                    _preco_txt = st.text_input("Valor unitario R$ (opcional — deixe vazio para usar preco cadastrado)", key="pdv_preco_edit", placeholder=_preco_placeholder)
-                    try:
-                        _preco_venda_edit = float(_preco_txt.replace(',','.')) if _preco_txt.strip() else st.session_state.get('_pdv_preco_ref', 0.01)
-                    except:
-                        _preco_venda_edit = st.session_state.get('_pdv_preco_ref', 0.01)
-                    _add_btn = st.form_submit_button(
-                        "➕ Adicionar ao Carrinho", use_container_width=True
-                    )
-                    if _add_btn:
-                        if _prod_label == "— Selecione —":
-                            st.error("Selecione um produto.")
-                        elif _prod_tem_grade and _tam_sel is None:
-                            st.error(
-                                "⚠️ Este produto tem grade de tamanhos. "
-                                "Selecione um tamanho antes de adicionar ao carrinho."
-                            )
-                        else:
-                            # Resolve nome real (sem o saldo)
-                            _prod_nome_real = _prod_label_to_nome.get(
-                                _prod_label, _prod_label
-                            )
-                            # Buscar por ID para evitar conflito de nomes iguais
-                            _prod_id_real = _prod_label_to_id.get(_prod_label, "")
-                            _pr_row = df_prod_pdv[
-                                df_prod_pdv["id"] == _prod_id_real
-                            ] if _prod_id_real else df_prod_pdv[
-                                df_prod_pdv["nome"] == _prod_nome_real
-                            ]
-                            _pu = _preco_venda_edit if _preco_venda_edit and _preco_venda_edit > 0 else (
-                                float(_pr_row["preco_venda"].iloc[0])
-                                if not _pr_row.empty and pd.notna(_pr_row["preco_venda"].iloc[0])
-                                else 0.0
-                            )
-                            _pid = (
-                                str(_pr_row["id"].iloc[0])
-                                if not _pr_row.empty else ""
-                            )
-                            _nome_exibir = (
-                                f"{_prod_nome_real} [{_tam_sel}]"
-                                if _tam_sel else _prod_nome_real
-                            )
-                            # Agrupa se mesmo produto+tamanho já está no carrinho
-                            _existente = next(
-                                (it for it in st.session_state.pdv_carrinho
-                                 if it["nome"] == _nome_exibir), None
-                            )
-                            if _existente:
-                                _existente["qtd"]     += int(_qtd_sel)
-                                _existente["subtotal"] = round(
-                                    _existente["preco_unit"] * _existente["qtd"], 2
-                                )
-                            else:
-                                st.session_state.pdv_carrinho.append({
-                                    "nome":        _nome_exibir,
-                                    "produto_id":  _pid,
-                                    "preco_unit":  _pu,
-                                    "qtd":         int(_qtd_sel),
-                                    "subtotal":    round(_pu * int(_qtd_sel), 2),
-                                    "tamanho":     _tam_sel,
-                                })
-                            st.rerun()
-
-            # ── Exibição do Carrinho ──────────────────────────────────
-            _carrinho = st.session_state.pdv_carrinho
-            if _carrinho:
-                st.markdown(
-                    "<div class='pdv-label' style='margin:14px 0 2px'>"
-                    "🛒 CARRINHO</div>",
-                    unsafe_allow_html=True,
-                )
-
-                # Cabeçalho
-                _h1, _h2, _h3, _h4, _h5 = st.columns([3.8, 0.7, 1.3, 1.3, 0.55])
-                _h1.markdown(
-                    "<span style='font-size:.76rem;font-weight:700;"
-                    "color:var(--pdv-label);letter-spacing:.05em'>PRODUTO</span>",
-                    unsafe_allow_html=True,
-                )
-                _h2.markdown(
-                    "<span style='font-size:.76rem;font-weight:700;"
-                    "color:var(--pdv-label)'>QTD</span>",
-                    unsafe_allow_html=True,
-                )
-                _h3.markdown(
-                    "<span style='font-size:.76rem;font-weight:700;"
-                    "color:var(--pdv-label)'>UNIT.</span>",
-                    unsafe_allow_html=True,
-                )
-                _h4.markdown(
-                    "<span style='font-size:.76rem;font-weight:700;"
-                    "color:var(--pdv-label)'>SUBTOTAL</span>",
-                    unsafe_allow_html=True,
-                )
-                _h5.markdown("")
-                st.markdown(
-                    "<hr style='border:none;border-top:1.5px solid var(--pdv-hr);"
-                    "margin:2px 0 4px'>",
-                    unsafe_allow_html=True,
-                )
-
-                # Linhas de item com 🗑️ inline
-                for _ri, _item in enumerate(_carrinho):
-                    _c1, _c2, _c3, _c4, _c5 = st.columns([3.8, 0.7, 1.3, 1.3, 0.55])
-                    _c1.markdown(
-                        f"<span style='font-size:.88rem'>{_item['nome'][:32]}</span>",
-                        unsafe_allow_html=True,
-                    )
-                    _c2.markdown(
-                        f"<span style='font-size:.88rem'>{_item['qtd']}</span>",
-                        unsafe_allow_html=True,
-                    )
-                    _c3.markdown(
-                        f"<span style='font-size:.88rem'>R$ {_item['preco_unit']:,.2f}</span>",
-                        unsafe_allow_html=True,
-                    )
-                    _c4.markdown(
-                        f"<span style='font-size:.88rem;font-weight:700'>"
-                        f"R$ {_item['subtotal']:,.2f}</span>",
-                        unsafe_allow_html=True,
-                    )
-                    if _c5.button(
-                        "🗑️",
-                        key=f"pdv_rm_{_ri}",
-                        help=f"Remover '{_item['nome']}' do carrinho",
-                    ):
-                        st.session_state.pdv_carrinho.pop(_ri)
-                        st.session_state.pdv_checkout = False
-                        st.rerun()
-
-                # Total bruto
-                _total_bruto = sum(it["subtotal"] for it in _carrinho)
-                st.markdown(
-                    f"<hr style='border:none;border-top:1px solid var(--pdv-hr);"
-                    f"margin:6px 0 4px'>"
-                    f"<div style='text-align:right;font-size:1.05rem;"
-                    f"font-weight:800;color:var(--pdv-card-h4);padding:2px 0 8px'>"
-                    f"Subtotal: R$ {_total_bruto:,.2f}</div>",
-                    unsafe_allow_html=True,
-                )
-
-                # ── CHECKOUT ─────────────────────────────────────────────
-                if not st.session_state.pdv_checkout:
-                    # JS: pinta o botão Finalizar Venda de verde vibrante
-                    components.html("""
-<script>
-(function() {
-    function pintarFinalizar() {
-        try {
-            var doc = window.parent.document;
-            doc.querySelectorAll('button').forEach(function(btn) {
-                if ((btn.innerText || '').trim().includes('Finalizar Venda')) {
-                    btn.style.setProperty('background-color','#22c55e','important');
-                    btn.style.setProperty('border-color',    '#16a34a','important');
-                    btn.style.setProperty('color',           '#fff',   'important');
-                    btn.style.setProperty('font-weight',     '700',    'important');
-                    btn.style.setProperty('font-size',       '1.05rem','important');
-                }
-            });
-        } catch(_){}
-    }
-    setTimeout(pintarFinalizar, 100);
-    setTimeout(pintarFinalizar, 500);
-    new MutationObserver(pintarFinalizar).observe(
-        window.parent.document.body, { childList: true, subtree: true }
-    );
-})();
-</script>
-""", height=0)
-                    if st.button(
-                        "🛒 Finalizar Venda", key="pdv_ir_checkout",
-                        use_container_width=True, type="primary",
-                    ):
-                        st.session_state.pdv_checkout = True
-                        st.rerun()
-                else:
-                    st.markdown(
-                        "<div class='pdv-label' style='margin-bottom:10px'>"
-                        "💳 CHECKOUT</div>",
-                        unsafe_allow_html=True,
-                    )
-                    _FORMAS_PAG = [
-                        "Dinheiro", "Pix", "Cartão de Débito",
-                        "Cartão de Crédito", "Crediário",
-                    ]
-                    _df_vnd_pdv = run_query(
-                        "SELECT codigo_vendedor, COALESCE(nome_vendedor, codigo_vendedor) AS label "
-                        "FROM config_comissao WHERE ativo = true ORDER BY codigo_vendedor"
-                    )
-                    if not _df_vnd_pdv.empty:
-                        _vnd_opts = _df_vnd_pdv["codigo_vendedor"].tolist()
-                        _vnd_lbl  = _df_vnd_pdv["label"].tolist()
-                        _chk_cod_sel = st.selectbox(
-                            "🏷️ Vendedora *",
-                            range(len(_vnd_opts)),
-                            format_func=lambda i: f"{_vnd_opts[i]} — {_vnd_lbl[i]}",
-                            key="pdv_chk_cod_vnd_sel",
-                            help="Selecione a vendedora responsável pela venda.",
-                        )
-                        _chk_cod_vnd = _vnd_opts[_chk_cod_sel]
-                    else:
-                        _chk_cod_vnd = st.text_input(
-                            "🏷️ Código Vendedor *", key="pdv_chk_cod_vnd",
-                            placeholder="Cadastre vendedoras em Administração.",
-                        )
-                    _chk_desc  = st.number_input(
-                        "Desconto Global (%)", min_value=0.0, max_value=100.0,
-                        value=0.0, step=1.0, format="%.1f", key="pdv_chk_desc",
-                    )
-                    _chk_forma = st.selectbox(
-                        "💳 Forma de Pagamento", _FORMAS_PAG, key="pdv_chk_forma"
-                    )
-                    _chk_parcelas = 1
-                    if _chk_forma in ("Cartão de Crédito", "Crediário"):
-                        _chk_parcelas = int(st.number_input(
-                            "Parcelas", min_value=1, max_value=12,
-                            value=1, step=1, key="pdv_chk_parcelas",
-                        ))
-                    _chk_cupom = st.toggle(
-                        "🖨️ Gerar Cupom para Impressão?",
-                        value=True, key="pdv_chk_cupom",
-                    )
-
-                    # ── Resumo financeiro final ───────────────────────────
-                    # Fórmula canônica: uma única operação, sem arredondamento intermediário.
-                    # _total_liq é a fonte de verdade → banco, cupom e parcelas derivam dele.
-                    _total_liq = round(_total_bruto * (1.0 - _chk_desc / 100.0), 2)
-                    _desc_R    = round(_total_bruto - _total_liq, 2)   # apenas para exibir
-                    _parc_v   = round(_total_liq / _chk_parcelas, 2)
-                    _parc_str = (
-                        f"{_chk_parcelas}x de R$ {_parc_v:,.2f}"
-                        if _chk_parcelas > 1 else f"R$ {_total_liq:,.2f} à vista"
-                    )
-                    _desc_line = (
-                        f"<br><span style='color:#d97706;font-size:.87rem'>"
-                        f"Desconto: -{_chk_desc:.1f}% = -R$ {_desc_R:,.2f}</span>"
-                        if _chk_desc > 0 else ""
-                    )
-                    st.markdown(
-                        f"<div style='background:#e8f8fa;border-left:4px solid #5bc5d3;"
-                        f"border-radius:8px;padding:12px 16px;margin:8px 0 12px'>"
-                        f"<span style='font-size:1.3rem;font-weight:900;color:#022c3a'>"
-                        f"Total: R$ {_total_liq:,.2f}</span>{_desc_line}"
-                        f"<br><span style='color:#555;font-size:.88rem'>"
-                        f"{_chk_forma} · {_parc_str}</span></div>",
-                        unsafe_allow_html=True,
-                    )
-
-                    # ── Pré-calcula valores do vendedor para trava e cupom ────
-                    _cli_atual       = st.session_state.get("pdv_cli_selectbox", "— Selecione —")
-                    _chk_cod_vnd_val = (
-                        _chk_cod_vnd if isinstance(_chk_cod_vnd, str) else str(_chk_cod_vnd)
-                    ).strip()
-                    # Nome de exibição da vendedora para o cupom
-                    _chk_nome_vnd = ""
-                    if not _df_vnd_pdv.empty and _chk_cod_vnd_val:
-                        _vnd_match = _df_vnd_pdv[_df_vnd_pdv["codigo_vendedor"] == _chk_cod_vnd_val]
-                        if not _vnd_match.empty:
-                            _chk_nome_vnd = str(_vnd_match["label"].iloc[0])
-
-                    _trava_cli = _cli_atual == "— Selecione —"
-                    _trava_vnd = not bool(_chk_cod_vnd_val)
-
-                    if _trava_vnd:
-                        st.warning("⚠️ Selecione o Vendedor para liberar a confirmação.")
-
-                    _btn1, _btn2 = st.columns(2)
-                    with _btn1:
-                        if st.button(
-                            "✅ Confirmar Venda", key="pdv_chk_confirmar",
-                            use_container_width=True, type="primary",
-                            disabled=(_trava_cli or _trava_vnd or _total_liq <= 0),
-                        ):
-                            if _trava_cli:
-                                st.error("Selecione um cliente antes de finalizar.")
-                            elif _total_liq <= 0:
-                                st.error("Valor final inválido.")
-                            else:
-                                try:
-                                    _cli_row  = df_cli_pdv[
-                                        df_cli_pdv["nome"] == _cli_atual
-                                    ]
-                                    _cli_id   = str(_cli_row["id"].iloc[0])
-                                    _forma_map = {
-                                        "Dinheiro":          "dinheiro",
-                                        "Pix":               "pix",
-                                        "Cartão de Débito":  "cartão",
-                                        "Cartão de Crédito": "cartão",
-                                        "Crediário":         "crediário",
-                                    }
-                                    _desc_linhas = "; ".join(
-                                        f"{it['nome']} x{it['qtd']}"
-                                        for it in _carrinho
-                                    )
-                                    _operador = st.session_state.get("username", "")
-                                    _dados_fin = {
-                                        "cliente_id":      _cli_id,
-                                        "cliente_nome":    _cli_atual,
-                                        "descricao":       _desc_linhas[:120],
-                                        "valor_total":     _total_liq,
-                                        "valor_original":  _total_bruto,
-                                        "desconto_pct":    _chk_desc,
-                                        "forma_pagamento": _forma_map[_chk_forma],
-                                        "parcelas":        _chk_parcelas,
-                                        "vendedor_nome":   _operador,
-                                        "nome_vendedor":   _chk_nome_vnd,
-                                        "codigo_vendedor": _chk_cod_vnd_val,
-                                        "observacao":      st.session_state.get("pdv_obs_venda", "").strip() or None,
-                                    }
-                                    # Monta lista de itens para itens_venda
-                                    _itens_venda = [
-                                        {
-                                            "produto_id": it.get("produto_id", ""),
-                                            "nome":       it.get("nome",""),
-                                            "qtd":        it["qtd"],
-                                            "preco_unit": it["preco_unit"],
-                                        }
-                                        for it in _carrinho
-                                        if it.get("produto_id")  # só salva em itens_venda se tem produto_id
-                                    ]
-                                    # Garante que todos itens aparecem no cupom
-                                    _dados_fin["itens_carrinho"] = list(_carrinho)
-                                    _venda_id = salvar_venda(_dados_fin, _itens_venda)
-                                    _df_num   = run_query(
-                                        "SELECT COUNT(*) AS total FROM vendas"
-                                    )
-                                    _num_cup = (
-                                        int(_df_num["total"].iloc[0])
-                                        if not _df_num.empty else 1
-                                    )
-                                    # Gera cupom sempre (usado no WhatsApp mesmo sem impressão)
-                                    _cupom_gerado = gerar_cupom(
-                                        _dados_fin, _venda_id, _num_cup,
-                                        vendedor=_operador,
-                                        nome_vendedor=_chk_nome_vnd,
-                                    )
-                                    _obs_cupom = (_dados_fin or {}).get("observacao")
-                                    if _obs_cupom:
-                                        _sep_cupom = "─" * 42
-                                        _obs_cupom_linha = ("Obs: " + str(_obs_cupom))[:42]
-                                        _cupom_gerado = _cupom_gerado.replace(
-                                            _sep_cupom, _obs_cupom_linha + chr(10) + _sep_cupom, 1)
-                                    # Salva o cupom gerado na venda
-                                    with _db_get_conn() as conn:
-                                        with conn.cursor() as cur:
-                                            cur.execute(
-                                                "UPDATE vendas SET cupom_text = %s WHERE id = %s",
-                                                (_cupom_gerado, _venda_id)
-                                            )
-                                            conn.commit()
-                                    if _chk_cupom:
-                                        st.session_state.va_ultimo_cupom = {
-                                            "text":     _cupom_gerado,
-                                            "venda_id": _venda_id,
-                                            "num":      _num_cup,
-                                        }
-                                    # Busca WhatsApp do cliente para o botão pós-venda
-                                    _df_wpp_cli = run_query(
-                                        "SELECT whatsapp FROM clientes "
-                                        f"WHERE id = '{_cli_id}' LIMIT 1"
-                                    )
-                                    _wpp_cli = (
-                                        str(_df_wpp_cli["whatsapp"].iloc[0])
-                                        if not _df_wpp_cli.empty
-                                           and pd.notna(_df_wpp_cli["whatsapp"].iloc[0])
-                                        else ""
-                                    )
-                                    st.session_state.pdv_ultima_venda = {
-                                        "num":          _num_cup,
-                                        "cliente_id":   _cli_id,
-                                        "cliente_nome": _cli_atual,
-                                        "venda_id":     _venda_id,
-                                        "valor":        _total_liq,
-                                        "wpp":          _wpp_cli,
-                                        "cupom_text":   _cupom_gerado,
-                                    }
-                                    # MELHORIA 5: Limpar todos os campos do PDV
-                                    st.session_state.pdv_carrinho = []
-                                    st.session_state.pdv_checkout = False
-                                    # Usar pop para remover widgets (não atribuir valores após renderização)
-                                    st.session_state.pop("pdv_cli_selectbox", None)
-                                    st.session_state.pop("pdv_prod_label_main", None)
-                                    st.session_state.pop("pdv_obs_venda", None)
-                                    st.session_state.pop("pdv_data_venda", None)
-                                    st.session_state.pop("pdv_chk_desc", None)
-                                    st.session_state.pop("pdv_chk_forma", None)
-                                    st.session_state.pop("pdv_chk_parcelas", None)
-                                    st.session_state.pop("pdv_chk_cupom", None)
-                                    st.session_state.pop("pdv_chk_cod_vnd_sel", None)
-                                    st.session_state.pop("pdv_chk_cod_vnd", None)
-                                    st.rerun()
-                                except Exception as e:
-                                    st.error(f"Erro ao salvar venda: {e}")
-                    with _btn2:
-                        if st.button(
-                            "← Voltar ao Carrinho", key="pdv_chk_voltar",
+                        _preco_placeholder = f"Padrao: R$ {st.session_state.get('_pdv_preco_ref', 0):.2f} (deixe vazio para usar este)"
+                        _preco_txt = st.text_input("Valor unitario R$ (opcional)", key="pdv_preco_edit", placeholder=_preco_placeholder)
+                        try:
+                            _preco_venda_edit = float(_preco_txt.replace(',', '.')) if _preco_txt.strip() else st.session_state.get('_pdv_preco_ref', 0.01)
+                        except Exception:
+                            _preco_venda_edit = st.session_state.get('_pdv_preco_ref', 0.01)
+                        _add_btn = st.form_submit_button(
+                            "➕ Adicionar ao Carrinho",
                             use_container_width=True,
+                            disabled=not _pronto,
+                        )
+                        if _add_btn:
+                            if not _pronto:
+                                st.error("Selecione produto, cor e tamanho.")
+                            elif _prod_tem_grade and not _pdv_tam_sel:
+                                st.error("⚠️ Selecione um tamanho antes de adicionar.")
+                            else:
+                                _pu = _preco_venda_edit if _preco_venda_edit and _preco_venda_edit > 0 else _pdv_preco_ref
+                                _cor_ex = f" {_pdv_cor_sel}" if _pdv_cor_sel else ""
+                                _tam_ex = f" {_pdv_tam_sel}" if _pdv_tam_sel else ""
+                                _nome_exibir = f"{_pdv_nome_sel}{_cor_ex}{_tam_ex}".strip()
+                                _existente = next(
+                                    (it for it in st.session_state.pdv_carrinho
+                                     if it["nome"] == _nome_exibir), None
+                                )
+                                if _existente:
+                                    _existente["qtd"]     += int(_qtd_sel)
+                                    _existente["subtotal"] = round(_existente["preco_unit"] * _existente["qtd"], 2)
+                                else:
+                                    st.session_state.pdv_carrinho.append({
+                                        "nome":       _nome_exibir,
+                                        "produto_id": _pdv_prod_id,
+                                        "preco_unit": _pu,
+                                        "qtd":        int(_qtd_sel),
+                                        "subtotal":   round(_pu * int(_qtd_sel), 2),
+                                        "tamanho":    _pdv_tam_sel if _pdv_tam_sel else None,
+                                        "cor":        _pdv_cor_sel if _pdv_cor_sel else None,
+                                    })
+                                # Limpar seleção para próximo item
+                                st.session_state["pdv_nome_sel"]   = None
+                                st.session_state["pdv_cor_sel"]    = None
+                                st.session_state["pdv_tam_sel"]    = None
+                                st.session_state["_pdv_nome_prev"] = None
+                                st.session_state.pop("pdv_prod_label_main", None)
+                                st.rerun()
+
+                # ── Exibição do Carrinho ──────────────────────────────────
+                _carrinho = st.session_state.pdv_carrinho
+                if _carrinho:
+                    st.markdown(
+                        "<div class='pdv-label' style='margin:14px 0 2px'>"
+                        "🛒 CARRINHO</div>",
+                        unsafe_allow_html=True,
+                    )
+
+                    # Cabeçalho
+                    _h1, _h2, _h3, _h4, _h5 = st.columns([3.8, 0.7, 1.3, 1.3, 0.55])
+                    _h1.markdown(
+                        "<span style='font-size:.76rem;font-weight:700;"
+                        "color:var(--pdv-label);letter-spacing:.05em'>PRODUTO</span>",
+                        unsafe_allow_html=True,
+                    )
+                    _h2.markdown(
+                        "<span style='font-size:.76rem;font-weight:700;"
+                        "color:var(--pdv-label)'>QTD</span>",
+                        unsafe_allow_html=True,
+                    )
+                    _h3.markdown(
+                        "<span style='font-size:.76rem;font-weight:700;"
+                        "color:var(--pdv-label)'>UNIT.</span>",
+                        unsafe_allow_html=True,
+                    )
+                    _h4.markdown(
+                        "<span style='font-size:.76rem;font-weight:700;"
+                        "color:var(--pdv-label)'>SUBTOTAL</span>",
+                        unsafe_allow_html=True,
+                    )
+                    _h5.markdown("")
+                    st.markdown(
+                        "<hr style='border:none;border-top:1.5px solid var(--pdv-hr);"
+                        "margin:2px 0 4px'>",
+                        unsafe_allow_html=True,
+                    )
+
+                    # Linhas de item com 🗑️ inline
+                    for _ri, _item in enumerate(_carrinho):
+                        _c1, _c2, _c3, _c4, _c5 = st.columns([3.8, 0.7, 1.3, 1.3, 0.55])
+                        _c1.markdown(
+                            f"<span style='font-size:.88rem'>{_item['nome'][:32]}</span>",
+                            unsafe_allow_html=True,
+                        )
+                        _c2.markdown(
+                            f"<span style='font-size:.88rem'>{_item['qtd']}</span>",
+                            unsafe_allow_html=True,
+                        )
+                        _c3.markdown(
+                            f"<span style='font-size:.88rem'>R$ {_item['preco_unit']:,.2f}</span>",
+                            unsafe_allow_html=True,
+                        )
+                        _c4.markdown(
+                            f"<span style='font-size:.88rem;font-weight:700'>"
+                            f"R$ {_item['subtotal']:,.2f}</span>",
+                            unsafe_allow_html=True,
+                        )
+                        if _c5.button(
+                            "🗑️",
+                            key=f"pdv_rm_{_ri}",
+                            help=f"Remover '{_item['nome']}' do carrinho",
                         ):
+                            st.session_state.pdv_carrinho.pop(_ri)
                             st.session_state.pdv_checkout = False
                             st.rerun()
 
-        st.markdown("</div>", unsafe_allow_html=True)
+                    # Total bruto
+                    _total_bruto = sum(it["subtotal"] for it in _carrinho)
+                    st.markdown(
+                        f"<hr style='border:none;border-top:1px solid var(--pdv-hr);"
+                        f"margin:6px 0 4px'>"
+                        f"<div style='text-align:right;font-size:1.05rem;"
+                        f"font-weight:800;color:var(--pdv-card-h4);padding:2px 0 8px'>"
+                        f"Subtotal: R$ {_total_bruto:,.2f}</div>",
+                        unsafe_allow_html=True,
+                    )
 
-    # IA concentrada exclusivamente em ✨ Manu AI (menu lateral)
+                    # ── CHECKOUT ─────────────────────────────────────────────
+                    if not st.session_state.pdv_checkout:
+                        # JS: pinta o botão Finalizar Venda de verde vibrante
+                        components.html("""
+    <script>
+    (function() {
+        function pintarFinalizar() {
+            try {
+                var doc = window.parent.document;
+                doc.querySelectorAll('button').forEach(function(btn) {
+                    if ((btn.innerText || '').trim().includes('Finalizar Venda')) {
+                        btn.style.setProperty('background-color','#22c55e','important');
+                        btn.style.setProperty('border-color',    '#16a34a','important');
+                        btn.style.setProperty('color',           '#fff',   'important');
+                        btn.style.setProperty('font-weight',     '700',    'important');
+                        btn.style.setProperty('font-size',       '1.05rem','important');
+                    }
+                });
+            } catch(_){}
+        }
+        setTimeout(pintarFinalizar, 100);
+        setTimeout(pintarFinalizar, 500);
+        new MutationObserver(pintarFinalizar).observe(
+            window.parent.document.body, { childList: true, subtree: true }
+        );
+    })();
+    </script>
+    """, height=0)
+                        if st.button(
+                            "🛒 Finalizar Venda", key="pdv_ir_checkout",
+                            use_container_width=True, type="primary",
+                        ):
+                            st.session_state.pdv_checkout = True
+                            st.rerun()
+                    else:
+                        st.markdown(
+                            "<div class='pdv-label' style='margin-bottom:10px'>"
+                            "💳 CHECKOUT</div>",
+                            unsafe_allow_html=True,
+                        )
+                        _FORMAS_PAG = [
+                            "Dinheiro", "Pix", "Cartão de Débito",
+                            "Cartão de Crédito", "Crediário",
+                        ]
+                        _df_vnd_pdv = run_query(
+                            "SELECT codigo_vendedor, COALESCE(nome_vendedor, codigo_vendedor) AS label "
+                            "FROM config_comissao WHERE ativo = true ORDER BY codigo_vendedor"
+                        )
+                        if not _df_vnd_pdv.empty:
+                            _vnd_opts = _df_vnd_pdv["codigo_vendedor"].tolist()
+                            _vnd_lbl  = _df_vnd_pdv["label"].tolist()
+                            _chk_cod_sel = st.selectbox(
+                                "🏷️ Vendedora *",
+                                range(len(_vnd_opts)),
+                                format_func=lambda i: f"{_vnd_opts[i]} — {_vnd_lbl[i]}",
+                                key="pdv_chk_cod_vnd_sel",
+                                help="Selecione a vendedora responsável pela venda.",
+                            )
+                            _chk_cod_vnd = _vnd_opts[_chk_cod_sel]
+                        else:
+                            _chk_cod_vnd = st.text_input(
+                                "🏷️ Código Vendedor *", key="pdv_chk_cod_vnd",
+                                placeholder="Cadastre vendedoras em Administração.",
+                            )
+                        _chk_desc  = st.number_input(
+                            "Desconto Global (%)", min_value=0.0, max_value=100.0,
+                            value=0.0, step=1.0, format="%.1f", key="pdv_chk_desc",
+                        )
+                        _chk_forma = st.selectbox(
+                            "💳 Forma de Pagamento", _FORMAS_PAG, key="pdv_chk_forma"
+                        )
+                        _chk_parcelas = 1
+                        if _chk_forma in ("Cartão de Crédito", "Crediário"):
+                            _chk_parcelas = int(st.number_input(
+                                "Parcelas", min_value=1, max_value=12,
+                                value=1, step=1, key="pdv_chk_parcelas",
+                            ))
+                        _chk_cupom = st.toggle(
+                            "🖨️ Gerar Cupom para Impressão?",
+                            value=True, key="pdv_chk_cupom",
+                        )
+
+                        # ── Resumo financeiro final ───────────────────────────
+                        # Fórmula canônica: uma única operação, sem arredondamento intermediário.
+                        # _total_liq é a fonte de verdade → banco, cupom e parcelas derivam dele.
+                        _total_liq = round(_total_bruto * (1.0 - _chk_desc / 100.0), 2)
+                        _desc_R    = round(_total_bruto - _total_liq, 2)   # apenas para exibir
+                        _parc_v   = round(_total_liq / _chk_parcelas, 2)
+                        _parc_str = (
+                            f"{_chk_parcelas}x de R$ {_parc_v:,.2f}"
+                            if _chk_parcelas > 1 else f"R$ {_total_liq:,.2f} à vista"
+                        )
+                        _desc_line = (
+                            f"<br><span style='color:#d97706;font-size:.87rem'>"
+                            f"Desconto: -{_chk_desc:.1f}% = -R$ {_desc_R:,.2f}</span>"
+                            if _chk_desc > 0 else ""
+                        )
+                        st.markdown(
+                            f"<div style='background:#e8f8fa;border-left:4px solid #5bc5d3;"
+                            f"border-radius:8px;padding:12px 16px;margin:8px 0 12px'>"
+                            f"<span style='font-size:1.3rem;font-weight:900;color:#022c3a'>"
+                            f"Total: R$ {_total_liq:,.2f}</span>{_desc_line}"
+                            f"<br><span style='color:#555;font-size:.88rem'>"
+                            f"{_chk_forma} · {_parc_str}</span></div>",
+                            unsafe_allow_html=True,
+                        )
+
+                        # ── Pré-calcula valores do vendedor para trava e cupom ────
+                        _cli_atual       = st.session_state.get("pdv_cli_selectbox", "— Selecione —")
+                        _chk_cod_vnd_val = (
+                            _chk_cod_vnd if isinstance(_chk_cod_vnd, str) else str(_chk_cod_vnd)
+                        ).strip()
+                        # Nome de exibição da vendedora para o cupom
+                        _chk_nome_vnd = ""
+                        if not _df_vnd_pdv.empty and _chk_cod_vnd_val:
+                            _vnd_match = _df_vnd_pdv[_df_vnd_pdv["codigo_vendedor"] == _chk_cod_vnd_val]
+                            if not _vnd_match.empty:
+                                _chk_nome_vnd = str(_vnd_match["label"].iloc[0])
+
+                        _trava_cli = _cli_atual == "— Selecione —"
+                        _trava_vnd = not bool(_chk_cod_vnd_val)
+
+                        if _trava_vnd:
+                            st.warning("⚠️ Selecione o Vendedor para liberar a confirmação.")
+
+                        _btn1, _btn2 = st.columns(2)
+                        with _btn1:
+                            if st.button(
+                                "✅ Confirmar Venda", key="pdv_chk_confirmar",
+                                use_container_width=True, type="primary",
+                                disabled=(_trava_cli or _trava_vnd or _total_liq <= 0),
+                            ):
+                                if _trava_cli:
+                                    st.error("Selecione um cliente antes de finalizar.")
+                                elif _total_liq <= 0:
+                                    st.error("Valor final inválido.")
+                                else:
+                                    try:
+                                        _cli_row  = df_cli_pdv[
+                                            df_cli_pdv["nome"] == _cli_atual
+                                        ]
+                                        _cli_id   = str(_cli_row["id"].iloc[0])
+                                        _forma_map = {
+                                            "Dinheiro":          "dinheiro",
+                                            "Pix":               "pix",
+                                            "Cartão de Débito":  "cartão",
+                                            "Cartão de Crédito": "cartão",
+                                            "Crediário":         "crediário",
+                                        }
+                                        _desc_linhas = "; ".join(
+                                            f"{it['nome']} x{it['qtd']}"
+                                            for it in _carrinho
+                                        )
+                                        _operador = st.session_state.get("username", "")
+                                        _dados_fin = {
+                                            "cliente_id":      _cli_id,
+                                            "cliente_nome":    _cli_atual,
+                                            "descricao":       _desc_linhas[:120],
+                                            "valor_total":     _total_liq,
+                                            "valor_original":  _total_bruto,
+                                            "desconto_pct":    _chk_desc,
+                                            "forma_pagamento": _forma_map[_chk_forma],
+                                            "parcelas":        _chk_parcelas,
+                                            "vendedor_nome":   _operador,
+                                            "nome_vendedor":   _chk_nome_vnd,
+                                            "codigo_vendedor": _chk_cod_vnd_val,
+                                            "observacao":      st.session_state.get("pdv_obs_venda", "").strip() or None,
+                                        }
+                                        # Monta lista de itens para itens_venda
+                                        _itens_venda = [
+                                            {
+                                                "produto_id": it.get("produto_id", ""),
+                                                "nome":       it.get("nome",""),
+                                                "qtd":        it["qtd"],
+                                                "preco_unit": it["preco_unit"],
+                                                "tamanho":    it.get("tamanho"),
+                                                "cor":        it.get("cor"),
+                                            }
+                                            for it in _carrinho
+                                            if it.get("produto_id")  # só salva em itens_venda se tem produto_id
+                                        ]
+                                        # Garante que todos itens aparecem no cupom
+                                        _dados_fin["itens_carrinho"] = list(_carrinho)
+                                        _venda_id = salvar_venda(_dados_fin, _itens_venda)
+                                        # Dar baixa em produto_variacoes (produto_id INTEGER no GMH)
+                                        for _it_gv in _itens_venda:
+                                            if _it_gv.get("tamanho") and _it_gv.get("produto_id"):
+                                                run_command(
+                                                    "UPDATE produto_variacoes SET estoque = GREATEST(estoque - %s, 0) "
+                                                    "WHERE produto_id = %s AND tamanho = %s",
+                                                    (_it_gv["qtd"], _it_gv["produto_id"], _it_gv["tamanho"]),
+                                                )
+                                        _df_num   = run_query(
+                                            "SELECT COUNT(*) AS total FROM vendas"
+                                        )
+                                        _num_cup = (
+                                            int(_df_num["total"].iloc[0])
+                                            if not _df_num.empty else 1
+                                        )
+                                        # Gera cupom sempre (usado no WhatsApp mesmo sem impressão)
+                                        _cupom_gerado = gerar_cupom(
+                                            _dados_fin, _venda_id, _num_cup,
+                                            vendedor=_operador,
+                                            nome_vendedor=_chk_nome_vnd,
+                                        )
+                                        _obs_cupom = (_dados_fin or {}).get("observacao")
+                                        if _obs_cupom:
+                                            _sep_cupom = "─" * 42
+                                            _obs_cupom_linha = ("Obs: " + str(_obs_cupom))[:42]
+                                            _cupom_gerado = _cupom_gerado.replace(
+                                                _sep_cupom, _obs_cupom_linha + chr(10) + _sep_cupom, 1)
+                                        # Salva o cupom gerado na venda
+                                        with _db_get_conn() as conn:
+                                            with conn.cursor() as cur:
+                                                cur.execute(
+                                                    "UPDATE vendas SET cupom_text = %s WHERE id = %s",
+                                                    (_cupom_gerado, _venda_id)
+                                                )
+                                                conn.commit()
+                                        if _chk_cupom:
+                                            st.session_state.va_ultimo_cupom = {
+                                                "text":     _cupom_gerado,
+                                                "venda_id": _venda_id,
+                                                "num":      _num_cup,
+                                            }
+                                        # Busca WhatsApp do cliente para o botão pós-venda
+                                        _df_wpp_cli = run_query(
+                                            "SELECT whatsapp FROM clientes "
+                                            f"WHERE id = '{_cli_id}' LIMIT 1"
+                                        )
+                                        _wpp_cli = (
+                                            str(_df_wpp_cli["whatsapp"].iloc[0])
+                                            if not _df_wpp_cli.empty
+                                               and pd.notna(_df_wpp_cli["whatsapp"].iloc[0])
+                                            else ""
+                                        )
+                                        st.session_state.pdv_ultima_venda = {
+                                            "num":          _num_cup,
+                                            "cliente_id":   _cli_id,
+                                            "cliente_nome": _cli_atual,
+                                            "venda_id":     _venda_id,
+                                            "valor":        _total_liq,
+                                            "wpp":          _wpp_cli,
+                                            "cupom_text":   _cupom_gerado,
+                                        }
+                                        # MELHORIA 5: Limpar todos os campos do PDV
+                                        st.session_state.pdv_carrinho = []
+                                        st.session_state.pdv_checkout = False
+                                        # Usar pop para remover widgets (não atribuir valores após renderização)
+                                        st.session_state.pop("pdv_cli_selectbox", None)
+                                        st.session_state.pop("pdv_prod_label_main", None)
+                                        st.session_state.pop("pdv_obs_venda", None)
+                                        st.session_state.pop("pdv_data_venda", None)
+                                        st.session_state.pop("pdv_chk_desc", None)
+                                        st.session_state.pop("pdv_chk_forma", None)
+                                        st.session_state.pop("pdv_chk_parcelas", None)
+                                        st.session_state.pop("pdv_chk_cupom", None)
+                                        st.session_state.pop("pdv_chk_cod_vnd_sel", None)
+                                        st.session_state.pop("pdv_chk_cod_vnd", None)
+                                        st.session_state["pdv_nome_sel"]   = None
+                                        st.session_state["pdv_cor_sel"]    = None
+                                        st.session_state["pdv_tam_sel"]    = None
+                                        st.session_state["_pdv_nome_prev"] = None
+                                        st.rerun()
+                                    except Exception as e:
+                                        st.error(f"Erro ao salvar venda: {e}")
+                        with _btn2:
+                            if st.button(
+                                "← Voltar ao Carrinho", key="pdv_chk_voltar",
+                                use_container_width=True,
+                            ):
+                                st.session_state.pdv_checkout = False
+                                st.rerun()
+
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        # IA concentrada exclusivamente em ✨ GM Homem AI (menu lateral)
+
+    with _vtab_dia:
+        import datetime as _dth_dia
+        _hoje_dia = _dth_dia.date.today()
+        st.markdown("### 📊 Painel do Dia")
+
+        _df_dia = run_query("""
+            SELECT
+              COUNT(*) as total_vendas,
+              COALESCE(SUM(valor_total),0) as total_geral,
+              COALESCE(SUM(CASE WHEN forma_pagamento ILIKE '%pix%' THEN valor_total END),0) as pix,
+              COALESCE(SUM(CASE WHEN forma_pagamento ILIKE '%cart%'
+                               OR forma_pagamento ILIKE '%cred%'
+                               OR forma_pagamento ILIKE '%deb%'
+                               THEN valor_total END),0) as cartao,
+              COALESCE(SUM(CASE WHEN forma_pagamento ILIKE '%dinheiro%'
+                               OR forma_pagamento ILIKE '%espe%'
+                               THEN valor_total END),0) as dinheiro,
+              COALESCE(SUM(CASE WHEN forma_pagamento ILIKE '%crediario%'
+                               OR forma_pagamento ILIKE '%prazo%'
+                               THEN valor_total END),0) as crediario,
+              COALESCE(MAX(valor_total),0) as maior_venda
+            FROM vendas
+            WHERE DATE(created_at) = CURRENT_DATE AND status != 'cancelada'
+        """)
+
+        _tv_d  = int(_df_dia["total_vendas"].iloc[0]) if not _df_dia.empty else 0
+        _tg_d  = float(_df_dia["total_geral"].iloc[0]) if not _df_dia.empty else 0.0
+        _pix_d = float(_df_dia["pix"].iloc[0]) if not _df_dia.empty else 0.0
+        _car_d = float(_df_dia["cartao"].iloc[0]) if not _df_dia.empty else 0.0
+        _din_d = float(_df_dia["dinheiro"].iloc[0]) if not _df_dia.empty else 0.0
+        _cre_d = float(_df_dia["crediario"].iloc[0]) if not _df_dia.empty else 0.0
+        _max_d = float(_df_dia["maior_venda"].iloc[0]) if not _df_dia.empty else 0.0
+        _tck_d = (_tg_d / _tv_d) if _tv_d > 0 else 0.0
+
+        _dm1, _dm2, _dm3, _dm4 = st.columns(4)
+        _dm1.metric("💰 Total do Dia",  f"R$ {_tg_d:,.2f}")
+        _dm2.metric("🛒 Nº de Vendas",  _tv_d)
+        _dm3.metric("🎯 Ticket Médio",  f"R$ {_tck_d:,.2f}")
+        _dm4.metric("🏆 Maior Venda",   f"R$ {_max_d:,.2f}")
+
+        _dm5, _dm6, _dm7, _dm8 = st.columns(4)
+        _dm5.metric("📱 PIX",       f"R$ {_pix_d:,.2f}")
+        _dm6.metric("💳 Cartão",    f"R$ {_car_d:,.2f}")
+        _dm7.metric("💵 Dinheiro",  f"R$ {_din_d:,.2f}")
+        _dm8.metric("📋 Crediário", f"R$ {_cre_d:,.2f}")
+
+        st.markdown("---")
+        _df_hora = run_query("""
+            SELECT EXTRACT(HOUR FROM created_at)::int AS hora,
+                   COALESCE(SUM(valor_total),0) AS total
+            FROM vendas
+            WHERE DATE(created_at) = CURRENT_DATE AND status != 'cancelada'
+            GROUP BY hora ORDER BY hora
+        """)
+        if not _df_hora.empty:
+            import pandas as _pdh
+            _df_hfull = _pdh.DataFrame({"hora": range(7, 22)}).merge(
+                _df_hora, on="hora", how="left").fillna(0)
+            _df_hfull["Hora"] = _df_hfull["hora"].apply(lambda h: f"{int(h):02d}h")
+            _df_hfull = _df_hfull.set_index("Hora")[["total"]]
+            _df_hfull.columns = ["Vendas (R$)"]
+            st.markdown("**Vendas por Hora do Dia**")
+            st.bar_chart(_df_hfull)
+
+        st.markdown("**Últimas 10 Vendas**")
+        _df_ult10 = run_query("""
+            SELECT c.nome AS "Cliente",
+                   STRING_AGG(p.nome||' x'||iv.quantidade::text, ', ') AS "Produtos",
+                   v.forma_pagamento AS "Pagamento",
+                   v.valor_total AS "Valor (R$)",
+                   v.status AS "Status",
+                   TO_CHAR(v.created_at, 'HH24:MI') AS "Hora"
+            FROM vendas v
+            LEFT JOIN clientes c ON c.id = v.cliente_id
+            LEFT JOIN itens_venda iv ON iv.venda_id = v.id
+            LEFT JOIN produtos p ON p.id = iv.produto_id
+            WHERE DATE(v.created_at) = CURRENT_DATE
+            GROUP BY v.id, c.nome, v.forma_pagamento, v.valor_total, v.status, v.created_at
+            ORDER BY v.created_at DESC LIMIT 10
+        """)
+        if not _df_ult10.empty:
+            st.dataframe(_df_ult10, use_container_width=True, hide_index=True)
+        else:
+            st.info("Nenhuma venda hoje ainda.")
+
+    with _vtab_hist:
+        import datetime as _dth_hist
+        st.markdown("### 📋 Histórico de Vendas")
+
+        _hc1, _hc2, _hc3 = st.columns([2, 2, 2])
+        _per_h = _hc1.selectbox(
+            "Período", ["Hoje", "Esta Semana", "Este Mês", "Personalizado"],
+            key="hist_periodo"
+        )
+        _forma_h = _hc2.selectbox(
+            "Forma de Pagamento",
+            ["Todas", "PIX", "Cartão", "Dinheiro", "Crediário"],
+            key="hist_forma"
+        )
+        _busca_h = _hc3.text_input("Buscar Cliente", key="hist_busca",
+                                    placeholder="Nome do cliente...")
+
+        _hoje_h2 = _dth_hist.date.today()
+        if _per_h == "Hoje":
+            _d1h, _d2h = _hoje_h2, _hoje_h2
+        elif _per_h == "Esta Semana":
+            _d1h = _hoje_h2 - _dth_hist.timedelta(days=_hoje_h2.weekday())
+            _d2h = _hoje_h2
+        elif _per_h == "Este Mês":
+            _d1h = _hoje_h2.replace(day=1)
+            _d2h = _hoje_h2
+        else:
+            _hdc1, _hdc2 = st.columns(2)
+            _d1h = _hdc1.date_input("De",  value=_hoje_h2.replace(day=1), key="hist_d1", format="DD/MM/YYYY")
+            _d2h = _hdc2.date_input("Até", value=_hoje_h2, key="hist_d2", format="DD/MM/YYYY")
+
+        _wf_h = {
+            "PIX":       "AND v.forma_pagamento ILIKE '%pix%'",
+            "Cartão":    "AND (v.forma_pagamento ILIKE '%cart%' OR v.forma_pagamento ILIKE '%cred%' OR v.forma_pagamento ILIKE '%deb%')",
+            "Dinheiro":  "AND (v.forma_pagamento ILIKE '%dinheiro%' OR v.forma_pagamento ILIKE '%espe%')",
+            "Crediário": "AND (v.forma_pagamento ILIKE '%crediario%' OR v.forma_pagamento ILIKE '%prazo%')",
+        }.get(_forma_h, "")
+        _wc_h = f"AND c.nome ILIKE '%{_busca_h.replace(chr(39), chr(39)*2)}%'" if _busca_h.strip() else ""
+
+        _df_hist = run_query(f"""
+            SELECT v.id::text AS venda_id,
+                   TO_CHAR(v.created_at, 'DD/MM HH24:MI') AS "Data/Hora",
+                   COALESCE(c.nome, 'Consumidor') AS "Cliente",
+                   v.forma_pagamento AS "Pagamento",
+                   COALESCE(v.parcelas, 1) AS "Parcelas",
+                   v.valor_total AS "Valor",
+                   v.status AS "Status"
+            FROM vendas v
+            LEFT JOIN clientes c ON c.id = v.cliente_id
+            WHERE v.created_at::date BETWEEN '{_d1h}' AND '{_d2h}'
+            {_wf_h} {_wc_h}
+            ORDER BY v.created_at DESC
+        """)
+
+        if not _df_hist.empty:
+            _tot_h  = float(_df_hist["Valor"].sum())
+            _qtd_h  = len(_df_hist)
+            _tck_h  = _tot_h / _qtd_h if _qtd_h > 0 else 0.0
+            _fmais  = _df_hist["Pagamento"].mode().iloc[0] if _qtd_h > 0 else "—"
+
+            _kh1, _kh2, _kh3, _kh4 = st.columns(4)
+            _kh1.metric("💰 Total",          f"R$ {_tot_h:,.2f}")
+            _kh2.metric("🛒 Vendas",          _qtd_h)
+            _kh3.metric("🎯 Ticket Médio",    f"R$ {_tck_h:,.2f}")
+            _kh4.metric("🏆 Forma Mais Usada", _fmais)
+
+            st.markdown("---")
+            _df_disp = _df_hist.drop(columns=["venda_id"], errors="ignore")
+            st.dataframe(_df_disp, use_container_width=True, hide_index=True)
+
+            for _, _hrow in _df_hist.iterrows():
+                _hvid = str(_hrow["venda_id"])
+                _hparc = int(_hrow.get("Parcelas", 1) or 1)
+                _hforma_label = f"{_hparc}x {_hrow['Pagamento']}" if _hparc > 1 else _hrow['Pagamento']
+                with st.expander(
+                    f"🔍 {_hrow['Data/Hora']} · {_hrow['Cliente']} · "
+                    f"R$ {float(_hrow['Valor']):,.2f} · {_hforma_label}"
+                ):
+                    _df_itens_h = run_query(f"""
+                        SELECT COALESCE(iv.nome_produto, p.nome, '—') AS "Produto",
+                               CASE WHEN iv.cor IS NOT NULL AND iv.cor != ''
+                                    THEN iv.cor ELSE '' END AS "Cor",
+                               CASE WHEN iv.tamanho IS NOT NULL AND iv.tamanho != ''
+                                    THEN iv.tamanho ELSE '' END AS "Tamanho",
+                               iv.quantidade AS "Qtd",
+                               COALESCE(iv.preco_unit, iv.preco_unitario) AS "Preço Unit",
+                               iv.subtotal AS "Subtotal"
+                        FROM itens_venda iv
+                        LEFT JOIN produtos p ON p.id = iv.produto_id
+                        WHERE iv.venda_id = {int(_hvid) if _hvid.isdigit() else 0}
+                    """)
+                    if not _df_itens_h.empty:
+                        st.dataframe(_df_itens_h, use_container_width=True, hide_index=True)
+                    else:
+                        st.caption("Sem itens registrados.")
+
+            st.markdown("---")
+            st.markdown("**Totais por Forma de Pagamento**")
+            _df_tfp = (
+                _df_hist.groupby("Pagamento")["Valor"]
+                .agg(["sum", "count"])
+                .reset_index()
+            )
+            _df_tfp.columns = ["Forma", "Total (R$)", "Qtd"]
+            _df_tfp["Total (R$)"] = _df_tfp["Total (R$)"].apply(lambda x: f"R$ {float(x):,.2f}")
+            st.dataframe(_df_tfp, use_container_width=True, hide_index=True)
+
+            import io as _io_h
+            _csv_h = _df_disp.to_csv(index=False).encode("utf-8")
+            st.download_button(
+                "📥 Exportar CSV", _csv_h,
+                f"vendas_{_d1h}_{_d2h}.csv", "text/csv",
+                key="hist_export"
+            )
+        else:
+            st.info("Nenhuma venda no período selecionado.")
 
 elif pagina == "📚 Histórico Legado":
     if _role == "vendas":
@@ -10152,6 +11151,455 @@ elif pagina == "📚 Histórico Legado":
             st.error(f"Erro na consulta: {e}")
             import traceback
             st.code(traceback.format_exc())
+
+elif pagina == "📒 Cadastros":
+    if _role == "vendas":
+        st.error("🔒 Área restrita — somente administradores.")
+        st.stop()
+
+    st.markdown("## 📒 Central de Cadastros")
+
+    run_command("""
+        CREATE TABLE IF NOT EXISTS clientes (
+            id BIGSERIAL PRIMARY KEY, nome TEXT NOT NULL,
+            cpf TEXT, whatsapp TEXT, email TEXT,
+            endereco TEXT, observacoes TEXT, ativo BOOLEAN DEFAULT TRUE,
+            created_at TIMESTAMPTZ DEFAULT NOW()
+        )
+    """)
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS data_nascimento DATE")
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS cep VARCHAR(9)")
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS logradouro TEXT")
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS bairro TEXT")
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS cidade TEXT")
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS estado VARCHAR(2)")
+    run_command("ALTER TABLE clientes ADD COLUMN IF NOT EXISTS complemento TEXT")
+
+    _cad_t1, _cad_t2, _cad_t3 = st.tabs(
+        ["👥 Clientes", "🏭 Fornecedores & Prestadores", "💡 Utilidades"]
+    )
+
+    # ── ABA CLIENTES ─────────────────────────────────────────────────────────
+    with _cad_t1:
+        # KPIs
+        _df_cli_kpi = run_query("""
+            SELECT
+              COUNT(*) FILTER (WHERE ativo = true) AS total_ativos,
+              COUNT(*) FILTER (WHERE ativo = true AND created_at >= NOW() - INTERVAL '30 days') AS novos_mes,
+              COUNT(*) AS total_geral
+            FROM clientes
+        """)
+        _df_inad_cnt = run_query("""
+            SELECT COUNT(DISTINCT nome_cliente) AS inadimplentes
+            FROM duplicatas_abertas
+            WHERE status = 'Pendente' AND dt_vencimento < CURRENT_DATE
+        """)
+        _kc1, _kc2, _kc3, _kc4 = st.columns(4)
+        _kc1.metric("👥 Total Clientes", int(_df_cli_kpi["total_geral"].iloc[0]) if not _df_cli_kpi.empty else 0)
+        _kc2.metric("✅ Ativos",          int(_df_cli_kpi["total_ativos"].iloc[0]) if not _df_cli_kpi.empty else 0)
+        _kc3.metric("🆕 Novos (30d)",    int(_df_cli_kpi["novos_mes"].iloc[0]) if not _df_cli_kpi.empty else 0)
+        _kc4.metric("⚠️ Inadimplentes",  int(_df_inad_cnt["inadimplentes"].iloc[0]) if not _df_inad_cnt.empty else 0)
+        st.markdown("---")
+
+        # Busca
+        _busca_cad = st.text_input("🔍 Buscar por nome, CPF ou WhatsApp", key="cad_busca",
+                                    placeholder="Digite para filtrar...")
+
+        # Lista de clientes
+        _df_clis = run_query("""
+            SELECT c.id::text, c.nome,
+                   COALESCE(c.cpf,'') AS cpf,
+                   COALESCE(c.whatsapp,'') AS whatsapp,
+                   c.ativo,
+                   c.created_at,
+                   COUNT(v.id) AS total_compras,
+                   MAX(v.created_at::date) AS ultima_compra,
+                   COALESCE(SUM(v.valor_total),0) AS valor_total_compras,
+                   (SELECT COALESCE(iv2.nome_produto, p2.nome, '')
+                    FROM vendas v2
+                    LEFT JOIN itens_venda iv2 ON iv2.venda_id = v2.id
+                    LEFT JOIN produtos p2 ON p2.id = iv2.produto_id
+                    WHERE v2.cliente_id = c.id
+                    ORDER BY v2.created_at DESC, iv2.id DESC
+                    LIMIT 1) AS ultimo_produto
+            FROM clientes c
+            LEFT JOIN vendas v ON v.cliente_id = c.id
+            GROUP BY c.id, c.nome, c.cpf, c.whatsapp, c.ativo, c.created_at
+            ORDER BY c.nome
+        """)
+        if not _df_clis.empty and _busca_cad.strip():
+            _qb = _busca_cad.strip().lower()
+            _df_clis = _df_clis[
+                _df_clis["nome"].str.lower().str.contains(_qb, na=False) |
+                _df_clis["cpf"].str.lower().str.contains(_qb, na=False) |
+                _df_clis["whatsapp"].str.lower().str.contains(_qb, na=False)
+            ]
+
+        # Badge helpers
+        import hashlib as _hlib
+        _BADGE_COLORS = ["#9E5B6F","#B8892A","#5B9E8A","#5B6F9E","#9E7A5B"]
+        def _avatar_color(nome):
+            return _BADGE_COLORS[int(_hlib.md5(nome.encode()).hexdigest(),16) % len(_BADGE_COLORS)]
+        def _iniciais(nome):
+            parts = (nome or "?").split()
+            return (parts[0][0] + (parts[-1][0] if len(parts)>1 else "")).upper()
+
+        # Inadimplentes set
+        _df_inad_nomes = run_query("""
+            SELECT DISTINCT nome_cliente FROM duplicatas_abertas
+            WHERE status='Pendente' AND dt_vencimento < CURRENT_DATE
+        """)
+        _inad_set = set(_df_inad_nomes["nome_cliente"].str.strip().str.lower().tolist()) if not _df_inad_nomes.empty else set()
+
+        st.caption(f"{len(_df_clis)} cliente(s)")
+        _all_clis = list(_df_clis.iterrows()) + [None]
+        for _ri in range(0, len(_all_clis), 3):
+            _row_clis = _all_clis[_ri:_ri+3]
+            _ccols = st.columns(3)
+            for _ci, _item in enumerate(_row_clis):
+                with _ccols[_ci]:
+                    if _item is None:
+                        st.markdown(
+                            '<div style="border:2px dashed #9E5B6F;border-radius:10px;'
+                            'display:flex;align-items:center;justify-content:center;height:140px;">'
+                            '<span style="font-size:40px;color:#9E5B6F;">＋</span></div>',
+                            unsafe_allow_html=True
+                        )
+                        if st.button("➕ Novo Cliente", key=f"btn_new_cli_{_ri}", use_container_width=True):
+                            st.session_state["cad_form_novo"] = True
+                            st.rerun()
+                        continue
+                    _, _cr = _item
+                    _cid = str(_cr["id"])
+                    _cnome = str(_cr["nome"] or "—")
+                    _ccpf  = str(_cr["cpf"] or "")
+                    _cwpp  = str(_cr["whatsapp"] or "")
+                    _ccomp = int(_cr["total_compras"] or 0)
+                    _culc  = str(_cr["ultima_compra"] or "—")
+                    _ctot  = float(_cr["valor_total_compras"] or 0)
+                    _cumprod = str(_cr.get("ultimo_produto") or "")
+                    _cdt   = _cr.get("created_at")
+                    _cor   = _avatar_color(_cnome)
+                    _ini   = _iniciais(_cnome)
+                    _is_inad = _cnome.strip().lower() in _inad_set
+                    _is_vip  = _ccomp >= 5 or _ctot > 500
+                    import datetime as _dtnow_c
+                    _is_novo = False
+                    if _cdt is not None:
+                        try:
+                            _dtnow_c2 = _dtnow_c.date.today()
+                            _dt_c = _cdt.date() if hasattr(_cdt, "date") else _cdt
+                            _is_novo = (_dtnow_c2 - _dt_c).days <= 30
+                        except Exception:
+                            pass
+                    _badges = ""
+                    if _is_inad: _badges += '<span style="background:#8B0000;color:#fff;padding:1px 6px;border-radius:8px;font-size:10px;margin-right:3px;">Inadimplente</span>'
+                    if _is_vip and not _is_inad: _badges += '<span style="background:#B8892A;color:#fff;padding:1px 6px;border-radius:8px;font-size:10px;margin-right:3px;">⭐ VIP</span>'
+                    if _is_novo: _badges += '<span style="background:#2E7D32;color:#fff;padding:1px 6px;border-radius:8px;font-size:10px;">Novo</span>'
+                    _cpf_mask = (
+                        f"{_ccpf[:3]}.***.***-{_ccpf[-2:]}" if len(re.sub(r"\D","",_ccpf)) == 11
+                        else _ccpf[:6]+"***" if _ccpf else "—"
+                    )
+                    _wpp_raw = re.sub(r"\D","",_cwpp)
+                    _wpp_link = f"https://wa.me/55{_wpp_raw}" if _wpp_raw else "#"
+                    st.markdown(
+                        f'<div style="border:1px solid #E8D5C4;border-radius:10px;padding:12px;margin-bottom:4px;">'
+                        f'<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">'
+                        f'<div style="background:{_cor};color:#fff;border-radius:50%;width:40px;height:40px;'
+                        f'display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;">{_ini}</div>'
+                        f'<div><b style="font-size:14px;">{_cnome}</b><br>'
+                        f'<span style="font-size:11px;color:#888;">{_cpf_mask}</span></div></div>'
+                        f'<div style="font-size:12px;color:#555;">'
+                        f'📱 <a href="{_wpp_link}" target="_blank" style="color:#25D366;">{_cwpp or "—"}</a><br>'
+                        f'🛒 {_ccomp} compra(s) · R$ {_ctot:,.0f}<br>'
+                        f'📅 Última: {_culc}'
+                        + (f'<br>🏷️ {_cumprod[:30]}' if _cumprod else '')
+                        + '</div>'
+                        f'<div style="margin-top:5px;">{_badges}</div></div>',
+                        unsafe_allow_html=True
+                    )
+                    _ba, _bb, _bc = st.columns(3)
+                    if _ba.button("📋 Histórico", key=f"cli_hist_{_cid}", use_container_width=True):
+                        st.session_state[f"cad_hist_{_cid}"] = not st.session_state.get(f"cad_hist_{_cid}", False)
+                        st.session_state[f"cad_edit_{_cid}"] = False
+                    if _cwpp and _bb.button("💬 WhatsApp", key=f"cli_wpp_{_cid}", use_container_width=True):
+                        _wn = re.sub(r"\D","",_cwpp)
+                        st.markdown(f"[↗ Abrir no WhatsApp](https://wa.me/55{_wn})", unsafe_allow_html=True)
+                    if _bc.button("✏️ Editar", key=f"cli_edit_btn_{_cid}", use_container_width=True):
+                        st.session_state[f"cad_edit_{_cid}"] = not st.session_state.get(f"cad_edit_{_cid}", False)
+                        st.session_state[f"cad_hist_{_cid}"] = False
+                    if st.session_state.get(f"cad_edit_{_cid}", False):
+                        _df_cli_ed = run_query(
+                            f"SELECT nome,cpf,whatsapp,email,endereco,observacoes,"
+                            f"data_nascimento,cep,logradouro,bairro,cidade,estado,complemento "
+                            f"FROM clientes WHERE id={int(_cid)}"
+                        )
+                        if not _df_cli_ed.empty:
+                            _ed = _df_cli_ed.iloc[0]
+                            _ESTADOS_BR_ED = ["","AC","AL","AP","AM","BA","CE","DF","ES","GO",
+                                              "MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ",
+                                              "RN","RS","RO","RR","SC","SP","SE","TO"]
+                            # ── CEP lookup fora do form ───────────────────────
+                            _ed_cep_c1, _ed_cep_c2 = st.columns([3, 1])
+                            _ed_cep_key = f"edit_cep_{_cid}_input"
+                            _ed_cep_val = _ed_cep_c1.text_input(
+                                "CEP", placeholder="00000-000", key=_ed_cep_key,
+                                value=st.session_state.get(f"edit_cep_{_cid}",
+                                      str(_ed["cep"] or ""))
+                            )
+                            if _ed_cep_c2.button("🔍 Buscar", key=f"edit_cep_btn_{_cid}",
+                                                  use_container_width=True):
+                                _ed_limpo = re.sub(r"\D", "", _ed_cep_val)
+                                if len(_ed_limpo) == 8:
+                                    _ed_data = buscar_cep(_ed_limpo)
+                                    if _ed_data:
+                                        st.session_state[f"edit_cep_{_cid}"]        = _ed_limpo
+                                        st.session_state[f"edit_log_{_cid}"]        = _ed_data.get("logradouro", "")
+                                        st.session_state[f"edit_bairro_{_cid}"]     = _ed_data.get("bairro", "")
+                                        st.session_state[f"edit_cidade_{_cid}"]     = _ed_data.get("localidade", "")
+                                        st.session_state[f"edit_estado_{_cid}"]     = _ed_data.get("uf", "")
+                                        st.rerun()
+                                    else:
+                                        st.warning("CEP não encontrado.")
+                                else:
+                                    st.warning("CEP inválido.")
+                            # ── Form ─────────────────────────────────────────
+                            with st.form(f"form_edit_cli_{_cid}"):
+                                _e1, _e2 = st.columns(2)
+                                _ed_nome = _e1.text_input("Nome *", value=str(_ed["nome"] or ""))
+                                _ed_cpf  = _e2.text_input("CPF",  value=str(_ed["cpf"] or ""))
+                                _e3, _e4 = st.columns(2)
+                                _ed_wpp  = _e3.text_input("📱 WhatsApp", value=str(_ed["whatsapp"] or ""))
+                                _ed_email= _e4.text_input("📧 Email",    value=str(_ed["email"] or ""))
+                                st.markdown("**📍 Endereço**")
+                                _ea1, _ea2 = st.columns([2, 1])
+                                _ed_log = _ea1.text_input("Logradouro e Nº",
+                                    value=st.session_state.get(f"edit_log_{_cid}", str(_ed["logradouro"] or "")),
+                                    placeholder="Rua X, 123")
+                                _ed_bairro = _ea2.text_input("Bairro",
+                                    value=st.session_state.get(f"edit_bairro_{_cid}", str(_ed["bairro"] or "")),
+                                    placeholder="Centro")
+                                _eb1, _eb2, _eb3 = st.columns([2, 1, 1])
+                                _ed_cidade = _eb1.text_input("Cidade",
+                                    value=st.session_state.get(f"edit_cidade_{_cid}", str(_ed["cidade"] or "")),
+                                    placeholder="Itaúna")
+                                _ed_est_cur = st.session_state.get(f"edit_estado_{_cid}", str(_ed["estado"] or ""))
+                                _ed_est_idx = _ESTADOS_BR_ED.index(_ed_est_cur) if _ed_est_cur in _ESTADOS_BR_ED else 0
+                                _ed_estado  = _eb2.selectbox("UF", _ESTADOS_BR_ED, index=_ed_est_idx)
+                                _ed_compl   = _eb3.text_input("Complemento",
+                                    value=str(_ed["complemento"] or ""), placeholder="Apto 101")
+                                _ed_nasc = st.date_input("🎂 Nascimento",
+                                    value=_ed["data_nascimento"] if _ed["data_nascimento"] is not None else None,
+                                    min_value=date(1900, 1, 1), max_value=date.today(),
+                                    key=f"ed_nasc_{_cid}", format="DD/MM/YYYY")
+                                _ed_obs  = st.text_area("💬 Observações",
+                                    value=str(_ed["observacoes"] or ""), height=60)
+                                _esv, _ecn = st.columns(2)
+                                _ed_save   = _esv.form_submit_button("✅ Salvar", use_container_width=True)
+                                _ed_cancel = _ecn.form_submit_button("❌ Cancelar", use_container_width=True)
+                                if _ed_cancel:
+                                    for _ek in [f"edit_cep_{_cid}", f"edit_log_{_cid}",
+                                                f"edit_bairro_{_cid}", f"edit_cidade_{_cid}",
+                                                f"edit_estado_{_cid}"]:
+                                        st.session_state.pop(_ek, None)
+                                    st.session_state[f"cad_edit_{_cid}"] = False
+                                    st.rerun()
+                                if _ed_save:
+                                    if not _ed_nome.strip():
+                                        st.error("Nome obrigatório.")
+                                    else:
+                                        _ed_cep_salvo = re.sub(r"\D", "",
+                                            st.session_state.get(f"edit_cep_{_cid}",
+                                            str(_ed["cep"] or ""))) or None
+                                        _ed_end_legado = ", ".join(filter(None, [
+                                            _ed_log.strip(), _ed_bairro.strip(),
+                                            _ed_cidade.strip(), _ed_estado
+                                        ])) or None
+                                        run_command(
+                                            "UPDATE clientes SET nome=%s, cpf=%s, whatsapp=%s, "
+                                            "email=%s, endereco=%s, cep=%s, logradouro=%s, "
+                                            "bairro=%s, cidade=%s, estado=%s, complemento=%s, "
+                                            "observacoes=%s, data_nascimento=%s WHERE id=%s",
+                                            (_ed_nome.strip(), _ed_cpf.strip() or None,
+                                             _ed_wpp.strip() or None, _ed_email.strip() or None,
+                                             _ed_end_legado, _ed_cep_salvo,
+                                             _ed_log.strip() or None, _ed_bairro.strip() or None,
+                                             _ed_cidade.strip() or None, _ed_estado or None,
+                                             _ed_compl.strip() or None,
+                                             _ed_obs.strip() or None, _ed_nasc, int(_cid))
+                                        )
+                                        for _ek in [f"edit_cep_{_cid}", f"edit_log_{_cid}",
+                                                    f"edit_bairro_{_cid}", f"edit_cidade_{_cid}",
+                                                    f"edit_estado_{_cid}"]:
+                                            st.session_state.pop(_ek, None)
+                                        st.success(f"✅ {_ed_nome.strip()} atualizado!")
+                                        st.session_state[f"cad_edit_{_cid}"] = False
+                                        st.rerun()
+                    if st.session_state.get(f"cad_hist_{_cid}", False):
+                        _df_ch = run_query(f"""
+                            SELECT TO_CHAR(v.created_at,'DD/MM/YYYY') AS Data,
+                                   v.valor_total AS Valor,
+                                   v.forma_pagamento AS Pagamento,
+                                   v.status AS Status
+                            FROM vendas v WHERE v.cliente_id = '{_cid}'::bigint
+                            ORDER BY v.created_at DESC LIMIT 10
+                        """)
+                        if not _df_ch.empty:
+                            st.dataframe(_df_ch, use_container_width=True, hide_index=True)
+                        else:
+                            st.caption("Sem compras registradas.")
+
+        # Form novo cliente
+        if st.session_state.get("cad_form_novo", False):
+            st.markdown("---")
+            st.markdown("#### ➕ Novo Cliente")
+            _ESTADOS_BR = ["","AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS",
+                           "MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"]
+            # ── CEP lookup (fora do form para poder dar rerun) ────────────────
+            st.markdown("#### 📍 Endereço")
+            _nc_cep_c1, _nc_cep_c2, _nc_cep_spacer = st.columns([1.5, 1, 4])
+            _nc_cep_val = _nc_cep_c1.text_input("CEP", placeholder="00000-000",
+                                                 key="new_cli_cep_input", max_chars=9,
+                                                 value=st.session_state.get("new_cli_cep", ""))
+            _nc_cep_c2.markdown("<br>", unsafe_allow_html=True)
+            if _nc_cep_c2.button("🔍 Buscar", key="new_cli_cep_btn", use_container_width=True):
+                _nc_limpo = re.sub(r"\D", "", _nc_cep_val)
+                if len(_nc_limpo) == 8:
+                    _nc_data = buscar_cep(_nc_limpo)
+                    if _nc_data:
+                        st.session_state["new_cli_cep"]        = _nc_limpo
+                        st.session_state["new_cli_logradouro"] = _nc_data.get("logradouro", "")
+                        st.session_state["new_cli_bairro"]     = _nc_data.get("bairro", "")
+                        st.session_state["new_cli_cidade"]     = _nc_data.get("localidade", "")
+                        st.session_state["new_cli_estado"]     = _nc_data.get("uf", "")
+                        st.rerun()
+                    else:
+                        st.warning("CEP não encontrado.")
+                else:
+                    st.warning("Digite um CEP válido com 8 dígitos.")
+            # ── Form principal ────────────────────────────────────────────────
+            with st.form("form_novo_cliente_cad"):
+                _fn1, _fn2 = st.columns(2)
+                _fnome = _fn1.text_input("Nome *", placeholder="Nome completo")
+                _fcpf  = _fn2.text_input("CPF", placeholder="000.000.000-00")
+                _fw1, _fw2 = st.columns(2)
+                _fwpp  = _fw1.text_input("📱 WhatsApp *", placeholder="37 99999-9999")
+                _femail= _fw2.text_input("📧 Email", placeholder="email@exemplo.com")
+                _fa1, _fa2 = st.columns([2, 1])
+                _f_log_num = _fa1.text_input("Logradouro e Nº",
+                                              value=st.session_state.get("new_cli_logradouro", ""),
+                                              placeholder="Rua X, 123")
+                _f_bairro  = _fa2.text_input("Bairro",
+                                              value=st.session_state.get("new_cli_bairro", ""),
+                                              placeholder="Centro")
+                _fb1, _fb2, _fb3 = st.columns([2, 1, 1])
+                _f_cidade  = _fb1.text_input("Cidade",
+                                              value=st.session_state.get("new_cli_cidade", ""),
+                                              placeholder="Itaúna")
+                _f_est_idx = _ESTADOS_BR.index(st.session_state.get("new_cli_estado", "")) \
+                             if st.session_state.get("new_cli_estado", "") in _ESTADOS_BR else 0
+                _f_estado  = _fb2.selectbox("UF", _ESTADOS_BR, index=_f_est_idx)
+                _f_compl   = _fb3.text_input("Complemento", placeholder="Apto 101")
+                _fndt  = st.date_input("🎂 Data de Nascimento", value=None,
+                                       min_value=date(1900, 1, 1), max_value=date.today(),
+                                       format="DD/MM/YYYY", key="cad_nasc")
+                _fobs  = st.text_area("💬 Observações", height=60)
+                _fsb1, _fsb2 = st.columns(2)
+                _fsave = _fsb1.form_submit_button("✅ Salvar", use_container_width=True)
+                _fcan  = _fsb2.form_submit_button("❌ Cancelar", use_container_width=True)
+                if _fcan:
+                    for _k in ["new_cli_cep","new_cli_logradouro","new_cli_bairro",
+                                "new_cli_cidade","new_cli_estado"]:
+                        st.session_state.pop(_k, None)
+                    st.session_state["cad_form_novo"] = False
+                    st.rerun()
+                if _fsave:
+                    if not _fnome.strip():
+                        st.error("Nome obrigatório.")
+                    else:
+                        _cep_salvo = re.sub(r"\D", "", st.session_state.get("new_cli_cep", "")) or None
+                        _end_legado = ", ".join(filter(None, [
+                            _f_log_num.strip(), _f_bairro.strip(),
+                            _f_cidade.strip(), _f_estado
+                        ])) or None
+                        run_command(
+                            "INSERT INTO clientes (nome, cpf, whatsapp, email, endereco, "
+                            "cep, logradouro, bairro, cidade, estado, complemento, "
+                            "observacoes, data_nascimento) "
+                            "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING",
+                            (_fnome.strip(), _fcpf.strip() or None,
+                             _fwpp.strip() or None, _femail.strip() or None,
+                             _end_legado, _cep_salvo,
+                             _f_log_num.strip() or None, _f_bairro.strip() or None,
+                             _f_cidade.strip() or None, _f_estado or None,
+                             _f_compl.strip() or None,
+                             _fobs.strip() or None, _fndt)
+                        )
+                        for _k in ["new_cli_cep","new_cli_logradouro","new_cli_bairro",
+                                    "new_cli_cidade","new_cli_estado"]:
+                            st.session_state.pop(_k, None)
+                        st.success(f"✅ {_fnome.strip()} cadastrado!")
+                        st.session_state["cad_form_novo"] = False
+                        st.rerun()
+
+    # ── ABA FORNECEDORES & PRESTADORES ──────────────────────────────────────
+    with _cad_t2:
+        st.markdown("#### 🏭 Fornecedores, Prestadores & Utilidades")
+        _fpag_sub1, _fpag_sub2, _fpag_sub3 = st.tabs(
+            ["🏭 Fornecedores", "🔧 Prestadores de Serviço", "💡 Utilidades/Contas Fixas"]
+        )
+        with _fpag_sub1:
+            _render_lista_forn_pag("Fornecedor")
+            _form_novo_forn_pag("Fornecedor")
+        with _fpag_sub2:
+            _render_lista_forn_pag("Prestador de Serviço")
+            _form_novo_forn_pag("Prestador de Serviço")
+        with _fpag_sub3:
+            _render_lista_forn_pag("Utilidade/Conta Fixa")
+            _form_novo_forn_pag("Utilidade/Conta Fixa")
+
+    # ── ABA UTILIDADES ───────────────────────────────────────────────────────
+    with _cad_t3:
+        st.markdown("#### 💡 Contas Fixas Mensais")
+        run_command("""
+            CREATE TABLE IF NOT EXISTS contas_fixas_mensais (
+                id BIGSERIAL PRIMARY KEY,
+                descricao TEXT NOT NULL,
+                categoria TEXT,
+                valor NUMERIC(10,2),
+                dia_vencimento INT,
+                ativo BOOLEAN DEFAULT TRUE
+            )
+        """)
+        _df_cfm = run_query(
+            "SELECT id, descricao, categoria, valor, dia_vencimento, ativo "
+            "FROM contas_fixas_mensais ORDER BY dia_vencimento"
+        )
+        if not _df_cfm.empty:
+            st.dataframe(_df_cfm, use_container_width=True, hide_index=True)
+            _tot_fix = float(_df_cfm[_df_cfm["ativo"] == True]["valor"].sum())
+            st.metric("💰 Total Mensal Fixo", f"R$ {_tot_fix:,.2f}")
+        else:
+            st.info("Nenhuma conta fixa cadastrada.")
+
+        with st.expander("➕ Adicionar Conta Fixa"):
+            with st.form("form_conta_fixa"):
+                _cf1, _cf2 = st.columns(2)
+                _cf_desc = _cf1.text_input("Descrição *", placeholder="Ex: Aluguel, Cemig, Internet")
+                _cf_cat  = _cf2.text_input("Categoria",  placeholder="Utilidade, Infraestrutura...")
+                _cf3, _cf4 = st.columns(2)
+                _cf_val  = _cf3.number_input("Valor (R$)", min_value=0.0, step=10.0)
+                _cf_dia  = _cf4.number_input("Dia de Vencimento", min_value=1, max_value=31, value=10)
+                if st.form_submit_button("✅ Salvar", use_container_width=True):
+                    if _cf_desc.strip():
+                        run_command(
+                            "INSERT INTO contas_fixas_mensais (descricao, categoria, valor, dia_vencimento) VALUES (%s,%s,%s,%s)",
+                            (_cf_desc.strip(), _cf_cat.strip() or None, _cf_val, int(_cf_dia))
+                        )
+                        st.success("✅ Salvo!")
+                        st.rerun()
+                    else:
+                        st.error("Descrição obrigatória.")
 
 elif pagina == "👤 Equipe":
     if _role == "vendas":
@@ -10401,42 +11849,153 @@ elif pagina == "👤 Equipe":
                     st.rerun()
 
     # ════════════════════════════════════════════════════════
-    # TAB: Fornecedores
+    # TAB: Fornecedores / Prestadores / Utilidades
     # ════════════════════════════════════════════════════════
     with _eq_forn:
-        st.caption("Cadastre fornecedores para usar no campo 'Fornecedor Ref' dos produtos.")
-        df_forn = run_query("SELECT id, nome, tipo, ativo FROM fornecedores ORDER BY nome")
-        if not df_forn.empty:
-            hf1, hf2, hf3, hf4 = st.columns([2.5, 2, 1, 1.2])
-            hf1.markdown("**Nome**"); hf2.markdown("**Tipo**")
-            hf3.markdown("**Ativo**"); hf4.markdown("")
-            st.markdown("<hr style='margin:4px 0 8px'>", unsafe_allow_html=True)
-            for _, fr in df_forn.iterrows():
-                cf1, cf2, cf3, cf4 = st.columns([2.5, 2, 1, 1.2])
-                cf1.write(fr["nome"]); cf2.write(fr["tipo"] or "—")
-                cf3.write("✅" if fr["ativo"] else "❌")
-                if cf4.button("Inativar" if fr["ativo"] else "Ativar",
-                               key=f"eq_forn_tog_{fr['id']}", use_container_width=True):
-                    run_command("UPDATE fornecedores SET ativo = NOT ativo WHERE id = %s", (int(fr["id"]),))
+        st.markdown("### 🏭 Fornecedores, Prestadores & Utilidades")
+        _tf1, _tf2, _tf3 = st.tabs(["🏭 Fornecedores", "🔧 Prestadores de Serviço", "💡 Utilidades/Contas Fixas"])
+
+        def _render_lista_forn(tipo_filtro):
+            import base64 as _b64fc
+            df_fl = run_query("SELECT id, nome, tipo, cnpj_cpf, whatsapp1, whatsapp2, instagram1, instagram2, email, endereco, referencia, observacoes, ativo, foto_cartao, foto_cartao_nome FROM fornecedores WHERE tipo = %s ORDER BY nome", params=(tipo_filtro,))
+            _busca = st.text_input("🔍 Buscar", key=f"busca_{tipo_filtro}", placeholder="Nome, referência...")
+            if not df_fl.empty:
+                if _busca.strip():
+                    _qb = _busca.strip().lower()
+                    df_fl = df_fl[df_fl["nome"].str.lower().str.contains(_qb, na=False) | df_fl["referencia"].fillna("").str.lower().str.contains(_qb, na=False)]
+                st.caption(f"{len(df_fl)} registro(s)")
+            _sf_key = f"sf_{tipo_filtro.replace(' ','_').replace('/','_')}"
+            _records = [] if df_fl.empty else list(df_fl.iterrows())
+            _all_items = _records + [None]
+            for _ri in range(0, len(_all_items), 3):
+                _row_items = _all_items[_ri:_ri + 3]
+                _cols = st.columns(3)
+                for _ci, _item in enumerate(_row_items):
+                    with _cols[_ci]:
+                        if _item is None:
+                            st.markdown('<div style="background:#1A2035;border:2px dashed #C9A227;border-radius:10px;display:flex;align-items:center;justify-content:center;height:120px;"><span style="font-size:40px;color:#C9A227;">＋</span></div>', unsafe_allow_html=True)
+                            if st.button("➕ Novo cadastro", key=f"add_{tipo_filtro}_{_ri}", use_container_width=True):
+                                st.session_state[_sf_key] = True
+                                st.rerun()
+                            continue
+                        _, fr = _item
+                        _fid = int(fr["id"])
+                        _fc_raw = fr.get("foto_cartao")
+                        _has_foto = _fc_raw is not None and len(bytes(_fc_raw)) > 0
+                        _fc_b64 = _b64fc.b64encode(bytes(_fc_raw)).decode() if _has_foto else ""
+                        _badge = '<span style="position:absolute;top:8px;right:8px;background:#C9A227;color:#000;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;">Cartão</span>' if _has_foto else ""
+                        _hdr = f'<img src="data:image/jpeg;base64,{_fc_b64}" style="width:100%;height:120px;object-fit:cover;">' if _has_foto else '<div style="display:flex;align-items:center;justify-content:center;height:120px;font-size:44px;color:#C9A227;">👕</div>'
+                        _n = str(fr["nome"] or "—").replace("<", "&lt;").replace(">", "&gt;")
+                        _r = str(fr["referencia"] or fr.get("endereco") or "—").replace("<", "&lt;").replace(">", "&gt;")
+                        _w = str(fr["whatsapp1"] or "—").replace("<", "&lt;").replace(">", "&gt;")
+                        _g = str(fr["instagram1"] or "—").replace("<", "&lt;").replace(">", "&gt;")
+                        _ob = str(fr["observacoes"] or "").strip().replace("<", "&lt;").replace(">", "&gt;")
+                        _obs_div = f'<div style="background:#1F2937;border-radius:4px;padding:4px 7px;margin-top:5px;font-size:11px;color:#9CA3AF;">{_ob}</div>' if _ob else ""
+                        st.markdown(f'<div style="position:relative;background:#1A2035;border-radius:10px 10px 0 0;overflow:hidden;height:120px;">{_hdr}{_badge}</div><div style="background:#0E1117;border:1px solid #1F2937;border-top:none;border-radius:0 0 10px 10px;padding:10px 10px 6px;margin-bottom:4px;"><p style="font-weight:700;font-size:14px;margin:0 0 2px 0;color:#FFF;">{_n}</p><p style="color:#9CA3AF;font-size:12px;margin:0 0 4px 0;">{_r}</p><p style="margin:0 0 1px 0;font-size:12px;color:#25D366;">📱 {_w}</p><p style="margin:0 0 1px 0;font-size:12px;color:#C9A227;">📸 {_g}</p>{_obs_div}</div>', unsafe_allow_html=True)
+                        _ba, _bb = st.columns(2)
+                        if _ba.button("💬 WhatsApp", key=f"wa_{tipo_filtro}_{_fid}", use_container_width=True, disabled=not fr["whatsapp1"]):
+                            _wn = str(fr["whatsapp1"]).replace(" ", "").replace("-", "").replace("(", "").replace(")", "")
+                            st.markdown(f"[↗ Abrir no WhatsApp](https://wa.me/55{_wn})", unsafe_allow_html=True)
+                        if _bb.button("🪪 Ver Cartão", key=f"vcbtn_{tipo_filtro}_{_fid}", use_container_width=True, disabled=not _has_foto):
+                            _dialog_ver_cartao(str(fr["nome"] or "—"), bytes(_fc_raw) if _has_foto else None, str(fr.get("foto_cartao_nome") or "foto.jpg"))
+                        _bc, _bd = st.columns(2)
+                        if _bc.button("✏️ Editar", key=f"ed_{tipo_filtro}_{_fid}", use_container_width=True):
+                            st.session_state[f"edit_{tipo_filtro}_{_fid}"] = not st.session_state.get(f"edit_{tipo_filtro}_{_fid}", False)
+                        if _bd.button("🗑️ Excluir", key=f"del_{tipo_filtro}_{_fid}", use_container_width=True):
+                            run_command("DELETE FROM fornecedores WHERE id = %s", (_fid,))
+                            st.rerun()
+            for _, fr in df_fl.iterrows():
+                _fid = int(fr["id"])
+                if st.session_state.get(f"edit_{tipo_filtro}_{_fid}", False):
+                    st.markdown(f"---\n#### ✏️ Editar: **{fr['nome']}**")
+                    with st.form(f"ef_{tipo_filtro}_{_fid}"):
+                        _en1, _en2 = st.columns(2)
+                        _enm = _en1.text_input("Nome *", value=str(fr["nome"] or ""))
+                        _ecn = _en2.text_input("CNPJ/CPF", value=str(fr["cnpj_cpf"] or ""))
+                        _ew1, _ew2 = st.columns(2)
+                        _ewp1 = _ew1.text_input("📱 WhatsApp 1", value=str(fr["whatsapp1"] or ""))
+                        _ewp2 = _ew2.text_input("📱 WhatsApp 2", value=str(fr["whatsapp2"] or ""))
+                        _ei1, _ei2 = st.columns(2)
+                        _eis1 = _ei1.text_input("📸 Instagram 1", value=str(fr["instagram1"] or ""))
+                        _eis2 = _ei2.text_input("📸 Instagram 2", value=str(fr["instagram2"] or ""))
+                        _ee1, _ee2 = st.columns(2)
+                        _eem = _ee1.text_input("📧 Email", value=str(fr["email"] or ""))
+                        _erf = _ee2.text_input("🔖 Referência", value=str(fr["referencia"] or ""))
+                        _eend = st.text_input("📍 Endereço", value=str(fr["endereco"] or ""))
+                        _eobs = st.text_area("💬 Observações", value=str(fr["observacoes"] or ""), height=70)
+                        _efp = st.file_uploader("📷 Nova foto do cartão", type=["jpg", "jpeg", "png"], key=f"efoto_{tipo_filtro}_{_fid}") if tipo_filtro == "Fornecedor" else None
+                        _eat = st.checkbox("Ativo", value=bool(fr["ativo"]))
+                        _es1, _es2 = st.columns(2)
+                        _eok = _es1.form_submit_button("✅ Salvar", use_container_width=True)
+                        _eco = _es2.form_submit_button("❌ Cancelar", use_container_width=True)
+                        if _eco:
+                            st.session_state[f"edit_{tipo_filtro}_{_fid}"] = False
+                            st.rerun()
+                        if _eok:
+                            if not _enm.strip():
+                                st.error("Nome obrigatório.")
+                            else:
+                                _efb = _efp.read() if _efp else None
+                                _efn = _efp.name if _efp else None
+                                if _efb:
+                                    run_command("UPDATE fornecedores SET nome=%s,cnpj_cpf=%s,whatsapp1=%s,whatsapp2=%s,instagram1=%s,instagram2=%s,email=%s,referencia=%s,endereco=%s,observacoes=%s,ativo=%s,foto_cartao=%s,foto_cartao_nome=%s WHERE id=%s",
+                                        (_enm.strip(), _ecn.strip() or None, _ewp1.strip() or None, _ewp2.strip() or None, _eis1.strip() or None, _eis2.strip() or None, _eem.strip() or None, _erf.strip() or None, _eend.strip() or None, _eobs.strip() or None, _eat, _efb, _efn, _fid))
+                                else:
+                                    run_command("UPDATE fornecedores SET nome=%s,cnpj_cpf=%s,whatsapp1=%s,whatsapp2=%s,instagram1=%s,instagram2=%s,email=%s,referencia=%s,endereco=%s,observacoes=%s,ativo=%s WHERE id=%s",
+                                        (_enm.strip(), _ecn.strip() or None, _ewp1.strip() or None, _ewp2.strip() or None, _eis1.strip() or None, _eis2.strip() or None, _eem.strip() or None, _erf.strip() or None, _eend.strip() or None, _eobs.strip() or None, _eat, _fid))
+                                st.success(f"✅ {_enm.strip()} atualizado!")
+                                st.session_state[f"edit_{tipo_filtro}_{_fid}"] = False
+                                st.rerun()
+
+        def _form_novo_forn(tipo):
+            _sf_key = f"sf_{tipo.replace(' ','_').replace('/','_')}"
+            if not st.session_state.get(_sf_key, False):
+                return
+            st.markdown(f"---\n#### ➕ Novo {tipo}")
+            with st.form(f"form_{tipo.replace(' ','_').replace('/','_')}"):
+                _fn1, _fn2 = st.columns(2)
+                _fnome = _fn1.text_input("Nome *", placeholder="Ex: Inovar Modas")
+                _fcnpj = _fn2.text_input("CNPJ / CPF", placeholder="00.000.000/0001-00")
+                _fw1, _fw2 = st.columns(2)
+                _fwpp1 = _fw1.text_input("📱 WhatsApp 1", placeholder="37 99999-9999")
+                _fwpp2 = _fw2.text_input("📱 WhatsApp 2", placeholder="11 99999-9999")
+                _fi1, _fi2 = st.columns(2)
+                _finst1 = _fi1.text_input("📸 Instagram 1", placeholder="@fornecedor")
+                _finst2 = _fi2.text_input("📸 Instagram 2", placeholder="@perfil2")
+                _fe1, _fe2 = st.columns(2)
+                _femail = _fe1.text_input("📧 Email", placeholder="contato@empresa.com")
+                _fref = _fe2.text_input("🔖 Referência", placeholder="Rua da Juta, Brás-SP")
+                _fend = st.text_input("📍 Endereço", placeholder="Rua X, 000 — Bairro — Cidade/UF")
+                _fobs = st.text_area("💬 Observações", placeholder="Prazo, condições especiais...", height=70)
+                _ffoto = st.file_uploader("📷 Foto do cartão de visita", type=["jpg","jpeg","png"], key=f"foto_{tipo.replace(' ','_')}") if tipo == "Fornecedor" else None
+                _fsb1, _fsb2 = st.columns(2)
+                _fsave = _fsb1.form_submit_button(f"✅ Salvar {tipo}", use_container_width=True)
+                _fcancel = _fsb2.form_submit_button("❌ Cancelar", use_container_width=True)
+                if _fcancel:
+                    st.session_state[_sf_key] = False
                     st.rerun()
-        else:
-            st.info("Nenhum fornecedor cadastrado.")
-        st.markdown("---")
-        with st.form("eq_form_forn"):
-            ff1, ff2 = st.columns(2)
-            _fn = ff1.text_input("Nome *", placeholder="Atacadão Moda")
-            _ft = ff2.text_input("Tipo", placeholder="Mercadoria, Fixo...")
-            if st.form_submit_button("➕ Salvar Fornecedor", use_container_width=True):
-                if not _fn.strip():
-                    st.error("Nome obrigatório.")
-                else:
-                    run_command(
-                        "INSERT INTO fornecedores (nome, tipo) VALUES (%s, %s) "
-                        "ON CONFLICT (nome) DO UPDATE SET tipo = EXCLUDED.tipo",
-                        (_fn.strip(), _ft.strip() or None),
-                    )
-                    st.success(f"Fornecedor **{_fn.strip()}** salvo!")
-                    st.rerun()
+                if _fsave:
+                    if not _fnome.strip():
+                        st.error("Nome obrigatório.")
+                    else:
+                        _foto_bytes = _ffoto.read() if _ffoto else None
+                        _foto_nome = _ffoto.name if _ffoto else None
+                        run_command("INSERT INTO fornecedores (nome, tipo, cnpj_cpf, whatsapp1, whatsapp2, instagram1, instagram2, email, referencia, endereco, observacoes, foto_cartao, foto_cartao_nome) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING",
+                            (_fnome.strip(), tipo, _fcnpj.strip() or None, _fwpp1.strip() or None, _fwpp2.strip() or None, _finst1.strip() or None, _finst2.strip() or None, _femail.strip() or None, _fref.strip() or None, _fend.strip() or None, _fobs.strip() or None, _foto_bytes, _foto_nome))
+                        st.success(f"✅ {_fnome.strip()} salvo!")
+                        st.session_state[_sf_key] = False
+                        st.rerun()
+
+        with _tf1:
+            _render_lista_forn("Fornecedor")
+            _form_novo_forn("Fornecedor")
+        with _tf2:
+            _render_lista_forn("Prestador de Serviço")
+            _form_novo_forn("Prestador de Serviço")
+        with _tf3:
+            st.info("💡 Em breve: lançamento automático em Contas a Pagar.")
+            _render_lista_forn("Utilidade/Conta Fixa")
+            _form_novo_forn("Utilidade/Conta Fixa")
 
     # ════════════════════════════════════════════════════════
     # TAB: Performance
@@ -10597,8 +12156,8 @@ elif pagina == "⚡ JG Hub":
     with _hub_ia:
         st.markdown("#### 🔑 Configurações de IA & Integrações")
 
-        # ── OpenRouter API Key (Manu AI / Qwen 2.5-Coder) ────────────────────
-        st.markdown("##### 🤖 OpenRouter API Key (Manu AI — Qwen 2.5-Coder)")
+        # ── OpenRouter API Key (GM Homem AI / Qwen 2.5-Coder) ────────────────────
+        st.markdown("##### 🤖 OpenRouter API Key (GM Homem AI — Qwen 2.5-Coder)")
         _df_or_key = run_query("SELECT valor FROM config_geral WHERE chave = 'OPENROUTER_API_KEY'")
         _or_key_db = _df_or_key["valor"].iloc[0] if not _df_or_key.empty else ""
         _or_env    = os.getenv("OPENROUTER_API_KEY", "")
@@ -10609,7 +12168,7 @@ elif pagina == "⚡ JG Hub":
             _or_mask = _or_mask[:6] + "•"*20 + _or_mask[-4:] if len(_or_mask) > 12 else _or_mask
             st.success(f"✅ Chave ativa (fonte: {_or_src}): `{_or_mask}`")
         else:
-            st.warning("⚠️ Chave não configurada — Manu AI funcionará sem LLM.")
+            st.warning("⚠️ Chave não configurada — GM Homem AI funcionará sem LLM.")
         with st.form("hub_openrouter_key"):
             _nork = st.text_input("Nova OpenRouter API Key", type="password",
                                   placeholder="sk-or-v1-...")
@@ -10624,7 +12183,7 @@ elif pagina == "⚡ JG Hub":
                     )
                     os.environ["OPENROUTER_API_KEY"] = _nork.strip()
                     st.session_state["_api_keys_loaded"] = False  # forçar reload
-                    st.success("✅ Chave OpenRouter salva! Manu AI ativada.")
+                    st.success("✅ Chave OpenRouter salva! GM Homem AI ativada.")
                     st.rerun()
         st.markdown("---")
 
@@ -10683,7 +12242,7 @@ elif pagina == "⚡ JG Hub":
         _wh_a = _df_wh["valor"].iloc[0] if not _df_wh.empty else ""
         st.caption(f"URL atual: `{_wh_a[:40]}…`" if len(_wh_a) > 40 else f"URL atual: `{_wh_a or '(não configurada)'}`")
         with st.form("hub_webhook"):
-            _nurl = st.text_input("URL do Webhook n8n", placeholder="https://n8n.seudominio.com/webhook/loja-manu")
+            _nurl = st.text_input("URL do Webhook n8n", placeholder="https://n8n.seudominio.com/webhook/loja-gmh")
             if st.form_submit_button("💾 Salvar URL", use_container_width=True):
                 if not _nurl.strip().startswith("http"):
                     st.error("URL inválida.")
@@ -10754,7 +12313,7 @@ elif pagina == "⚡ JG Hub":
                 _np_nome = df_prod_nasa["nome"].iloc[_np_idx]
                 st.warning(f"Produto: **{_np_nome}**")
                 if st.button(f"🗑️ EXCLUIR '{_np_nome}' permanentemente", key="hub_del_prod", type="primary"):
-                    if run_command("DELETE FROM produtos WHERE id = %s::uuid", (_np_id,)):
+                    if run_command("DELETE FROM produtos WHERE id = %s", (_np_id,)):
                         st.toast(f"Produto '{_np_nome}' excluído.", icon="🗑️")
                         st.rerun()
             st.markdown("---")
@@ -10770,9 +12329,9 @@ elif pagina == "⚡ JG Hub":
                 _nv_idx  = st.selectbox("Venda", range(len(_nv_opts)), format_func=lambda i: _nv_opts[i], key="hub_nasa_vnd")
                 _nv_id   = df_vnd_nasa["vid"].iloc[_nv_idx]
                 if st.button("🗑️ EXCLUIR esta venda permanentemente", key="hub_del_vnd", type="primary"):
-                    run_command("DELETE FROM itens_venda WHERE venda_id = %s::uuid", (_nv_id,))
-                    run_command("DELETE FROM contas_receber WHERE venda_id = %s::uuid", (_nv_id,))
-                    if run_command("DELETE FROM vendas WHERE id = %s::uuid", (_nv_id,)):
+                    run_command("DELETE FROM itens_venda WHERE venda_id = %s", (_nv_id,))
+                    run_command("DELETE FROM contas_receber WHERE venda_id = %s", (_nv_id,))
+                    if run_command("DELETE FROM vendas WHERE id = %s", (_nv_id,)):
                         st.toast("Venda excluída.", icon="🗑️")
                         st.rerun()
             st.markdown("---")
@@ -10787,17 +12346,17 @@ elif pagina == "⚡ JG Hub":
                 st.warning(f"Cliente: **{_ncl_nome}**")
                 _df_div = run_query(f"SELECT COUNT(*) AS qtd FROM contas_receber cr "
                                     f"JOIN vendas v ON v.id = cr.venda_id "
-                                    f"WHERE v.cliente_id = '{_ncl_id}'::uuid AND cr.status = 'aberto'")
+                                    f"WHERE v.cliente_id = '{_ncl_id}' AND cr.status = 'aberto'")
                 if int(_df_div["qtd"].iloc[0]) > 0 if not _df_div.empty else False:
                     st.error("❌ Cliente com parcelas em aberto. Quite antes de excluir.")
                 else:
                     if st.button(f"🗑️ EXCLUIR '{_ncl_nome}' permanentemente", key="hub_del_cli", type="primary"):
-                        _df_vc = run_query(f"SELECT id::text AS vid FROM vendas WHERE cliente_id = '{_ncl_id}'::uuid")
+                        _df_vc = run_query(f"SELECT id::text AS vid FROM vendas WHERE cliente_id = '{_ncl_id}'")
                         for _, _vc in _df_vc.iterrows():
-                            run_command("DELETE FROM itens_venda WHERE venda_id = %s::uuid", (_vc["vid"],))
-                            run_command("DELETE FROM contas_receber WHERE venda_id = %s::uuid", (_vc["vid"],))
-                        run_command("DELETE FROM vendas WHERE cliente_id = %s::uuid", (_ncl_id,))
-                        if run_command("DELETE FROM clientes WHERE id = %s::uuid", (_ncl_id,)):
+                            run_command("DELETE FROM itens_venda WHERE venda_id = %s", (_vc["vid"],))
+                            run_command("DELETE FROM contas_receber WHERE venda_id = %s", (_vc["vid"],))
+                        run_command("DELETE FROM vendas WHERE cliente_id = %s", (_ncl_id,))
+                        if run_command("DELETE FROM clientes WHERE id = %s", (_ncl_id,)):
                             st.toast(f"Cliente '{_ncl_nome}' excluído.", icon="🗑️")
                             st.rerun()
             st.markdown("---")
@@ -11390,7 +12949,7 @@ elif pagina == "⚡ JG Hub":
                                         _cur_fin.execute(
                                             """
                                             INSERT INTO contas_receber
-                                                (venda_id, valor_parcela, data_vencimento,
+                                                (venda_id, valor_parcela, dt_vencimento,
                                                  status, nr_documento)
                                             VALUES (%s, %s, %s, 'aberto', %s)
                                             """,
@@ -11491,7 +13050,7 @@ elif pagina == "📣 Mala Direta":
                     _abord = _abordagem_prospeccao(str(_ri["ultimo_item"] or ""))
                     _msg_i = (
                         f"Olá {str(_ri['nome']).split()[0]}! Sentimos sua falta na "
-                        f"Nome da Loja. {_abord} Te esperamos! 💛"
+                        f"GM Homem Itaúna. {_abord} Te esperamos! 💛"
                     )
                     _ok, _err = _disparar_whatsapp(
                         cliente_id=_ri["cliente_id"],
@@ -11506,7 +13065,7 @@ elif pagina == "📣 Mala Direta":
             _msg_massa_i = st.text_area(
                 "Mensagem padrão (usada no 'Enviar para Todos')",
                 value=(
-                    "Olá {nome}! Sentimos sua falta na Nome da Loja. "
+                    "Olá {nome}! Sentimos sua falta na GM Homem Itaúna. "
                     "Temos novidades incríveis esperando por você. Venha nos visitar! 💛"
                 ),
                 height=90,
@@ -11577,7 +13136,7 @@ elif pagina == "📣 Mala Direta":
                                help="Enviar parabéns"):
                     _msg_a = (
                         f"Feliz Aniversário, {str(_ra['nome']).split()[0]}! 🎉🎂 "
-                        f"A Nome da Loja deseja um dia incrível para você! "
+                        f"A GM Homem Itaúna deseja um dia incrível para você! "
                         f"Temos uma surpresa especial esperando. Venha nos visitar! 💛"
                     )
                     _ok, _err = _disparar_whatsapp(
@@ -11601,7 +13160,7 @@ elif pagina == "📣 Mala Direta":
                 for _idx_a, (_, _ra) in enumerate(df_aniv.iterrows()):
                     _msg_sub_a = (
                         f"Feliz Aniversário, {str(_ra['nome']).split()[0]}! 🎉🎂 "
-                        f"A Nome da Loja deseja um dia incrível para você! "
+                        f"A GM Homem Itaúna deseja um dia incrível para você! "
                         f"Temos uma surpresa especial esperando. Venha nos visitar! 💛"
                     )
                     _ok, _ = _disparar_whatsapp(
@@ -11700,9 +13259,9 @@ elif pagina == "🔴 Inadimplentes":
                 )
 
 # ════════════════════════════════════════════════════════════════════════════
-# MANU AI — Página Central de Inteligência
+# GM HOMEM AI — Página Central de Inteligência
 # ════════════════════════════════════════════════════════════════════════════
-elif pagina == "✨ Manu AI":
-    if st.session_state.get("_nav_target") == "✨ Manu AI":
+elif pagina == "✨ GM Homem AI":
+    if st.session_state.get("_nav_target") == "✨ GM Homem AI":
         st.session_state.pop("_nav_target", None)
     render_manu_ai(_role)

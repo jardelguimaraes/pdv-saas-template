@@ -1,9 +1,26 @@
-# 🚀 PDV SaaS — JGAutomações.AI
+# 🛍️ PDV SaaS Template NASA — JGAutomações.AI
 
-> Sistema completo de Ponto de Venda para lojas de moda — JGAutomações.AI, Itaúna/MG.
+Template base white-label para PDVs de moda/varejo.
+Toda melhoria é validada aqui primeiro, depois propagada para os clientes ativos.
+
+## ⚡ Deploy novo cliente (5 passos)
+1. Copie a pasta do template para `/opt/jg-projetos/loja-CLIENTE/`
+2. Edite `config.py` com dados do cliente (nome, cores, banco, logo)
+3. Substitua `logo.png` pela logo do cliente
+4. Crie o banco PostgreSQL: `createdb nome_db`
+5. Execute: `bash start.sh`
+
+## 🔑 Credenciais padrão (alterar no primeiro acesso)
+| Perfil    | Usuário | Senha      |
+|-----------|---------|------------|
+| Gerente   | admin   | admin      |
+| Caixa     | admin   | vendas     |
+| Master    | master  | jardel2026 |
+
+## 🎨 Customização por cliente
+Edite apenas o `config.py` — nunca o `dashboard.py` para visual.
 
 ## ✨ Funcionalidades
-
 | Módulo | Descrição |
 |--------|-----------|
 | 🛍️ Vendas | PDV completo com cupom, parcelamento e crediário |
@@ -12,34 +29,29 @@
 | 📦 Estoque | Variações cor/tamanho, histórico e alertas |
 | 👥 Clientes | CRM com RFM, histórico e mala direta |
 | 📊 Relatórios | Vendas, recebimentos e comissões em PDF |
-| 🤖 AI Telegram | Agente em linguagem natural |
 | 📱 WhatsApp | Cobrança e comprovantes automáticos |
 | 🏦 Financeiro | Contas a pagar/receber e fluxo de caixa |
-| 🌑 Modo Escuro | Interface responsiva |
 
-## 🚀 Instalação
+## 🏪 Clientes ativos JGAutomações.AI
+| Loja            | URL                                    | Porta |
+|-----------------|----------------------------------------|-------|
+| GM Homem Itaúna | lojagmh.jardelguimaraes.com.br        | 8510  |
+| Loja Manu       | lojamanu.jardelguimaraes.com.br       | 8506  |
+| Loja Lume       | lume.jardelguimaraes.com.br           | 8505  |
 
+## 📋 Fluxo de melhorias
+Template → valida → propaga clientes ativos com 1 comando
+
+## 🚀 Instalação (ambiente novo)
 ```bash
 git clone https://github.com/jardelguimaraes/pdv-saas-template.git
 cd pdv-saas-template
-python3 setup.py
+cp config.py.exemplo config.py
+# Edite config.py com os dados do cliente
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
 bash start.sh
 ```
 
-## 💰 Planos
-
-| Plano | Preço/mês |
-|-------|-----------|
-| Starter | R$ 197 |
-| Pro | R$ 347 |
-| Enterprise | R$ 497 |
-
-Todos incluem: instalação, treinamento, suporte e atualizações.
-
-## 📞 Contato
-
-JGAutomações.AI — Itaúna/MG  
-(37) 9 9835-1826 · @jgautomacoes.ai
-
 ---
-*Pra cima sempre 🚀 · Nível NASA*
+JGAutomações.AI · Itaúna/MG · Nível NASA 🚀

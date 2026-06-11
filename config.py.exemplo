@@ -1,0 +1,48 @@
+# ╔══════════════════════════════════════════════════════════════╗
+# ║      JGAutomações.AI — PDV SaaS Template NASA v2.0         ║
+# ║  Copie este arquivo e ajuste para cada novo cliente.        ║
+# ║  NÃO altere dashboard.py para customizações — use config.py ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+# ── Identidade da Loja ────────────────────────────────────────
+LOJA_NOME        = "Nome da Loja"
+LOJA_APELIDO     = "loja"
+LOJA_SUBTITULO   = "Subtítulo da Loja"
+PAGE_TITLE       = "PDV — Nome da Loja"
+PAGE_ICON        = "🛍️"
+
+# ── Logo ──────────────────────────────────────────────────────
+LOGO_FILE        = "logo.png"
+LOGO_CUPOM_NOME  = "NOME DA LOJA"
+
+# ── Cores (substituir pela identidade visual do cliente) ──────
+COR_PRINCIPAL    = "#1A2035"   # navbar, bordas, labels
+COR_PRINCIPAL_LT = "#2A3558"   # hover
+COR_PRINCIPAL_BG = "#F0EAD6"   # fundo suave
+COR_DESTAQUE     = "#C9A84C"   # botões primários, métricas
+COR_DESTAQUE_LT  = "#E8C97A"   # destaque claro
+COR_DESTAQUE_BG  = "#F8F4E8"   # fundo destaque
+COR_TEXTO_DARK   = "#0D1117"   # texto principal
+
+# ── Banco de Dados ────────────────────────────────────────────
+DB_NAME          = "pdv_template_db"
+DB_USER          = "jgadmin"
+DB_PASSWORD      = "SENHA_DO_BANCO_AQUI"
+DB_HOST          = "127.0.0.1"
+DB_PORT          = 5432
+
+# ── Aplicação ─────────────────────────────────────────────────
+APP_PORT         = 8510
+APP_DIR          = "/opt/jg-projetos/pdv-saas-template"
+
+# ── Contato da Loja ───────────────────────────────────────────
+WHATSAPP_LOJA    = "5537999999999"
+
+# ── Credenciais de Acesso ao Sistema ─────────────────────────
+# Alterar no primeiro acesso do cliente
+USUARIO_GERENTE  = "admin"
+SENHA_GERENTE    = "admin"
+USUARIO_CAIXA    = "admin"
+SENHA_CAIXA      = "vendas"
+USUARIO_MASTER   = "master"
+SENHA_MASTER     = "jardel2026"
